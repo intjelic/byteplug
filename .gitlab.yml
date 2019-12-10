@@ -1,0 +1,26 @@
+image: 'rust:latest'
+
+stages:
+  - build
+  - test
+  - doc
+
+
+before_script:
+  - rustc --version
+  - cargo --version
+
+build:
+  stage: build
+  script:
+    - cargo build
+
+test:
+  stage: test
+  script:
+    - cargo test
+
+doc:
+  stage: doc
+  script:
+    - cargo doc

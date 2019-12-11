@@ -8,31 +8,34 @@
 
 /// The input module
 ///
-/// Additional documentation is to be written here.
+/// Input is a rather broad word but in this context, it refers to **user
+/// input** only. It includes all the physical devices which are used to drive
+/// the application, such as pluggable keyboards, mouses and gamepads, touch
+/// screens and the built-in sensors.
 pub mod input {
 
-    /// Brief description
+    /// # Give access to the real-time state of the keyboard.
     ///
-    /// Long decripiton.
+    /// Additional documentation is to be written here.
     pub struct Keyboard {}
 
-    /// Brief description
+    /// Give access to the real-time state of the mouse.
     ///
-    /// Long decripiton.
+    /// Additional documentation is to be written here.
     pub struct Mouse {}
 
-    /// Brief description
+    /// Give access to the real-time state of gamepads.
     ///
-    /// Long decripiton.
+    /// Additional documentation is to be written here.
     pub struct Gamepad {}
 
-    /// Brief description
+    /// Give access to the real-time state of the touch screen.
     ///
-    /// Long decripiton.
+    /// Additional documentation is to be written here.
     pub struct Touch {}
 
-    /// Brief description
+    /// Give access to the real-time state of the sensors.
     ///
-    /// Long decripiton.
+    /// Additional documentation is to be written here.
     pub struct Sensor {}
 }

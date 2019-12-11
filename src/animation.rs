@@ -6,18 +6,53 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
+/// The animation module
+///
+/// Additional documentation is to be written here.
 pub mod animation {
-    struct Animator {}
 
-    struct Animation {}
-    struct MoveAnimation {}
-    struct RotateAnimation {}
-    struct ScaleAnimation {}
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct Animator {}
 
-    struct ResizeAnimation {}
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct Animation {}
 
-    struct FrameAnimation {}
-    struct SkeletonAnimation {}
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct MoveAnimation {}
 
-    struct Timeline {}
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct RotateAnimation {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct ScaleAnimation {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct ResizeAnimation {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct FrameAnimation {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct SkeletonAnimation {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct Timeline {}
 }

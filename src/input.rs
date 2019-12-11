@@ -6,10 +6,33 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
+/// The input module
+///
+/// Additional documentation is to be written here.
 pub mod input {
-    struct Keyboard {}
-    struct Mouse {}
-    struct Gamepad {}
-    struct Touch {}
-    struct Sensor {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct Keyboard {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct Mouse {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct Gamepad {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct Touch {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct Sensor {}
 }

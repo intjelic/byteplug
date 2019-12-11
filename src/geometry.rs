@@ -6,20 +6,63 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
+/// The geometry module
+///
+/// Additional documentation is to be written here.
 pub mod geometry {
-    trait Movable {}
-    trait Rotable {}
-    trait Scalable {}
 
-    struct Transform {}
-    trait Transformable {}
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub trait Movable {}
 
-    trait Resizable {}
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub trait Rotable {}
 
-    struct Vector {}
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub trait Scalable {}
 
-    struct Point {}
-    struct Line {}
-    struct Rectangle {}
-    struct Circle {}
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct Transform {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub trait Transformable {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub trait Resizable {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct Vector {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct Point {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct Line {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct Rectangle {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct Circle {}
 }

@@ -6,22 +6,70 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
+/// The renderer module
+///
+/// Additional documentation is to be written here.
 pub mod renderer {
-    struct Color {}
-    struct Gradient {}
 
-    struct View {}
-    struct Surface {}
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct Color {}
 
-    trait Renderable {}
-    struct Renderer {}
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct Gradient {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct View {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct Surface {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub trait Renderable {}
+
+    /// Brief description
+    ///
+    /// Long decripiton.
+    pub struct Renderer {}
 
     pub mod shape {
-        struct Point {}
-        struct Line {}
-        struct Triangle {}
-        struct Rectangle {}
-        struct Circle {}
-        struct Polygon {}
+        /// Brief description
+        ///
+        /// Long decripiton.
+        pub struct Point {}
+
+        /// Brief description
+        ///
+        /// Long decripiton.
+        ///
+        pub struct Line {}
+        /// Brief description
+        ///
+        /// Long decripiton.
+        pub struct Triangle {}
+
+        /// Brief description
+        ///
+        /// Long decripiton.
+        pub struct Rectangle {}
+
+        /// Brief description
+        ///
+        /// Long decripiton.
+        ///
+        pub struct Circle {}
+        /// Brief description
+        ///
+        /// Long decripiton.
+        pub struct Polygon {}
     }
 }

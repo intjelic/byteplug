@@ -14,4 +14,7 @@ readme = "README.md"
 
 edition = "2018"
 
+# keep the crate from being published until it reaches decent usability
+publish = false
+
 [dependencies]

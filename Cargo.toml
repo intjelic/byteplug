@@ -18,3 +18,4 @@ edition = "2018"
 publish = false
 
 [dependencies]
+glutin = "0.22.0-alpha4"

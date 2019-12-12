@@ -6,18 +6,8 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-/// The application module
-///
-/// Additional documentation is to be written here.
-pub mod application {
-
-    /// Brief description
-    ///
-    /// Long decripiton.
-    pub struct Window {}
-
-    /// Brief description
-    ///
-    /// Long decripiton.
-    pub struct Application {}
-}
+//! The application module
+//!
+//! Additional documentation is to be written here.
+include!("window.rs");
+include!("application.rs");

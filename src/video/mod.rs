@@ -6,7 +6,6 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-/// The video module
-///
-/// Additional documentation is to be written here.
-pub mod video {}
+//! The video module
+//!
+//! Additional documentation is to be written here.

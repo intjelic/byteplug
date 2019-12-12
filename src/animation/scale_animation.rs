@@ -6,18 +6,7 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-/// The ui module
+/// Brief description
 ///
-/// Additional documentation is to be written here.
-pub mod ui {
-
-    /// Brief description
-    ///
-    /// Long decripiton.
-    pub struct Layout {}
-
-    /// Brief description
-    ///
-    /// Long decripiton.
-    pub struct Component {}
-}
+/// Long decripiton.
+pub struct ScaleAnimation {}

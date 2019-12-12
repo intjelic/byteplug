@@ -6,7 +6,6 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-/// The audio module
-///
-/// Additional documentation is to be written here.
-pub mod audio {}
+//! The audio module
+//!
+//! Additional documentation is to be written here.

@@ -12,8 +12,13 @@
 mod color;
 mod gradient;
 
+mod context;
+
 mod view;
 mod surface;
+
+mod shader;
+mod texture;
 
 mod renderable;
 mod renderer;
@@ -23,8 +28,13 @@ pub mod shapes;
 pub use color::Color;
 pub use gradient::Gradient;
 
+pub use context::Context;
+
 pub use view::View;
 pub use surface::Surface;
+
+pub use shader::Shader;
+pub use texture::Texture;
 
 pub use renderable::Renderable;
 pub use renderer::Renderer;

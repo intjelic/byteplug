@@ -9,20 +9,22 @@
 //! The renderer module
 //!
 //! Additional documentation is to be written here.
-include!("color.rs");
-include!("gradient.rs");
+mod color;
+mod gradient;
 
-include!("view.rs");
-include!("surface.rs");
+mod view;
+mod surface;
 
-include!("renderable.rs");
-include!("renderer.rs");
+mod renderable;
+mod renderer;
 
-pub mod shapes {
-    include!("shapes/point.rs");
-    include!("shapes/line.rs");
-    include!("shapes/triangle.rs");
-    include!("shapes/rectangle.rs");
-    include!("shapes/circle.rs");
-    include!("shapes/polygon.rs");
-}
+pub mod shapes;
+
+pub use color::Color;
+pub use gradient::Gradient;
+
+pub use view::View;
+pub use surface::Surface;
+
+pub use renderable::Renderable;
+pub use renderer::Renderer;

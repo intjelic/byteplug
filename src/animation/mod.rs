@@ -9,15 +9,28 @@
 //! The animation module
 //!
 //! Additional documentation is to be written here.
-include!("animator.rs");
-include!("animation.rs");
+mod animator;
+mod animation;
 
-include!("move_animation.rs");
-include!("rotate_animation.rs");
-include!("scale_animation.rs");
-include!("resize_animation.rs");
+mod move_animation;
+mod rotate_animation;
+mod scale_animation;
+mod resize_animation;
 
-include!("frame_animation.rs");
-include!("skeleton_animation.rs");
+mod frame_animation;
+mod skeleton_animation;
 
-include!("timeline.rs");
+mod timeline;
+
+pub use animator::Animator;
+pub use animation::Animation;
+
+pub use move_animation::MoveAnimation;
+pub use rotate_animation::RotateAnimation;
+pub use scale_animation::ScaleAnimation;
+pub use resize_animation::ResizeAnimation;
+
+pub use frame_animation::FrameAnimation;
+pub use skeleton_animation::SkeletonAnimation;
+
+pub use timeline::Timeline;

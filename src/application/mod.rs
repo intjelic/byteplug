@@ -9,5 +9,8 @@
 //! The application module
 //!
 //! Additional documentation is to be written here.
-include!("window.rs");
-include!("application.rs");
+mod window;
+mod application;
+
+pub use window::Window;
+pub use application::Application;

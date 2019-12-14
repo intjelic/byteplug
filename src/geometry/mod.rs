@@ -9,18 +9,34 @@
 //! The geometry module
 //!
 //! Additional documentation is to be written here.
-include!("movable.rs");
-include!("rotable.rs");
-include!("scalable.rs");
+mod movable;
+mod rotable;
+mod scalable;
 
-include!("transform.rs");
-include!("transformable.rs");
+mod transform;
+mod transformable;
 
-include!("resizable.rs");
+mod resizable;
 
-include!("vector.rs");
+mod vector;
 
-include!("point.rs");
-include!("line.rs");
-include!("rectangle.rs");
-include!("circle.rs");
+mod point;
+mod line;
+mod rectangle;
+mod circle;
+
+pub use movable::Movable;
+pub use rotable::Rotable;
+pub use scalable::Scalable;
+
+pub use transform::Transform;
+pub use transformable::Transformable;
+
+pub use resizable::Resizable;
+
+pub use vector::Vector;
+
+pub use point::Point;
+pub use line::Line;
+pub use rectangle::Rectangle;
+pub use circle::Circle;

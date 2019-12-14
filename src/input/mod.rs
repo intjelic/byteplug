@@ -12,8 +12,14 @@
 //! input** only. It includes all the physical devices which are used to drive
 //! the application, such as pluggable keyboards, mouses and gamepads, touch
 //! screens and the built-in sensors.
-include!("keyboard.rs");
-include!("mouse.rs");
-include!("gamepad.rs");
-include!("touch.rs");
-include!("sensor.rs");
+mod keyboard;
+mod mouse;
+mod gamepad;
+mod touch;
+mod sensor;
+
+pub use keyboard::Keyboard;
+pub use mouse::Mouse;
+pub use gamepad::Gamepad;
+pub use touch::Touch;
+pub use sensor::Sensor;

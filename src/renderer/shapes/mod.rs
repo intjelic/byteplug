@@ -6,11 +6,19 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-//! The ui module
+//! The shapes sub-module
 //!
 //! Additional documentation is to be written here.
-mod layout;
-mod component;
+mod point;
+mod line;
+mod triangle;
+mod rectangle;
+mod circle;
+mod polygon;
 
-pub use layout::Layout;
-pub use component::Component;
+pub use point::Point;
+pub use line::Line;
+pub use triangle::Triangle;
+pub use rectangle::Rectangle;
+pub use circle::Circle;
+pub use polygon::Polygon;

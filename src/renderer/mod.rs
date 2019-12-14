@@ -9,6 +9,14 @@
 //! The renderer module
 //!
 //! Additional documentation is to be written here.
+pub mod gl {
+    //! The OpenGL module
+    //!
+    //! This module exposes the OpenGL ES 3.3 that the renderer module is
+    //! using to perform rendering.
+    include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
+}
+
 mod color;
 mod gradient;
 

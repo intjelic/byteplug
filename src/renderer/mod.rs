@@ -12,6 +12,11 @@
 mod color;
 mod gradient;
 
+mod glyph;
+mod font;
+
+mod image;
+
 mod context;
 
 mod view;
@@ -20,13 +25,18 @@ mod surface;
 mod shader;
 mod texture;
 
+mod text;
+
 mod renderable;
 mod renderer;
 
-pub mod shapes;
-
 pub use color::Color;
 pub use gradient::Gradient;
+
+pub use glyph::Glyph;
+pub use font::Font;
+
+pub use image::Image;
 
 pub use context::Context;
 
@@ -36,5 +46,9 @@ pub use surface::Surface;
 pub use shader::Shader;
 pub use texture::Texture;
 
+pub use text::Text;
+
 pub use renderable::Renderable;
 pub use renderer::Renderer;
+
+pub mod shapes;

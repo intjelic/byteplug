@@ -27,9 +27,6 @@ mod texture;
 
 mod text;
 
-mod renderable;
-mod renderer;
-
 pub use color::Color;
 pub use gradient::Gradient;
 
@@ -47,8 +44,5 @@ pub use shader::Shader;
 pub use texture::Texture;
 
 pub use text::Text;
-
-pub use renderable::Renderable;
-pub use renderer::Renderer;
 
 pub mod shapes;

@@ -14,3 +14,12 @@ pub struct Position<T = i32> {
     pub x: T,
     pub y: T
 }
+
+impl<T> Position<T> {
+    pub fn new(x: T, y: T) -> Position<T> {
+        Position::<T> {
+            x: x,
+            y: y
+        }
+    }
+}

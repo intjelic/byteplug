@@ -14,3 +14,12 @@ pub struct Vector<T = f64> {
     pub radius: T,
     pub angle:  f64
 }
+
+impl<T> Vector<T> {
+    pub fn new(radius: T, angle: f64) -> Vector<T> {
+        Vector::<T> {
+            radius: radius,
+            angle:  angle
+        }
+    }
+}

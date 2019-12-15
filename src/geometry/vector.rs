@@ -9,4 +9,7 @@
 /// Brief description
 ///
 /// Long decripiton.
-pub struct Vector {}
+pub struct Vector<T = f64> {
+    pub radius: T,
+    pub phi:    T
+}

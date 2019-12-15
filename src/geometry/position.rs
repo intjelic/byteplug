@@ -9,4 +9,7 @@
 /// Brief description
 ///
 /// Long decripiton.
-pub struct Position {}
+pub struct Position<T = i32> {
+    pub x: T,
+    pub y: T
+}

@@ -9,4 +9,7 @@
 /// Brief description
 ///
 /// Long decripiton.
-pub struct Size {}
+pub struct Size<T = i32> {
+    pub width:  T,
+    pub height: T
+}

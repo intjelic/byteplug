@@ -9,8 +9,8 @@
 /// Brief description
 ///
 /// Long decripiton.
-#[derive(Debug, Copy, Clone, Eq, PartialEq)]
+#[derive(Debug, Copy, Clone, PartialEq)] // implement Eq ?
 pub struct Vector<T = f64> {
     pub radius: T,
-    pub phi:    T
+    pub angle:  f64
 }

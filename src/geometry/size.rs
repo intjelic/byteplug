@@ -9,6 +9,7 @@
 /// Brief description
 ///
 /// Long decripiton.
+#[derive(Debug, Copy, Clone, Eq, PartialEq)]
 pub struct Size<T = i32> {
     pub width:  T,
     pub height: T

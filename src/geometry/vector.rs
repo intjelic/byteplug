@@ -9,6 +9,7 @@
 /// Brief description
 ///
 /// Long decripiton.
+#[derive(Debug, Copy, Clone, Eq, PartialEq)]
 pub struct Vector<T = f64> {
     pub radius: T,
     pub phi:    T

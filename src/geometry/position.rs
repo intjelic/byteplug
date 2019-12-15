@@ -9,6 +9,7 @@
 /// Brief description
 ///
 /// Long decripiton.
+#[derive(Debug, Copy, Clone, Eq, PartialEq)]
 pub struct Position<T = i32> {
     pub x: T,
     pub y: T

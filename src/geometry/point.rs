@@ -9,4 +9,4 @@
 /// Brief description
 ///
 /// Long decripiton.
-pub trait Point {}
+pub struct Point {}

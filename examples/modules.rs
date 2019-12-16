@@ -1,11 +1,17 @@
+
+use distill::geometry::{Position, Size, Vector};
+use distill::geometry::{Transform};
 use distill::geometry::{Movable, Rotable, Scalable};
-use distill::geometry::{Transform, Transformable};
 use distill::geometry::{Resizable};
-use distill::geometry::{Vector};
+use distill::geometry::{Transformable};
 use distill::geometry::{Point, Line, Rectangle, Circle};
 use distill::renderer::{Color, Gradient};
+use distill::renderer::{Glyph, Font};
+use distill::renderer::{Image};
+use distill::renderer::{Context};
 use distill::renderer::{View, Surface};
-use distill::renderer::{Renderable, Renderer};
+use distill::renderer::{Shader, Texture};
+use distill::renderer::{Text};
 use distill::renderer::shapes::{Point as PointShape};
 use distill::renderer::shapes::{Line as LineShape};
 use distill::renderer::shapes::{Triangle as TriangleShape};

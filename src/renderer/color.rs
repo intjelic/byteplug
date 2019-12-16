@@ -7,6 +7,8 @@
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
 use std::default::Default;
+use std::cmp;
+use std::ops::{Add, AddAssign};
 
 /// Brief description
 ///
@@ -123,5 +125,25 @@ impl Color {
 impl Default for Color {
     fn default() -> Color {
         Color::new()
+    }
+}
+
+impl Add for Color {
+    type Output = Self;
+
+    fn add(self, other: Self) -> Self {
+        Self {
+            // todo: can we retrieve the type of color components and use their maximum value ??
+            red:   cmp::min(self.red as i32   + other.red as i32,   std::u8::MAX as i32) as u8,
+            green: cmp::min(self.green as i32 + other.green as i32, std::u8::MAX as i32) as u8,
+            blue:  cmp::min(self.blue as i32  + other.blue as i32,  std::u8::MAX as i32) as u8,
+            alpha: cmp::min(self.alpha as i32 + other.alpha as i32, std::u8::MAX as i32) as u8
+        }
+    }
+}
+
+impl AddAssign for Color {
+    fn add_assign(&mut self, other: Self) {
+        *self = *self + other
     }
 }

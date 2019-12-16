@@ -6,6 +6,8 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
+use std::default::Default;
+
 /// Brief description
 ///
 /// Long decripiton.
@@ -116,4 +118,10 @@ impl Color {
         blue:  0,
         alpha: 0
     };
+}
+
+impl Default for Color {
+    fn default() -> Color {
+        Color::new()
+    }
 }

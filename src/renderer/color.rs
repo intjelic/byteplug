@@ -19,11 +19,38 @@ pub struct Color {
 
 impl Color {
     pub fn new() -> Color {
-        Color{
+        Color {
             red:   0,
             green: 0,
             blue:  0,
             alpha: 255
+        }
+    }
+
+    pub fn rgb(red: u8, green: u8, blue: u8) -> Color {
+        Color {
+            red:   red,
+            green: green,
+            blue:  blue,
+            alpha: 255
+        }
+    }
+
+    pub fn rgba(red: u8, green: u8, blue: u8, alpha: u8) -> Color {
+        Color {
+            red:   red,
+            green: green,
+            blue:  blue,
+            alpha: alpha
+        }
+    }
+
+    pub fn argb(alpha: u8, red: u8, green: u8, blue: u8) -> Color {
+        Color {
+            red:   red,
+            green: green,
+            blue:  blue,
+            alpha: alpha
         }
     }
 }

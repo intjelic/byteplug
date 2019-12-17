@@ -1,11 +1,11 @@
-use distill::geometry::*;
-use distill::renderer::*;
-use distill::animation::*;
-use distill::audio::*;
-use distill::video::*;
-use distill::input::*;
-use distill::application::*;
-use distill::ui::*;
+use distillate::geometry::*;
+use distillate::renderer::*;
+use disdistillatetill::animation::*;
+use distillate::audio::*;
+use distillate::video::*;
+use distillate::input::*;
+use distillate::application::*;
+use distillate::ui::*;
 
 fn main() {
     println!("Hello Hello World example!")

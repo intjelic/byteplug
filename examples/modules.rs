@@ -30,7 +30,7 @@ use distillate::controller::mouse::{Button, Wheel, Mouse};
 use distillate::controller::{Gamepad};
 use distillate::controller::touchpad::{Touchpad};
 use distillate::controller::touchscreen::{Touchscreen};
-use distillate::controller::{Sensor};
+use distillate::controller::sensor::{Accelerometer, Gyroscope, Magnetometer, Gravity, Orientation};
 use distillate::application::{Window, Application};
 use distillate::ui::{Layout, Component};
 

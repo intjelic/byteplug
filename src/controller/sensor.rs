@@ -6,7 +6,41 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-/// Give access to the real-time state of the sensors.
+//! Give access to the real-time state of the sensors.
+//!
+//! Additional documentation is to be written here.
+
+/// # Brief description
 ///
-/// Additional documentation is to be written here.
-pub struct Sensor {}
+/// Long description.
+///
+pub struct Accelerometer {
+}
+
+/// # Brief description.
+///
+/// Long description.
+///
+pub struct Gyroscope {
+}
+
+/// # Brief description.
+///
+/// Long description.
+///
+pub struct Magnetometer {
+}
+
+/// # Brief description.
+///
+/// Long description.
+///
+pub struct Gravity {
+}
+
+/// # Brief description.
+///
+/// Long description.
+///
+pub struct Orientation {
+}

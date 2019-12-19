@@ -13,12 +13,11 @@
 //! the application, such as pluggable keyboards, mouses and gamepads, touch
 //! screens and the built-in sensors.
 pub mod keyboard;
-mod mouse;
+pub mod mouse;
 mod gamepad;
 mod touch;
 mod sensor;
 
-pub use mouse::Mouse;
 pub use gamepad::Gamepad;
 pub use touch::Touch;
 pub use sensor::Sensor;

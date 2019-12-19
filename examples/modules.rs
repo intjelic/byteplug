@@ -28,7 +28,9 @@ use distillate::video;
 use distillate::controller::keyboard::{Key, Keyboard};
 use distillate::controller::mouse::{Button, Wheel, Mouse};
 use distillate::controller::{Gamepad};
-use distillate::controller::{Touch, Sensor};
+use distillate::controller::touchpad::{Touchpad};
+use distillate::controller::touchscreen::{Touchscreen};
+use distillate::controller::{Sensor};
 use distillate::application::{Window, Application};
 use distillate::ui::{Layout, Component};
 

@@ -6,7 +6,13 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-/// Give access to the real-time state of the touch screen.
+//! Give access to the real-time state of the touchpad.
+//!
+//! Additional documentation is to be written here.
+
+/// # Brief description
 ///
-/// Additional documentation is to be written here.
-pub struct Touch {}
+/// Long description.
+///
+pub struct Touchpad {
+}

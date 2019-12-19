@@ -15,9 +15,9 @@
 pub mod keyboard;
 pub mod mouse;
 mod gamepad;
-mod touch;
+pub mod touchpad;
+pub mod touchscreen;
 mod sensor;
 
 pub use gamepad::Gamepad;
-pub use touch::Touch;
 pub use sensor::Sensor;

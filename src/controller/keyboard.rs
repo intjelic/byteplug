@@ -6,6 +6,8 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
+use std::collections::HashMap;
+
 //! # Give access to the real-time state of the keyboard.
 //!
 //! Additional documentation is to be written here.
@@ -125,4 +127,23 @@ pub enum Key {
 /// Long description.
 ///
 pub struct Keyboard {
+    pressed_keys: HashMap<Key, ()>
+}
+
+impl Keyboard {
+    /// Brief description.
+    ///
+    /// Long description.
+    ///
+    pub fn is_key_pressed(&self) -> bool {
+        false
+    }
+
+    /// Brief description.
+    ///
+    /// Long description.
+    ///
+    pub fn is_connected() -> bool {
+        false
+    }
 }

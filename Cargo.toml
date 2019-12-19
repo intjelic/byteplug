@@ -18,6 +18,7 @@ edition = "2018"
 publish = false
 
 [dependencies]
+winit = "0.20.0-alpha4"
 glutin = "0.22.0-alpha4"
 
 [build-dependencies]

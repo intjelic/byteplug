@@ -14,10 +14,8 @@
 //! screens and the built-in sensors.
 pub mod keyboard;
 pub mod mouse;
-mod gamepad;
+pub mod gamepad;
 pub mod touchpad;
 pub mod touchscreen;
 pub mod sensor;
 pub mod tablet;
-
-pub use gamepad::Gamepad;

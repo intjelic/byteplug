@@ -31,6 +31,7 @@ use distillate::controller::{Gamepad};
 use distillate::controller::touchpad::{Touchpad};
 use distillate::controller::touchscreen::{Touchscreen};
 use distillate::controller::sensor::{Accelerometer, Gyroscope, Magnetometer, Gravity, Orientation};
+use distillate::controller::tablet::{Tablet};
 use distillate::application::{Window, Application};
 use distillate::ui::{Layout, Component};
 

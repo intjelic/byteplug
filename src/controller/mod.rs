@@ -18,5 +18,6 @@ mod gamepad;
 pub mod touchpad;
 pub mod touchscreen;
 pub mod sensor;
+pub mod tablet;
 
 pub use gamepad::Gamepad;

@@ -3,7 +3,7 @@ use distillate::renderer::*;
 use distillate::animation::*;
 use distillate::audio::*;
 use distillate::video::*;
-use distillate::input::*;
+use distillate::controller::*;
 use distillate::application::*;
 use distillate::ui::*;
 

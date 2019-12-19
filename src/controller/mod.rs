@@ -6,9 +6,9 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-//! The input module
+//! The controller module
 //!
-//! Input is a rather broad word but in this context, it refers to **user
+//! Controller is a rather broad word but in this context, it refers to **user
 //! input** only. It includes all the physical devices which are used to drive
 //! the application, such as pluggable keyboards, mouses and gamepads, touch
 //! screens and the built-in sensors.

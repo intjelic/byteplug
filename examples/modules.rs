@@ -25,8 +25,8 @@ use distillate::animation::{FrameAnimation, SkeletonAnimation};
 use distillate::animation::{Timeline};
 use distillate::audio;
 use distillate::video;
-use distillate::input::{Keyboard, Mouse, Gamepad};
-use distillate::input::{Touch, Sensor};
+use distillate::controller::{Keyboard, Mouse, Gamepad};
+use distillate::controller::{Touch, Sensor};
 use distillate::application::{Window, Application};
 use distillate::ui::{Layout, Component};
 

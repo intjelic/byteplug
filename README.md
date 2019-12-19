@@ -16,7 +16,7 @@ The library is under development. For now, I can only list the modules.
 - animation
 - audio
 - video
-- input
+- controller
 - application
 - ui
 

@@ -29,7 +29,7 @@ pub mod animation;
 pub mod audio;
 pub mod video;
 
-pub mod input;
+pub mod controller;
 pub mod application;
 
 pub mod ui;

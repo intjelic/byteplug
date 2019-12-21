@@ -1,6 +1,6 @@
 use distillate::geometry::*;
 use distillate::renderer::*;
-use disdistillatetill::animation::*;
+use distillate::animation::*;
 use distillate::audio::*;
 use distillate::video::*;
 use distillate::input::*;

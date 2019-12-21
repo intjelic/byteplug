@@ -1,3 +1,4 @@
+#![allow(unused_imports)]
 use distillate::geometry::*;
 use distillate::renderer::*;
 use distillate::animation::*;

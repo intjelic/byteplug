@@ -1,4 +1,4 @@
-
+#![allow(unused_imports)]
 use distillate::geometry::{Position, Size, Vector};
 use distillate::geometry::{Transform};
 use distillate::geometry::{Movable, Rotable, Scalable};

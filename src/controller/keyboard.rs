@@ -6,11 +6,11 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-use std::collections::HashMap;
-
 //! # Give access to the real-time state of the keyboard.
 //!
 //! Additional documentation is to be written here.
+
+use std::collections::HashMap;
 
 /// # Brief description.
 ///

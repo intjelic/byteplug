@@ -6,7 +6,7 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-//! The renderer module
+//! The draw module
 //!
 //! Additional documentation is to be written here.
 pub mod gl {

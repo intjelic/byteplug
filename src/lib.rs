@@ -23,12 +23,13 @@
 //! extensions developed by the community (Thor) coupled with my decade of
 //! experience in the field and my relentless perfectionism.
 pub mod geometry;
-pub mod renderer;
 pub mod animation;
 
 pub mod image;
 pub mod audio;
 pub mod video;
+
+pub mod draw;
 
 pub mod controller;
 pub mod application;

@@ -12,10 +12,11 @@ It was heavily inspired by similar framework (like SFML) and other extensions de
 The library is under development. For now, I can only list the modules.
 
 - geometry
-- renderer
 - animation
+- image
 - audio
 - video
+- draw
 - controller
 - application
 - ui

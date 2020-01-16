@@ -1,7 +1,7 @@
 #![allow(unused_imports)]
 use distillate::geometry::*;
 use distillate::image::*;
-use distillate::renderer::*;
+use distillate::draw::*;
 use distillate::animation::*;
 use distillate::audio::*;
 use distillate::video::*;

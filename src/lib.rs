@@ -26,6 +26,7 @@ pub mod geometry;
 pub mod renderer;
 pub mod animation;
 
+pub mod image;
 pub mod audio;
 pub mod video;
 

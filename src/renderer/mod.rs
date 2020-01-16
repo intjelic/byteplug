@@ -17,13 +17,8 @@ pub mod gl {
     include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 }
 
-mod color;
-mod gradient;
-
 mod glyph;
 mod font;
-
-mod image;
 
 mod context;
 
@@ -35,13 +30,8 @@ mod texture;
 
 mod text;
 
-pub use color::Color;
-pub use gradient::Gradient;
-
 pub use glyph::Glyph;
 pub use font::Font;
-
-pub use image::Image;
 
 pub use context::Context;
 

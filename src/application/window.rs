@@ -8,5 +8,6 @@
 
 /// Brief description
 ///
-/// Long decripiton.
+/// The **Window struct** is not documented yet. Pull requests are welcome.
+///
 pub struct Window {}

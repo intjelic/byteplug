@@ -8,5 +8,6 @@
 
 /// Brief description
 ///
-/// Long decripiton.
+/// The **Application struct** is not documented yet. Pull requests are welcome.
+///
 pub struct Application {}

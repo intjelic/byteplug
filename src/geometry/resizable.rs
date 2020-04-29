@@ -8,5 +8,6 @@
 
 /// Brief description
 ///
-/// Long decripiton.
+/// The **Resizable struct** is not documented yet. Pull requests are welcome.
+///
 pub trait Resizable {}

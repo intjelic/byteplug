@@ -8,5 +8,6 @@
 
 /// Brief description
 ///
-/// Long decripiton.
+/// The **Movable struct** is not documented yet. Pull requests are welcome.
+///
 pub trait Movable {}

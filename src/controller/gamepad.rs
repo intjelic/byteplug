@@ -12,7 +12,7 @@
 
 /// # An enumeration of the gamepad d-pad directions
 ///
-/// Long description.
+/// The **Component struct** is not documented yet. Pull requests are welcome.
 ///
 pub enum DirectionalPad {
     Left,

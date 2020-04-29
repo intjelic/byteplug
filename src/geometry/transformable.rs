@@ -8,5 +8,7 @@
 
 /// Brief description
 ///
-/// Long decripiton.
+/// The **Transformable struct** is not documented yet. Pull requests are
+/// welcome.
+///
 pub trait Transformable {}

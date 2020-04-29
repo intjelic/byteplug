@@ -8,5 +8,6 @@
 
 /// Brief description
 ///
-/// Long decripiton.
+/// The **Animator struct** is not documented yet. Pull requests are welcome.
+///
 pub struct Animator {}

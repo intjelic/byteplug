@@ -8,5 +8,7 @@
 
 /// Brief description
 ///
-/// Long decripiton.
+/// The **ResizeAnimation struct** is not documented yet. Pull requests are
+/// welcome.
+///
 pub struct ResizeAnimation {}

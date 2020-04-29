@@ -12,7 +12,7 @@
 
 /// # An enumeration of the mouse buttons.
 ///
-/// Long description.
+/// The **Component struct** is not documented yet. Pull requests are welcome.
 ///
 pub enum Button {
     /// The left button

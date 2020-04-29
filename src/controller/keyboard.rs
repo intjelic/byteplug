@@ -14,7 +14,7 @@ use std::collections::HashMap;
 
 /// # Brief description.
 ///
-/// Long description.
+/// The **Component struct** is not documented yet. Pull requests are welcome.
 ///
 pub enum Direction {
     Left, Right, Up, Down

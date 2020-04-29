@@ -8,7 +8,8 @@
 
 /// Brief description
 ///
-/// Long decripiton.
+/// The **Size struct** is not documented yet. Pull requests are welcome.
+///
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
 pub struct Size<T = i32> {
     pub width:  T,

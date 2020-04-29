@@ -8,7 +8,8 @@
 
 /// Brief description
 ///
-/// Long decripiton.
+/// The **Position struct** is not documented yet. Pull requests are welcome.
+///
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
 pub struct Position<T = i32> {
     pub x: T,

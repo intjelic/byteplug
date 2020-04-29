@@ -8,5 +8,7 @@
 
 /// Brief description
 ///
-/// Long decripiton.
+/// The **MoveAnimation struct** is not documented yet. Pull requests are
+/// welcome.
+///
 pub struct MoveAnimation {}

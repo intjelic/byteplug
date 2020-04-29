@@ -8,7 +8,8 @@
 
 /// Brief description
 ///
-/// Long decripiton.
+/// The **Vector struct** is not documented yet. Pull requests are welcome.
+///
 #[derive(Debug, Copy, Clone, PartialEq)] // implement Eq ?
 pub struct Vector<T = f64> {
     pub radius: T,

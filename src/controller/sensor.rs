@@ -12,7 +12,7 @@
 
 /// # Brief description
 ///
-/// Long description.
+/// The **Component struct** is not documented yet. Pull requests are welcome.
 ///
 pub struct Accelerometer {
 }

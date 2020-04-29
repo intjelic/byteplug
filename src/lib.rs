@@ -8,20 +8,35 @@
 
 //! # Distilled Multimedia Library
 //!
-//! **Distill** is a multimedia library for the Rust language which aims to
-//! provide a decent framework to write applications (or games) for desktop (or
-//! mobile).
+//! **Distillate** is a multimedia library for the Rust language which aims to
+//! provide a decent framework with minimal set of tools to write applications
+//! (or games) for desktop (or mobile). This is in the same essence as the SDL
+//! and SFML frameworks.
 //!
-//! While it appears to feature tools in many areas (animation, ui, etc.), it
-//! actually provides the bare minimum and each are carefully crafted to be
-//! extended and integrate well with external libraries.
-//! For instance, if you had a bad experience with the thousands of poorly
-//! designed GUI toolkits out there, you might be plaisantly surprised by the
-//! **ui** momdule.
+//! While it appears to cover many areas (animation, graphical user interface,
+//! etc.), it actually provides the bare minimum functionnalities and each tool
+//! is carefully crafted to work together, to be extended and to integrate well
+//! with external libraries. For instance, if you had a bad experience with the
+//! thousands of poorly designed GUI toolkits out there, you might be plaisantly
+//! surprised by the **widget module** which implements the core logic without
+//! defining any default appearance, and leaves you with a ready-to-implement
+//! environment to create the next full-fledged GUI framework like GTK or Qt.
 //!
-//! It was heavily inspired by similar framework (like SFML) and other
+//! # Showcase sample
+//!
+//! This sample showcases how to create a single-window cross-platform
+//! application.
+//!
+//! ```
+//! // To be written...
+//! ```
+//!
+//! It was heavily inspired by similar frameworks (like SFML) and other
 //! extensions developed by the community (Thor) coupled with my decade of
-//! experience in the field and my relentless perfectionism.
+//! experience in the field of video games and my obsession for perfection.
+//!
+//! I'm open to suggestions and contributions. I would gladly discuss every
+//! design decisions that were taken and adjust the framework accordingly.
 pub mod image;
 pub mod audio;
 pub mod video;

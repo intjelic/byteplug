@@ -6,7 +6,7 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-//! The application module
+//! Cross-platform application utilities
 //!
 //! Additional documentation is to be written here.
 mod window;

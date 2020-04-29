@@ -6,7 +6,7 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-//! The animation module
+//! Procedural animation functionalities
 //!
 //! Additional documentation is to be written here.
 mod animator;

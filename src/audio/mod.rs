@@ -6,6 +6,6 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-//! The audio module
+//! Audio processing functionalities
 //!
 //! Additional documentation is to be written here.

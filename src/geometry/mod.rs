@@ -6,7 +6,7 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-//! The geometry module
+//! Mathematical utilities related to geometry
 //!
 //! Additional documentation is to be written here.
 mod position;

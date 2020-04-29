@@ -22,19 +22,18 @@
 //! It was heavily inspired by similar framework (like SFML) and other
 //! extensions developed by the community (Thor) coupled with my decade of
 //! experience in the field and my relentless perfectionism.
-pub mod geometry;
-pub mod animation;
-
 pub mod image;
 pub mod audio;
 pub mod video;
 
+pub mod geometry;
 pub mod draw;
+pub mod animation;
 
 pub mod controller;
 pub mod application;
-
 pub mod ui;
+
 
 #[cfg(test)]
 mod tests {

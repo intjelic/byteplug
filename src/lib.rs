@@ -32,8 +32,7 @@ pub mod animation;
 
 pub mod controller;
 pub mod application;
-pub mod ui;
-
+pub mod widget;
 
 #[cfg(test)]
 mod tests {

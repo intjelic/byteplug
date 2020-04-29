@@ -7,7 +7,7 @@ use distillate::audio::*;
 use distillate::video::*;
 use distillate::controller::*;
 use distillate::application::*;
-use distillate::ui::*;
+use distillate::widget::*;
 
 fn main() {
     println!("Hello Hello World example!")

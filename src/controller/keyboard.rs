@@ -126,6 +126,17 @@ pub enum Key {
 ///
 /// Long description.
 ///
+pub struct Modifiers {
+  pub control: bool,
+  pub shift: bool,
+  pub alternate: bool,
+  pub system: bool
+}
+
+/// # Brief description.
+///
+/// Long description.
+///
 pub struct Keyboard {
     pressed_keys: HashMap<Key, ()>
 }

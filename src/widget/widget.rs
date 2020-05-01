@@ -169,3 +169,10 @@ pub type MouseUpFunction = fn(button: Button, position: Position) -> ();
 /// * `movement` - The movement of the wheel expressed in pixels
 ///
 pub type MouseScrollFunction = fn(wheel: Wheel, movement: f64) -> ();
+
+/// Brief description
+///
+/// The **Widget trait** is not documented yet. Pull requests are welcome.
+///
+pub trait Widget {
+}

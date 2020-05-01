@@ -33,6 +33,7 @@ use distillate::controller::touchscreen::{Touchscreen};
 use distillate::controller::sensor::{Accelerometer, Gyroscope, Magnetometer, Gravity, Orientation};
 use distillate::controller::tablet::{Tablet};
 use distillate::application::{Window, Application};
+use distillate::widget::{Widget};
 use distillate::widget::{Layout, Component};
 
 fn main() {

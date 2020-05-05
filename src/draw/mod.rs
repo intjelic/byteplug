@@ -36,8 +36,8 @@
 pub mod gl {
     //! The OpenGL module
     //!
-    //! This module exposes the OpenGL ES 3.3 that the renderer module is
-    //! using to perform rendering.
+    //! This module exposes the OpenGL ES 3.2 that the draw module is using to perform rendering.
+    //!
     include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 }
 

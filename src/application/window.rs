@@ -14,6 +14,7 @@ use crate::image::Color;
 use crate::controller::keyboard;
 use crate::controller::mouse;
 use crate::widget::*;
+use crate::application::get_or_create_event_loop;
 
 fn map_key_code(key: Option<winit::event::VirtualKeyCode>) -> keyboard::Key {
     // todo: finish implementation
@@ -345,7 +346,7 @@ impl<States> Window<States> {
     ///   loop.
     ///
     pub fn run(mut self, _states: &mut States) {
-        let mut event_loop = winit::event_loop::EventLoop::new();
+        let event_loop = get_or_create_event_loop();
         let _window = winit::window::WindowBuilder::new().build(&event_loop).unwrap();
 
         event_loop.run_return(move |event, _, control_flow| {

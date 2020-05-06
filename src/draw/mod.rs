@@ -71,29 +71,29 @@ macro_rules! gl_check {
     }
 }
 
-mod glyph;
-mod font;
-
 mod context;
 
-mod view;
+mod options;
 mod surface;
+mod view;
 
 mod shader;
 mod default_shader;
 mod texture;
 
+mod glyph;
+mod font;
 mod text;
 
-pub use glyph::Glyph;
-pub use font::Font;
-
-pub use view::View;
+pub use options::Options;
 pub use surface::Surface;
+pub use view::View;
 
 pub use shader::Shader;
 pub use texture::Texture;
 
+pub use glyph::Glyph;
+pub use font::Font;
 pub use text::Text;
 
 pub mod shapes;

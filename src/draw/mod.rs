@@ -57,8 +57,6 @@ mod text;
 pub use glyph::Glyph;
 pub use font::Font;
 
-pub use context::Context;
-
 pub use view::View;
 pub use surface::Surface;
 

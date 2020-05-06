@@ -8,7 +8,6 @@ use distillate::geometry::{Point, Line, Rectangle, Circle};
 use distillate::image::{Color, Gradient};
 use distillate::image::{Image};
 use distillate::draw::{Glyph, Font};
-use distillate::draw::{Context};
 use distillate::draw::{View, Surface};
 use distillate::draw::{Shader, Texture};
 use distillate::draw::{Text};

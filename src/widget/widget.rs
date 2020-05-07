@@ -18,7 +18,7 @@ use crate::image::Color;
 ///
 /// * `position` - The new widget position (relative to its parent).
 ///
-pub type WidgetMoveFunction = fn(position: Position) -> ();
+pub type WidgetMoveFunction<Window, States> = fn(window: &mut Window, position: Position, states: &mut States) -> ();
 
 /// The widget resize callback function
 ///
@@ -27,7 +27,7 @@ pub type WidgetMoveFunction = fn(position: Position) -> ();
 ///
 /// * `size` - The new widget size.
 ///
-pub type WidgetResizeFunction = fn(size: Size) -> ();
+pub type WidgetResizeFunction<Window, States> = fn(window: &mut Window, size: Size, states: &mut States) -> ();
 
 /// The widget redraw callback function
 ///
@@ -42,7 +42,7 @@ pub type WidgetResizeFunction = fn(size: Size) -> ();
 /// to work with, and to get rid of dependency on the `Color` struct (the
 /// widget module should not depend on the image module).
 ///
-pub type WidgetDrawFunction = fn(pixels: &mut Vec<Color>) -> ();
+pub type WidgetDrawFunction<Window, States> = fn(window: &mut Window, pixels: &mut Vec<Color>, states: &mut States) -> ();
 
 /// The focus gain callback function.
 ///
@@ -50,14 +50,14 @@ pub type WidgetDrawFunction = fn(pixels: &mut Vec<Color>) -> ();
 /// or no widget is focused at a time and a focused widget receives the keyboard
 /// input. Usually it's visually decorated to indicate it's the focused widget.
 ///
-pub type FocusGainFunction = fn() -> ();
+pub type FocusGainFunction<Window, States> = fn(window: &mut Window, states: &mut States) -> ();
 
 /// The focus gain callback function.
 ///
 /// This function is called whenever the widget focus is lost. The widget does
 /// not receive the keyboard input until it gains the focus back.
 ///
-pub type FocusLoseFunction = fn() -> ();
+pub type FocusLoseFunction<Window, States> = fn(window: &mut Window, states: &mut States) -> ();
 
 /// The keyboard key down callback function.
 ///
@@ -68,7 +68,7 @@ pub type FocusLoseFunction = fn() -> ();
 /// * `key` - The identifier of the key being pressed.
 /// * `modifiers` - The current keyboard modifiers.
 ///
-pub type KeyDownFunction = fn(key: Key, modifiers: Modifiers) -> ();
+pub type KeyDownFunction<Window, States> = fn(window: &mut Window, key: Key, modifiers: Modifiers, states: &mut States) -> ();
 
 /// The keyboard key up callback function.
 ///
@@ -79,7 +79,7 @@ pub type KeyDownFunction = fn(key: Key, modifiers: Modifiers) -> ();
 /// * `key` - The identifier of the key being released.
 /// * `modifiers` - The current keyboard modifiers.
 ///
-pub type KeyUpFunction = fn(key: Key, modifiers: Modifiers) -> ();
+pub type KeyUpFunction<Window, States> = fn(window: &mut Window, key: Key, modifiers: Modifiers, states: &mut States) -> ();
 
 /// The character enter callback function.
 ///
@@ -96,7 +96,7 @@ pub type KeyUpFunction = fn(key: Key, modifiers: Modifiers) -> ();
 ///
 /// * `character` - The character entered as a unicode scalar value.
 ///
-pub type CharacterEnterFunction = fn(character: char) -> ();
+pub type CharacterEnterFunction<Window, States> = fn(window: &mut Window, character: char, states: &mut States) -> ();
 
 /// The cursor enter callback function.
 ///
@@ -106,7 +106,7 @@ pub type CharacterEnterFunction = fn(character: char) -> ();
 ///
 /// * `position` - The cursor position (relative to the top-left corner).
 ///
-pub type CursorEnterFunction = fn(position: Position) -> ();
+pub type CursorEnterFunction<Window, States> = fn(window: &mut Window, position: Position, states: &mut States) -> ();
 
 /// The cursor leave callback function
 ///
@@ -116,7 +116,7 @@ pub type CursorEnterFunction = fn(position: Position) -> ();
 ///
 /// * `position` - The cursor position (relative to the top-left corner).
 ///
-pub type CursorLeaveFunction = fn(position: Position) -> ();
+pub type CursorLeaveFunction<Window, States> = fn(window: &mut Window, position: Position, states: &mut States) -> ();
 
 /// The cursor move callback function
 ///
@@ -128,7 +128,7 @@ pub type CursorLeaveFunction = fn(position: Position) -> ();
 /// * `position` - The new cursor position (relative to the top-left corner).
 /// * `movement` - The movement of the cursor in pixels coordinate.
 ///
-pub type CursorMoveFunction = fn(position: Position, movement: Vector) -> ();
+pub type CursorMoveFunction<Window, States> = fn(window: &mut Window, position: Position, movement: Vector, states: &mut States) -> ();
 
 /// The mouse button down callback function
 ///
@@ -140,7 +140,7 @@ pub type CursorMoveFunction = fn(position: Position, movement: Vector) -> ();
 /// * `button` - The identifier of the button being pressed.
 /// * `position` - The current cursor position.
 ///
-pub type MouseDownFunction = fn(button: Button, position: Position) -> ();
+pub type MouseDownFunction<Window, States> = fn(window: &mut Window, button: Button, position: Position, states: &mut States) -> ();
 
 /// The mouse button up callback function
 ///
@@ -152,7 +152,7 @@ pub type MouseDownFunction = fn(button: Button, position: Position) -> ();
 /// * `button` - The identifier of the button being released.
 /// * `position` - The current cursor position (relative to the top-left corner).
 ///
-pub type MouseUpFunction = fn(button: Button, position: Position) -> ();
+pub type MouseUpFunction<Window, States> = fn(window: &mut Window, button: Button, position: Position, states: &mut States) -> ();
 
 /// The mouse wheel scroll callback function
 ///
@@ -168,7 +168,7 @@ pub type MouseUpFunction = fn(button: Button, position: Position) -> ();
 /// * `wheel` - The identifier of the wheel being scrolled.
 /// * `movement` - The movement of the wheel expressed in pixels
 ///
-pub type MouseScrollFunction = fn(wheel: Wheel, movement: f64) -> ();
+pub type MouseScrollFunction<Window, States> = fn(window: &mut Window, wheel: Wheel, movement: f64, states: &mut States) -> ();
 
 /// Brief description
 ///

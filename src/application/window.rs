@@ -52,24 +52,24 @@ pub struct Window<States> {
     window: winit::window::Window,
     surface: Surface,
 
-    pub on_move: Option<WidgetMoveFunction>,
-    pub on_resize: Option<WidgetResizeFunction>,
-    pub on_draw: Option<WidgetDrawFunction>,
+    pub on_move: Option<WidgetMoveFunction<Window<States>, States>>,
+    pub on_resize: Option<WidgetResizeFunction<Window<States>, States>>,
+    pub on_draw: Option<WidgetDrawFunction<Window<States>, States>>,
 
-    pub on_focus_gain: Option<FocusGainFunction>,
-    pub on_focus_lose: Option<FocusLoseFunction>,
+    pub on_focus_gain: Option<FocusGainFunction<Window<States>, States>>,
+    pub on_focus_lose: Option<FocusLoseFunction<Window<States>, States>>,
 
-    pub on_key_down: Option<KeyDownFunction>,
-    pub on_key_up: Option<KeyUpFunction>,
-    pub on_character_enter: Option<CharacterEnterFunction>,
+    pub on_key_down: Option<KeyDownFunction<Window<States>, States>>,
+    pub on_key_up: Option<KeyUpFunction<Window<States>, States>>,
+    pub on_character_enter: Option<CharacterEnterFunction<Window<States>, States>>,
 
-    pub on_cursor_enter: Option<CursorEnterFunction>,
-    pub on_cursor_leave: Option<CursorLeaveFunction>,
-    pub on_cursor_move: Option<CursorMoveFunction>,
+    pub on_cursor_enter: Option<CursorEnterFunction<Window<States>, States>>,
+    pub on_cursor_leave: Option<CursorLeaveFunction<Window<States>, States>>,
+    pub on_cursor_move: Option<CursorMoveFunction<Window<States>, States>>,
 
-    pub on_mouse_down: Option<MouseDownFunction>,
-    pub on_mouse_up: Option<MouseUpFunction>,
-    pub on_mouse_scroll: Option<MouseScrollFunction>,
+    pub on_mouse_down: Option<MouseDownFunction<Window<States>, States>>,
+    pub on_mouse_up: Option<MouseUpFunction<Window<States>, States>>,
+    pub on_mouse_scroll: Option<MouseScrollFunction<Window<States>, States>>,
 
     states: PhantomData<States>,
 }
@@ -137,12 +137,12 @@ impl<States> Window<States> {
     ///
     /// This function does something which is not documented yet.
     ///
-    fn handle_move_event(&mut self, physical_position: &winit::dpi::PhysicalPosition<i32>) {
+    fn handle_move_event(&mut self, states: &mut States, physical_position: &winit::dpi::PhysicalPosition<i32>) {
         let position = Position::new(physical_position.x as i32, physical_position.y as i32);
 
         match self.on_move {
             None => (),
-            Some(function) => { function(position); }
+            Some(function) => { function(self, position, states); }
         }
 
         self.position = position;
@@ -152,12 +152,12 @@ impl<States> Window<States> {
     ///
     /// This function does something which is not documented yet.
     ///
-    fn handle_resize_event(&mut self, physical_size: &winit::dpi::PhysicalSize<u32>) {
+    fn handle_resize_event(&mut self, states: &mut States, physical_size: &winit::dpi::PhysicalSize<u32>) {
         let size = Size::new(physical_size.width as i32, physical_size.height as i32);
 
         match self.on_resize {
             None => (),
-            Some(function) => { function(size); }
+            Some(function) => { function(self, size, states); }
         }
 
         self.size = size;
@@ -167,12 +167,12 @@ impl<States> Window<States> {
     ///
     /// This function does something which is not documented yet.
     ///
-    fn handle_redraw_event(&mut self) -> winit::event_loop::ControlFlow {
+    fn handle_redraw_event(&mut self, states: &mut States) -> winit::event_loop::ControlFlow {
         let mut pixels = Vec::<Color>::new();
 
         match self.on_draw {
             None => (),
-            Some(function) => { function(&mut pixels); }
+            Some(function) => { function(self, &mut pixels, states); }
         };
 
         winit::event_loop::ControlFlow::Wait
@@ -182,17 +182,17 @@ impl<States> Window<States> {
     ///
     /// This function does something which is not documented yet.
     ///
-    fn handle_focus_event(&mut self, has_focus: &bool) {
+    fn handle_focus_event(&mut self, states: &mut States, has_focus: &bool) {
         if *has_focus {
             match self.on_focus_gain {
                 None => (),
-                Some(function) => { function(); }
+                Some(function) => { function(self, states); }
             }
         }
         else {
             match self.on_focus_lose {
                 None => (),
-                Some(function) => { function(); }
+                Some(function) => { function(self, states); }
             }
         }
     }
@@ -201,7 +201,7 @@ impl<States> Window<States> {
     ///
     /// This function does something which is not documented yet.
     ///
-    fn handle_keyboard_input(&mut self, input: &winit::event::KeyboardInput, is_synthetic: &bool) {
+    fn handle_keyboard_input(&mut self, states: &mut States, input: &winit::event::KeyboardInput, is_synthetic: &bool) {
         let key = map_key_code(input.virtual_keycode);
 
         let modifiers = keyboard::Modifiers {
@@ -218,7 +218,7 @@ impl<States> Window<States> {
 
         match function {
             None => (),
-            Some(ref function) => { function(key, modifiers); }
+            Some(ref function) => { function(self, key, modifiers, states); }
         }
     }
 
@@ -226,10 +226,10 @@ impl<States> Window<States> {
     ///
     /// This function does something which is not documented yet.
     ///
-    fn handle_received_character(&mut self, character: &char) {
+    fn handle_received_character(&mut self, states: &mut States, character: &char) {
         match self.on_character_enter {
             None => (),
-            Some(function) => { function(*character); }
+            Some(function) => { function(self, *character, states); }
         }
     }
 
@@ -237,12 +237,12 @@ impl<States> Window<States> {
     ///
     /// This function does something which is not documented yet.
     ///
-    fn handle_cursor_entered(&mut self) {
+    fn handle_cursor_entered(&mut self, states: &mut States) {
         let position = Position::new(0, 0);
 
         match self.on_cursor_enter {
             None => (),
-            Some(function) => { function(position); }
+            Some(function) => { function(self, position, states); }
         }
     }
 
@@ -250,12 +250,12 @@ impl<States> Window<States> {
     ///
     /// This function does something which is not documented yet.
     ///
-    fn handle_cursor_left(&mut self) {
+    fn handle_cursor_left(&mut self, states: &mut States) {
         let position = Position::new(0, 0);
 
         match self.on_cursor_leave {
             None => (),
-            Some(function) => { function(position); }
+            Some(function) => { function(self, position, states); }
         }
     }
 
@@ -264,6 +264,7 @@ impl<States> Window<States> {
     /// This function does something which is not documented yet.
     ///
     fn handle_cursor_moved(&mut self,
+                           states: &mut States,
                            position: &winit::dpi::PhysicalPosition<f64>,
                            _modifiers: &winit::event::ModifiersState) {
         let position = Position::new(position.x as i32, position.y as i32);
@@ -271,7 +272,7 @@ impl<States> Window<States> {
 
         match self.on_cursor_move {
             None => (),
-            Some(function) => { function(position, vector); }
+            Some(function) => { function(self, position, vector, states); }
         }
     }
 
@@ -280,6 +281,7 @@ impl<States> Window<States> {
     /// This function does something which is not documented yet.
     ///
     fn handle_mouse_input(&mut self,
+                          states: &mut States,
                           state: &winit::event::ElementState,
                           button: &winit::event::MouseButton,
                           modifiers: &winit::event::ModifiersState) {
@@ -297,6 +299,7 @@ impl<States> Window<States> {
     /// - For now, the value is not precise, testing should be done in order to determine what
     ///
     fn handle_mouse_wheel(&mut self,
+                            states: &mut States,
                             delta: &winit::event::MouseScrollDelta,
                             _phase: &winit::event::TouchPhase,
                             _modifiers: &winit::event::ModifiersState) {
@@ -311,11 +314,11 @@ impl<States> Window<States> {
         };
 
         if movement.y != 0. {
-            self.on_mouse_scroll.unwrap()(mouse::Wheel::Vertical, movement.y);
+            self.on_mouse_scroll.unwrap()(self, mouse::Wheel::Vertical, movement.y, states);
         }
 
         if movement.x != 0. {
-            self.on_mouse_scroll.unwrap()(mouse::Wheel::Horizontal, movement.x);
+            self.on_mouse_scroll.unwrap()(self, mouse::Wheel::Horizontal, movement.x, states);
         }
     }
 
@@ -326,41 +329,41 @@ impl<States> Window<States> {
     /// data of the event) and just unpacks it to send the event data to a more specific handler
     /// function, possibly discarding values that are not needed.
     ///
-    fn handle_window_event(&mut self, event: &winit::event::WindowEvent)
+    fn handle_window_event(&mut self, states: &mut States, event: &winit::event::WindowEvent)
                             -> winit::event_loop::ControlFlow {
         match event {
             winit::event::WindowEvent::Moved(physical_position) => {
-                self.handle_move_event(physical_position);
+                self.handle_move_event(states, physical_position);
             },
             winit::event::WindowEvent::Resized(physical_size) => {
-                self.handle_resize_event(physical_size);
+                self.handle_resize_event(states, physical_size);
             },
             winit::event::WindowEvent::CloseRequested => {
                 return winit::event_loop::ControlFlow::Exit;
             },
             winit::event::WindowEvent::Focused(has_focus) => {
-                self.handle_focus_event(has_focus);
+                self.handle_focus_event(states, has_focus);
             },
             winit::event::WindowEvent::KeyboardInput { device_id: _, input, is_synthetic } => {
-                self.handle_keyboard_input(input, is_synthetic);
+                self.handle_keyboard_input(states, input, is_synthetic);
             },
             winit::event::WindowEvent::ReceivedCharacter(character) => {
-                self.handle_received_character(character);
+                self.handle_received_character(states, character);
             },
             winit::event::WindowEvent::CursorEntered { device_id: _ } => {
-                self.handle_cursor_entered();
+                self.handle_cursor_entered(states);
             },
             winit::event::WindowEvent::CursorLeft { device_id: _ } => {
-                self.handle_cursor_left();
+                self.handle_cursor_left(states);
             },
             winit::event::WindowEvent::CursorMoved { device_id: _, position, modifiers } => {
-                self.handle_cursor_moved(position, modifiers);
+                self.handle_cursor_moved(states, position, modifiers);
             },
             winit::event::WindowEvent::MouseInput { device_id: _, state, button, modifiers }=> {
-                self.handle_mouse_input(state, button, modifiers);
+                self.handle_mouse_input(states, state, button, modifiers);
             },
             winit::event::WindowEvent::MouseWheel { device_id: _, delta, phase, modifiers } => {
-                self.handle_mouse_wheel(delta, phase, modifiers);
+                self.handle_mouse_wheel(states, delta, phase, modifiers);
             },
             _ => ()
         };
@@ -378,13 +381,13 @@ impl<States> Window<States> {
     ///   user is expected to run them in different loop bu there will be a single `winit` event
     ///   loop.
     ///
-    pub fn run(mut self, _states: &mut States) {
+    pub fn run(&mut self, states: &mut States) {
         let event_loop = get_or_create_event_loop();
         event_loop.run_return(move |event, _, control_flow| {
             *control_flow = match event {
                 winit::event::Event::LoopDestroyed => return,
-                winit::event::Event::WindowEvent { ref event, .. } => self.handle_window_event(event),
-                winit::event::Event::RedrawRequested(_) => self.handle_redraw_event(),
+                winit::event::Event::WindowEvent { ref event, .. } => self.handle_window_event(states, event),
+                winit::event::Event::RedrawRequested(_) => self.handle_redraw_event(states),
                 _ => winit::event_loop::ControlFlow::Wait,
             }
         });

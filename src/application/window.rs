@@ -9,8 +9,10 @@
 use std::marker::PhantomData;
 use winit;
 use winit::platform::desktop::EventLoopExtDesktop;
+use glutin;
 use crate::geometry::{Position, Size, Vector};
 use crate::image::Color;
+use crate::draw::{gl, Surface};
 use crate::controller::keyboard;
 use crate::controller::mouse;
 use crate::widget::*;
@@ -47,6 +49,9 @@ pub struct Window<States> {
     position: Position,
     size: Size,
 
+    window: winit::window::Window,
+    surface: Surface,
+
     pub on_move: Option<WidgetMoveFunction>,
     pub on_resize: Option<WidgetResizeFunction>,
     pub on_draw: Option<WidgetDrawFunction>,
@@ -70,11 +75,36 @@ pub struct Window<States> {
 }
 
 impl<States> Window<States> {
-    pub fn new() -> Window<States> {
+    pub fn new(size: Size) -> Window<States> {
+        let event_loop = get_or_create_event_loop();
+        let window_builder = winit::window::WindowBuilder::new()
+            .with_inner_size(winit::dpi::LogicalSize::new(size.width, size.height));
+
+        let windowed_context = glutin::ContextBuilder::new()
+            .build_windowed(window_builder, &event_loop)
+            .unwrap();
+
+        let (mut raw_context, window) = unsafe {
+            windowed_context.split()
+        };
+
+        // todo: check if this code is necessary
+        raw_context = unsafe {
+            let current_context = raw_context.make_current().unwrap();
+            gl::load_with(|ptr| current_context.get_proc_address(ptr) as *const _);
+
+            current_context.treat_as_not_current()
+        };
+
+        let surface = Surface::from_window(raw_context, size);
+
         Window {
             title: String::from(""),
             position: Position::new(0, 0),
-            size: Size::new(0, 0),
+            size: size,
+
+            window: window,
+            surface: surface,
 
             on_move: None,
             on_resize: None,
@@ -97,6 +127,10 @@ impl<States> Window<States> {
 
             states: PhantomData
         }
+    }
+
+    pub fn surface(&mut self) -> &mut Surface {
+        &mut self.surface
     }
 
     /// Handle a "window moved" event
@@ -346,8 +380,6 @@ impl<States> Window<States> {
     ///
     pub fn run(mut self, _states: &mut States) {
         let event_loop = get_or_create_event_loop();
-        let _window = winit::window::WindowBuilder::new().build(&event_loop).unwrap();
-
         event_loop.run_return(move |event, _, control_flow| {
             *control_flow = match event {
                 winit::event::Event::LoopDestroyed => return,

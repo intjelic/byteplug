@@ -70,6 +70,10 @@ pub struct Surface {
 }
 
 impl Surface {
+    /// Brief description
+    ///
+    /// The **new() function** is not documented yet. Pull requests are welcome.
+    ///
     pub fn new(size: Size, options: Options) -> Surface {
 
         let event_loop = get_or_create_event_loop();
@@ -116,6 +120,10 @@ impl Surface {
         }
     }
 
+    /// Brief description
+    ///
+    /// The **from_window() function** is not documented yet. Pull requests are welcome.
+    ///
     pub fn from_window(context: RawContext<NotCurrent>, size: Size) -> Surface {
         Surface {
             context: Some(UnderlyingContext::WithWindow(context)),
@@ -125,6 +133,10 @@ impl Surface {
         }
     }
 
+    /// Brief description
+    ///
+    /// The **resize() function** is not documented yet. Pull requests are welcome.
+    ///
     pub fn resize(&mut self, size: Size) {
         // The code is a little bit tricky because make_current() methods of the context consume
         // the context, but we only have a reference to self, and thus a reference to the context
@@ -162,6 +174,10 @@ impl Surface {
         self.context = Some(context);
     }
 
+    /// Brief description
+    ///
+    /// The **erase() function** is not documented yet. Pull requests are welcome.
+    ///
     pub fn erase(&mut self) {
         // Todo: make the context current
         let color: [f32; 4] = [1.0, 1.0, 1.0, 1.0];
@@ -172,6 +188,10 @@ impl Surface {
         }
     }
 
+    /// Brief description
+    ///
+    /// The **swap() function** is not documented yet. Pull requests are welcome.
+    ///
     pub fn swap(&mut self) {
         // The code is more complicated than it could. We have to take ownership of the underlying
         // context because the making it current method consumes itself.
@@ -197,6 +217,10 @@ impl Surface {
         self.context = Some(context);
     }
 
+    /// Brief description
+    ///
+    /// The **activate() function** is not documented yet. Pull requests are welcome.
+    ///
     pub fn activate(&mut self) {
         // Again, the code is more complicated than it could. Not only we have to take ownership
         // of the underlying context again, but we also have to deal with two definitions of the

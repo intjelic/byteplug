@@ -75,6 +75,10 @@ pub struct Window<States> {
 }
 
 impl<States> Window<States> {
+    /// Brief description
+    ///
+    /// The **new() function** is not documented yet. Pull requests are welcome.
+    ///
     pub fn new(size: Size) -> Window<States> {
         let event_loop = get_or_create_event_loop();
         let window_builder = winit::window::WindowBuilder::new()
@@ -129,6 +133,10 @@ impl<States> Window<States> {
         }
     }
 
+    /// Brief description
+    ///
+    /// The **surface() function** is not documented yet. Pull requests are welcome.
+    ///
     pub fn surface(&mut self) -> &mut Surface {
         &mut self.surface
     }

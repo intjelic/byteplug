@@ -37,6 +37,10 @@
 //!
 //! I'm open to suggestions and contributions. I would gladly discuss every
 //! design decisions that were taken and adjust the framework accordingly.
+
+
+#[link(name="GLESv2")] extern {}
+
 pub mod image;
 pub mod audio;
 pub mod video;

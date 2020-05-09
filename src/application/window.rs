@@ -92,14 +92,6 @@ impl<States> Window<States> {
             windowed_context.split()
         };
 
-        // todo: check if this code is necessary
-        raw_context = unsafe {
-            let current_context = raw_context.make_current().unwrap();
-            gl::load_with(|ptr| current_context.get_proc_address(ptr) as *const _);
-
-            current_context.treat_as_not_current()
-        };
-
         let surface = Surface::from_window(raw_context, size);
 
         Window {

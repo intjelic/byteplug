@@ -24,11 +24,7 @@ fn ensure_context() {
                     .build_headless(&event_loop, PhysicalSize::new(1, 1))
                     .unwrap();
 
-                // todo: check if those two lines are actually needed (should it be done once ?)
-                let current_context = context.make_current().unwrap();
-                gl::load_with(|ptr| current_context.get_proc_address(ptr) as *const _);
-
-                CONTEXT = Some(current_context.treat_as_not_current());
+                CONTEXT = Some(context);
             }
         }
     }

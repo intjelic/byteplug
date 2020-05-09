@@ -87,8 +87,6 @@ impl Surface {
         let size_one = PhysicalSize::new(1, 1);
         let context = context_builder.build_headless(&event_loop, size_one).unwrap();
 
-        // let gl = support::load(&headless_context);
-
         let mut render_buffer = 0;
         let mut frame_buffer = 0;
         unsafe {

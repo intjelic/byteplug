@@ -7,7 +7,7 @@
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, May 2020
 
 use winit::dpi::PhysicalSize;
-use glutin::{ContextBuilder, Context, NotCurrent};
+use glutin::{ContextBuilder, Context, NotCurrent, GlRequest, GlProfile, Api};
 use crate::draw::gl;
 use crate::application::get_or_create_event_loop;
 
@@ -21,6 +21,8 @@ fn ensure_context() {
             None => {
                 let event_loop = get_or_create_event_loop();
                 let context = ContextBuilder::new()
+                    .with_gl(GlRequest::Specific(Api::OpenGlEs, (3, 2)))
+                    .with_gl_profile(GlProfile::Core)
                     .build_headless(&event_loop, PhysicalSize::new(1, 1))
                     .unwrap();
 

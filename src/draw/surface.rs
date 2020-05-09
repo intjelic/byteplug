@@ -8,7 +8,7 @@
 
 use winit::dpi::PhysicalSize;
 use glutin::{
-    GlProfile, GlRequest,
+    GlProfile, GlRequest, Api,
     ContextBuilder,
     Context, RawContext,
     NotCurrent
@@ -80,8 +80,8 @@ impl Surface {
         let shared_context = get_or_create_context();
 
         let context_builder = ContextBuilder::new()
+            .with_gl(GlRequest::Specific(Api::OpenGlEs, (3, 2)))
             .with_gl_profile(GlProfile::Core)
-            .with_gl(GlRequest::Latest)
             .with_shared_lists(shared_context);
 
         let size_one = PhysicalSize::new(1, 1);

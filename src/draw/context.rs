@@ -51,3 +51,17 @@ pub fn get_or_create_context() -> &'static mut Context<NotCurrent> {
         CONTEXT.as_mut().unwrap()
     }
 }
+
+/// Make the shared OpenGL context current
+///
+/// The **make_context_current() function** is not documented yet. Pull requests are welcome.
+///
+pub fn make_context_current() {
+    ensure_context();
+
+    unsafe {
+        let mut context = CONTEXT.take().unwrap();
+        let current_context = context.make_current().unwrap();
+        CONTEXT = Some(current_context.treat_as_not_current());
+    };
+}

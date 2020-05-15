@@ -6,6 +6,7 @@
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, May 2020
 
 use winit::event_loop::EventLoop;
+use winit::platform::unix::EventLoopExtUnix;
 
 static mut EVENT_LOOP: Option<EventLoop<()>> = None;
 
@@ -15,7 +16,7 @@ fn ensure_event_loop() {
         match &EVENT_LOOP {
             Some(_) => (),
             None => {
-                let event_loop = EventLoop::new();
+                let event_loop = EventLoop::new_any_thread();
                 EVENT_LOOP = Some(event_loop);
             }
         }

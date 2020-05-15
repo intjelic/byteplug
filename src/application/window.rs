@@ -9,6 +9,7 @@ use std::marker::PhantomData;
 use winit;
 use winit::platform::desktop::EventLoopExtDesktop;
 use glutin;
+use glutin::{GlProfile, GlRequest, Api};
 use crate::geometry::{Position, Size, Vector};
 use crate::image::Color;
 use crate::draw::get_or_create_context;
@@ -87,6 +88,8 @@ impl<States> Window<States> {
             .with_inner_size(winit::dpi::LogicalSize::new(size.width, size.height));
 
         let windowed_context = glutin::ContextBuilder::new()
+            .with_gl(GlRequest::Specific(Api::OpenGlEs, (3, 2)))
+            .with_gl_profile(GlProfile::Core)
             .with_srgb(false)
             .with_multisampling(0)
             .with_shared_lists(shared_context)

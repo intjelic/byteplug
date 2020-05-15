@@ -52,6 +52,8 @@ pub mod controller;
 pub mod application;
 pub mod widget;
 
+pub mod game;
+
 #[cfg(test)]
 mod tests {
     #[test]

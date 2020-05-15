@@ -9,7 +9,7 @@
 ///
 /// The **Size struct** is not documented yet. Pull requests are welcome.
 ///
-#[derive(Debug, Copy, Clone, Eq, PartialEq)]
+#[derive(Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Debug, Default)]
 pub struct Size<T = i32> {
     pub width:  T,
     pub height: T

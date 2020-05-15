@@ -13,6 +13,7 @@
 ///
 /// The **Component struct** is not documented yet. Pull requests are welcome.
 ///
+#[derive(Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Debug)]
 pub enum DirectionalPad {
     Left,
     Bottom,
@@ -24,6 +25,7 @@ pub enum DirectionalPad {
 ///
 /// Long description.
 ///
+#[derive(Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Debug)]
 pub enum Joystick {
     Left,
     Right
@@ -33,6 +35,7 @@ pub enum Joystick {
 ///
 /// Long description.
 ///
+#[derive(Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Debug)]
 pub enum Button {
     One,
     Two,

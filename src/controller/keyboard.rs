@@ -15,6 +15,7 @@ use std::collections::HashMap;
 ///
 /// The **Component struct** is not documented yet. Pull requests are welcome.
 ///
+#[derive(Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Debug)]
 pub enum Direction {
     Left, Right, Up, Down
 }
@@ -23,6 +24,7 @@ pub enum Direction {
 ///
 /// Long description.
 ///
+#[derive(Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Debug)]
 pub enum Key {
     /// A letter key (A, B, C, ... up to Z)
     Letter(char),
@@ -125,6 +127,7 @@ pub enum Key {
 ///
 /// Long description.
 ///
+#[derive(Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Debug)]
 pub struct Modifiers {
   pub control: bool,
   pub shift: bool,

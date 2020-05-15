@@ -13,6 +13,7 @@
 ///
 /// The **Component struct** is not documented yet. Pull requests are welcome.
 ///
+#[derive(Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Debug)]
 pub enum Button {
     /// The left button
     Left,
@@ -31,6 +32,7 @@ pub enum Button {
 ///
 /// Long description.
 ///
+#[derive(Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Debug)]
 pub enum Wheel {
     Horizontal,
     Vertical
@@ -40,5 +42,6 @@ pub enum Wheel {
 ///
 /// Long description.
 ///
+#[derive(Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Debug)]
 pub struct Mouse {
 }

@@ -11,6 +11,8 @@ use winit::platform::unix::EventLoopExtUnix;
 static mut EVENT_LOOP: Option<EventLoop<()>> = None;
 
 fn ensure_event_loop() {
+    // This function really should be merged into the get_or_create_event_loop() function but for
+    // some reason I'm getting a compilation error which I suspect to be a bug in the Rust compiler.
     unsafe {
         // todo: there must be a more elegant way to 'initialize only if the content is None
         match &EVENT_LOOP {
@@ -23,7 +25,7 @@ fn ensure_event_loop() {
     }
 }
 
-pub fn get_or_create_event_loop() -> &'static mut EventLoop<()> {
+pub(crate) fn get_or_create_event_loop() -> &'static mut EventLoop<()> {
     ensure_event_loop();
 
     unsafe {

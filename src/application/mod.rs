@@ -8,10 +8,11 @@
 //! Cross-platform application utilities
 //!
 //! Additional documentation is to be written here.
+pub(crate) use event_loop::get_or_create_event_loop;
+
 mod event_loop;
 mod window;
 mod application;
 
-pub use event_loop::get_or_create_event_loop;
 pub use window::Window;
 pub use application::Application;

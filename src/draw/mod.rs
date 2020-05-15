@@ -70,6 +70,9 @@ macro_rules! gl_check {
     }
 }
 
+pub(crate) use context::get_or_create_context;
+pub(crate) use context::make_context_current;
+
 mod context;
 
 mod options;

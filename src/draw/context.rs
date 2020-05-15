@@ -13,6 +13,8 @@ use crate::application::get_or_create_event_loop;
 static mut CONTEXT: Option<Context<NotCurrent>> = None;
 
 fn ensure_context() {
+    // This function really should be merged into the get_or_create_context() function but for some
+    // reason I'm getting a compilation error which I suspect to be a bug in the Rust compiler.
     unsafe {
         // todo: there must be a more elegant way to 'initialize only if the content is None
         match &CONTEXT {
@@ -39,15 +41,12 @@ fn ensure_context() {
 ///
 /// **Notes**
 ///
-/// - This function is public because it's used internally by the other module. However, it should
-///   not be used by the user.
 /// - In terms of design, a hidden and shared OpenGL context allows a 'context notion' free API.
 ///   Without it, the user would have to create a context object somehow and pass it around.
 /// - Note that this shared context also allow to reuse OpenGL object to draw on the framebuffers
 ///   belonging to other OpenGL contexts.
 ///
-///
-pub fn get_or_create_context() -> &'static mut Context<NotCurrent> {
+pub(crate) fn get_or_create_context() -> &'static mut Context<NotCurrent> {
     ensure_context();
     unsafe {
         CONTEXT.as_mut().unwrap()
@@ -58,7 +57,7 @@ pub fn get_or_create_context() -> &'static mut Context<NotCurrent> {
 ///
 /// The **make_context_current() function** is not documented yet. Pull requests are welcome.
 ///
-pub fn make_context_current() {
+pub(crate) fn make_context_current() {
     ensure_context();
 
     unsafe {

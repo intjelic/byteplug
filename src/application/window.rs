@@ -11,6 +11,7 @@ use winit::platform::desktop::EventLoopExtDesktop;
 use glutin;
 use crate::geometry::{Position, Size, Vector};
 use crate::image::Color;
+use crate::draw::get_or_create_context;
 use crate::draw::{gl, Surface};
 use crate::controller::keyboard;
 use crate::controller::mouse;
@@ -80,12 +81,15 @@ impl<States> Window<States> {
     ///
     pub fn new(size: Size) -> Window<States> {
         let event_loop = get_or_create_event_loop();
+        let shared_context = get_or_create_context();
+
         let window_builder = winit::window::WindowBuilder::new()
             .with_inner_size(winit::dpi::LogicalSize::new(size.width, size.height));
 
         let windowed_context = glutin::ContextBuilder::new()
             .with_srgb(false)
             .with_multisampling(0)
+            .with_shared_lists(shared_context)
             .build_windowed(window_builder, &event_loop)
             .unwrap();
 

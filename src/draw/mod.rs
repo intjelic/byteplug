@@ -80,6 +80,9 @@ mod shader;
 mod default_shader;
 mod texture;
 
+mod primitive;
+mod usage;
+
 mod glyph;
 mod font;
 mod text;
@@ -90,6 +93,9 @@ pub use view::View;
 
 pub use shader::Shader;
 pub use texture::Texture;
+
+pub use primitive::Primitive;
+pub use usage::Usage;
 
 pub use glyph::Glyph;
 pub use font::Font;

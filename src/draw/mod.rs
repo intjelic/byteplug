@@ -82,6 +82,7 @@ mod texture;
 
 mod primitive;
 mod usage;
+mod vertex;
 
 mod glyph;
 mod font;
@@ -96,6 +97,7 @@ pub use texture::Texture;
 
 pub use primitive::Primitive;
 pub use usage::Usage;
+pub use vertex::Vertex;
 
 pub use glyph::Glyph;
 pub use font::Font;

@@ -10,6 +10,7 @@
 //! Additional documentation is to be written here.
 mod position;
 mod size;
+mod box_;
 mod vector;
 
 mod transform;
@@ -29,6 +30,7 @@ mod circle;
 
 pub use position::Position;
 pub use size::Size;
+pub use box_::Box;
 pub use vector::Vector;
 
 pub use transform::Transform;

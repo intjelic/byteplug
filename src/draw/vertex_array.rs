@@ -15,6 +15,7 @@ use crate::draw::default_shader::get_or_create_default_shader;
 
 const VERTEX_POSITION: u32 = 0;
 const VERTEX_COLOR: u32 = 1;
+const VERTEX_TEXTURE: u32 = 2;
 
 fn from_usage(usage: Usage) -> gl::types::GLenum {
     match usage {
@@ -374,8 +375,17 @@ impl VertexArray {
                 std::mem::size_of::<Vertex>() as gl::types::GLsizei,
                 (2 * std::mem::size_of::<f32>()) as *const () as *const _,
             ));
+            gl_check!(gl::VertexAttribPointer(
+                VERTEX_TEXTURE,
+                2,
+                gl::FLOAT,
+                0,
+                std::mem::size_of::<Vertex>() as gl::types::GLsizei,
+                (6 * std::mem::size_of::<f32>()) as *const () as *const _,
+            ));
             gl_check!(gl::EnableVertexAttribArray(VERTEX_POSITION));
             gl_check!(gl::EnableVertexAttribArray(VERTEX_COLOR));
+            gl_check!(gl::EnableVertexAttribArray(VERTEX_TEXTURE));
 
             gl_check!(gl::DrawArrays(from_primitive(self.primitive), 0, self.size() as _));
         }
@@ -482,9 +492,9 @@ mod tests {
     #[test]
     fn vertex_array_with_vertices() {
         let vertices = vec![
-            Vertex { x: -0.5, y: -0.5, r: 1.0, g: 0.0, b: 0.0, a: 0.0, u: 0, v: 0 },
-            Vertex { x:  0.0, y:  0.5, r: 0.0, g: 1.0, b: 0.0, a: 0.0, u: 0, v: 0 },
-            Vertex { x:  0.5, y: -0.5, r: 0.0, g: 0.0, b: 1.0, a: 0.0, u: 0, v: 0 },
+            Vertex { x: -0.5, y: -0.5, r: 1.0, g: 0.0, b: 0.0, a: 0.0, u: 0.0, v: 0.0 },
+            Vertex { x:  0.0, y:  0.5, r: 0.0, g: 1.0, b: 0.0, a: 0.0, u: 0.0, v: 0.0 },
+            Vertex { x:  0.5, y: -0.5, r: 0.0, g: 0.0, b: 1.0, a: 0.0, u: 0.0, v: 0.0 },
         ];
 
         let vertex_array = VertexArray::with_vertices(&vertices, Primitive::Triangles, Usage::Static);
@@ -518,9 +528,9 @@ mod tests {
         assert_eq!(vertex_array.usage(), Usage::Dynamic);
 
         let vertices = vec![
-            Vertex { x: -0.5, y: -0.5, r: 1.0, g: 0.0, b: 0.0, a: 0.0, u: 0, v: 0 },
-            Vertex { x:  0.0, y:  0.5, r: 0.0, g: 1.0, b: 0.0, a: 0.0, u: 0, v: 0 },
-            Vertex { x:  0.5, y: -0.5, r: 0.0, g: 0.0, b: 1.0, a: 0.0, u: 0, v: 0 },
+            Vertex { x: -0.5, y: -0.5, r: 1.0, g: 0.0, b: 0.0, a: 0.0, u: 0.0, v: 0.0 },
+            Vertex { x:  0.0, y:  0.5, r: 0.0, g: 1.0, b: 0.0, a: 0.0, u: 0.0, v: 0.0 },
+            Vertex { x:  0.5, y: -0.5, r: 0.0, g: 0.0, b: 1.0, a: 0.0, u: 0.0, v: 0.0 },
         ];
         vertex_array.update_vertices(&vertices);
         assert_eq!(vertex_array.usage(), Usage::Dynamic);
@@ -534,9 +544,9 @@ mod tests {
     fn vertex_array_vertices() {
 
         let vertices = vec![
-            Vertex { x: -0.5, y: -0.5, r: 1.0, g: 0.0, b: 0.0, a: 0.0, u: 0, v: 0 },
-            Vertex { x:  0.0, y:  0.5, r: 0.0, g: 1.0, b: 0.0, a: 0.0, u: 0, v: 0 },
-            Vertex { x:  0.5, y: -0.5, r: 0.0, g: 0.0, b: 1.0, a: 0.0, u: 0, v: 0 },
+            Vertex { x: -0.5, y: -0.5, r: 1.0, g: 0.0, b: 0.0, a: 0.0, u: 0.0, v: 0.0 },
+            Vertex { x:  0.0, y:  0.5, r: 0.0, g: 1.0, b: 0.0, a: 0.0, u: 0.0, v: 0.0 },
+            Vertex { x:  0.5, y: -0.5, r: 0.0, g: 0.0, b: 1.0, a: 0.0, u: 0.0, v: 0.0 },
         ];
 
         let vertex_array = VertexArray::with_vertices(&vertices, Primitive::Triangles, Usage::Static);

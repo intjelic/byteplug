@@ -42,9 +42,9 @@ pub struct Vertex {
     /// The alpha component of the vertex color.
     pub a: f32,
     /// The X coordinate of the texture.
-    pub u: u32,
+    pub u: f32,
     /// The Y coordinate of the texture.
-    pub v: u32
+    pub v: f32
 }
 
 impl Vertex {
@@ -56,7 +56,7 @@ impl Vertex {
         Vertex {
             x: 0.0, y: 0.0,
             r: 0.0, g: 0.0, b: 0.0, a: 1.0,
-            u: 0, v: 0
+            u: 0.0, v: 0.0
         }
     }
 
@@ -72,8 +72,8 @@ impl Vertex {
             g: color.green as f32 / 255.0,
             b: color.blue  as f32 / 255.0,
             a: color.alpha as f32 / 255.0,
-            u: 0,
-            v: 0
+            u: 0.0,
+            v: 0.0
         }
     }
 }

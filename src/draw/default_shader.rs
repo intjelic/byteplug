@@ -16,12 +16,16 @@ precision mediump float;
 
 layout(location = 0) in vec2 vertex_position;
 layout(location = 1) in vec3 vertex_color;
+layout(location = 2) in vec2 vertex_texture;
 
 out vec3 fragment_color;
+out vec2 fragment_texture;
 
 void main() {
     gl_Position = vec4(vertex_position, 0.0, 1.0);
+
     fragment_color = vertex_color;
+    fragment_texture = vertex_texture;
 }
 \0";
 
@@ -30,10 +34,13 @@ const FRAGMENT_SHADER_SRC: &'static [u8] = b"
 precision mediump float;
 
 in vec3 fragment_color;
+in vec2 fragment_texture;
 out vec4 out_color;
 
+uniform sampler2D current_texture;
+
 void main() {
-    out_color = vec4(fragment_color, 1.0);
+    out_color = texture(current_texture, fragment_texture);
 }
 \0";
 

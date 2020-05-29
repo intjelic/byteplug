@@ -58,7 +58,7 @@ fn ensure_default_shader() {
 /// The **get_or_create_default_shader() function** is not documented yet. Pull requests are
 /// welcome.
 ///
-pub fn get_or_create_default_shader() -> &'static mut Shader {
+pub(crate) fn get_or_create_default_shader() -> &'static mut Shader {
     ensure_default_shader();
     unsafe {
         DEFAULT_SHADER.as_mut().unwrap()

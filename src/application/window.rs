@@ -103,8 +103,8 @@ impl<States> Window<States> {
     ///
     /// This function does something which is not documented yet.
     ///
-    fn handle_move_event(&mut self, logical_position: &winit::dpi::LogicalPosition) {
-        let position = Position::new(logical_position.x as i32, logical_position.y as i32);
+    fn handle_move_event(&mut self, physical_position: &winit::dpi::PhysicalPosition<i32>) {
+        let position = Position::new(physical_position.x as i32, physical_position.y as i32);
 
         match self.on_move {
             None => (),
@@ -118,8 +118,8 @@ impl<States> Window<States> {
     ///
     /// This function does something which is not documented yet.
     ///
-    fn handle_resize_event(&mut self, logical_size: &winit::dpi::LogicalSize) {
-        let size = Size::new(logical_size.width as i32, logical_size.height as i32);
+    fn handle_resize_event(&mut self, physical_size: &winit::dpi::PhysicalSize<u32>) {
+        let size = Size::new(physical_size.width as i32, physical_size.height as i32);
 
         match self.on_resize {
             None => (),
@@ -133,13 +133,15 @@ impl<States> Window<States> {
     ///
     /// This function does something which is not documented yet.
     ///
-    fn handle_redraw_event(&mut self) {
+    fn handle_redraw_event(&mut self) -> winit::event_loop::ControlFlow {
         let mut pixels = Vec::<Color>::new();
 
         match self.on_draw {
             None => (),
             Some(function) => { function(&mut pixels); }
-        }
+        };
+
+        winit::event_loop::ControlFlow::Wait
     }
 
     /// Handle a "window focus" event related to this window
@@ -169,10 +171,10 @@ impl<States> Window<States> {
         let key = map_key_code(input.virtual_keycode);
 
         let modifiers = keyboard::Modifiers {
-            control: input.modifiers.ctrl,
-            shift: input.modifiers.shift,
-            alternate: input.modifiers.alt,
-            system: input.modifiers.logo
+            control: input.modifiers.ctrl(),
+            shift: input.modifiers.shift(),
+            alternate: input.modifiers.alt(),
+            system: input.modifiers.logo()
         };
 
         let function = match input.state {
@@ -228,7 +230,7 @@ impl<States> Window<States> {
     /// This function does something which is not documented yet.
     ///
     fn handle_cursor_moved(&mut self,
-                           position: &winit::dpi::LogicalPosition,
+                           position: &winit::dpi::PhysicalPosition<f64>,
                            _modifiers: &winit::event::ModifiersState) {
         let position = Position::new(position.x as i32, position.y as i32);
         let vector = Vector::new(0., 0.);
@@ -293,14 +295,11 @@ impl<States> Window<States> {
     fn handle_window_event(&mut self, event: &winit::event::WindowEvent)
                             -> winit::event_loop::ControlFlow {
         match event {
-            winit::event::WindowEvent::Moved(logical_position) => {
-                self.handle_move_event(logical_position);
+            winit::event::WindowEvent::Moved(physical_position) => {
+                self.handle_move_event(physical_position);
             },
-            winit::event::WindowEvent::Resized(logical_size) => {
-                self.handle_resize_event(logical_size);
-            },
-            winit::event::WindowEvent::RedrawRequested => {
-                self.handle_redraw_event();
+            winit::event::WindowEvent::Resized(physical_size) => {
+                self.handle_resize_event(physical_size);
             },
             winit::event::WindowEvent::CloseRequested => {
                 return winit::event_loop::ControlFlow::Exit;
@@ -353,6 +352,7 @@ impl<States> Window<States> {
             *control_flow = match event {
                 winit::event::Event::LoopDestroyed => return,
                 winit::event::Event::WindowEvent { ref event, .. } => self.handle_window_event(event),
+                winit::event::Event::RedrawRequested(_) => self.handle_redraw_event(),
                 _ => winit::event_loop::ControlFlow::Wait,
             }
         });

@@ -80,6 +80,7 @@ mod view;
 mod surface;
 
 mod shader;
+mod default_shader;
 mod texture;
 
 mod text;

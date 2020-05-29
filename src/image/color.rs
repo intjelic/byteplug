@@ -13,7 +13,7 @@ use std::ops::{Add, AddAssign};
 ///
 /// The **Color struct** is not documented yet. Pull requests are welcome.
 ///
-#[derive(Debug, Copy, Clone, Eq, PartialEq)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Ord, PartialOrd)]
 pub struct Color {
     pub red:   u8,
     pub green: u8,

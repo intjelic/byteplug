@@ -1,21 +1,18 @@
 [package]
 name = "byteplug"
 description = "Minimalistic Multimedia Library"
-version = "0.1.0"
+version = "0.0.1"
 
 authors = ["Jonathan De Wachter <dewachter.jonathan@gmail.com>"]
 license = "MIT"
-keywords = ["byteplug", "minimalistic", "multimedia", "library", "application", "game", "desktop", "mobile"]
-categories = ["os", "mathematics", "rendering", "multimedia", "gui", "game-engines"]
+keywords = ["byteplug", "minimalistic", "multimedia", "library", "game"]
+categories = ["os", "mathematics", "rendering", "multimedia", "gui"]
 
 homepage = "https://www.intjelic.me/project/byteplug"
 repository = "https://github.com/intjelic/byteplug"
 readme = "README.md"
 
 edition = "2018"
-
-# keep the crate from being published until it reaches decent usability
-publish = false
 
 [dependencies]
 winit = "0.22.2"

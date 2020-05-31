@@ -1,27 +1,34 @@
 # Byteplug - Minimalistic Multimedia Library
 
-**Byteplug** is a multimedia library for the Rust language which aims to provide a decent tools to write applications (or games) for desktop (or mobile).
+**Byteplug** is a multimedia library for the Rust language which aims to provide a decent set of tools to write applications (or games) for desktop (or mobile).
 
-While it appears to feature tools in many areas (animation, ui, etc.), it actually provides the bare minimum and each are carefully crafted to be extended and integrate well with external libraries.
-For instance, if you had a bad experience with the thousands of poorly designed GUI toolkits out there, you might be plaisantly surprised by the **ui** momdule.
+While it appears to cover a lot of areas (animation, graphical user interface, etc.), it actually provides the bare minimum and each item is carefully crafted to be extended and integrate well with other libraries. For example, you may be pleasantly surprised by the **widget** module which only provides the common and expected input logic, while defining absolutely no default appearance.
 
-It was heavily inspired by similar framework (like SFML) and other extensions developed by the community (Thor) coupled with my decade of experience in the field and my relentless perfectionism.
+It was heavily inspired by the SFML framework and other extensions developed by its community (such
+as the Thor library) coupled with my decade of experience in the field and my unhealthy obsession for perfection.
 
 ## Features
 
-The library is under development. For now, I can only list the modules.
+The library is under development. For now, the only thing that is likely to remain the same is the
+list of module in their 'least dependant' order.
 
 - geometry
 - animation
+
 - image
 - audio
 - video
-- draw
-- controller
-- application
-- ui
 
-Until now, it's only tested on the **Linux** platform but as I go in the implementation and my peronal use of this library, I will extend the testing to the other platform.
+- draw
+
+- controller
+- widget
+- application
+- game
+
+Until now, it's only tested on the **Linux** platform but as I go in the implementation and my
+personal use of this framework for personal projects, I will extend the testing to the other
+platform and their official support will gradually come.
 
 ## Usage
 
@@ -29,7 +36,7 @@ To use `byteplug`, first add the dependency to your Cargo.toml file.
 
 ```
 [dependencies]
-byteplug = "0.1.0"
+byteplug = "0.0.1"
 ```
 
 Next, you can start using it. You could start with this minimal example.

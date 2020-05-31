@@ -1,14 +1,13 @@
-// Copyright (c) 2020 - BytePlug
+// Copyright (c) 2020 - Jonathan De Wachter
 //
-// This source file is part of Distilled Multimedia Library which is released
-// under the MIT license. Please refer to the LICENSE file that can be found
-// at the root of the project directory.
+// This source file is part of the Byteplug framework which is released under the MIT license.
+// Please refer to the LICENSE file that can be found at the root of the project directory.
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-//! # Distilled Multimedia Library
+//! # Byteplug - Minimalistic Multimedia Library
 //!
-//! **Distillate** is a multimedia library for the Rust language which aims to
+//! **Byteplug** is a multimedia library for the Rust language which aims to
 //! provide a decent framework with minimal set of tools to write applications
 //! (or games) for desktop (or mobile). This is in the same essence as the SDL
 //! and SFML frameworks.

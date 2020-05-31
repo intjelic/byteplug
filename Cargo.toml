@@ -1,15 +1,15 @@
 [package]
-name = "distillate"
-description = "Distilled Multimedia Library"
+name = "byteplug"
+description = "Minimalistic Multimedia Library"
 version = "0.1.0"
 
 authors = ["Jonathan De Wachter <dewachter.jonathan@gmail.com>"]
 license = "MIT"
-keywords = ["distillate", "distilled", "multimedia", "library", "application", "game", "desktop", "mobile"]
+keywords = ["byteplug", "minimalistic", "multimedia", "library", "application", "game", "desktop", "mobile"]
 categories = ["os", "mathematics", "rendering", "multimedia", "gui", "game-engines"]
 
-homepage = "https://byteplug.io/distillate"
-repository = "https://code.intjelic.me/byteplug/distillate"
+homepage = "https://www.intjelic.me/project/byteplug"
+repository = "https://github.com/intjelic/byteplug"
 readme = "README.md"
 
 edition = "2018"

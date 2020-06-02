@@ -81,6 +81,8 @@ impl Surface {
         let context_builder = ContextBuilder::new()
             .with_gl(GlRequest::Specific(Api::OpenGlEs, (3, 2)))
             .with_gl_profile(GlProfile::Core)
+            .with_srgb(false)
+            .with_multisampling(0)
             .with_shared_lists(shared_context);
 
         let size_one = PhysicalSize::new(1, 1);

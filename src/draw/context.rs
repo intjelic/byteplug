@@ -22,6 +22,8 @@ fn ensure_context() {
                 let context = ContextBuilder::new()
                     .with_gl(GlRequest::Specific(Api::OpenGlEs, (3, 2)))
                     .with_gl_profile(GlProfile::Core)
+                    .with_srgb(false)
+                    .with_multisampling(0)
                     .build_headless(&event_loop, PhysicalSize::new(1, 1))
                     .unwrap();
 

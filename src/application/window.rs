@@ -84,6 +84,8 @@ impl<States> Window<States> {
             .with_inner_size(winit::dpi::LogicalSize::new(size.width, size.height));
 
         let windowed_context = glutin::ContextBuilder::new()
+            .with_srgb(false)
+            .with_multisampling(0)
             .build_windowed(window_builder, &event_loop)
             .unwrap();
 

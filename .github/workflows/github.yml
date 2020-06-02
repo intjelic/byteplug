@@ -11,15 +11,11 @@ env:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest]
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
     - name: Install dependencies
-      if: ${{ matrix.os == 'ubuntu-latest' }}
       run: sudo apt-get install -y libgles2-mesa-dev
     - uses: actions/checkout@v2
     - name: Build source

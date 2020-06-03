@@ -5,10 +5,12 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, May 2020
 
+use crate::geometry::{Position, Size};
+use crate::geometry::Box;
 use crate::draw::gl;
 use crate::draw::context::{get_or_create_context, make_context_current};
 use crate::draw::{Vertex, Primitive, Usage};
-use crate::draw::{Shader, Surface};
+use crate::draw::Surface;
 use crate::draw::default_shader::get_or_create_default_shader;
 
 const VERTEX_POSITION: u32 = 0;
@@ -109,7 +111,8 @@ fn from_primitive(primitive: Primitive) -> gl::types::GLenum {
 pub struct VertexArray {
     buffer: u32,
     primitive: Primitive,
-    usage: Usage // see notes
+    usage: Usage, // see notes
+    bounds: Box<f32> // will be removed after mapped buffer technique is used
 }
 
 impl VertexArray {
@@ -127,7 +130,8 @@ impl VertexArray {
         VertexArray {
             buffer: 0,
             primitive: Primitive::Points,
-            usage: Usage::Stream
+            usage: Usage::Stream,
+            bounds: Box::default()
         }
     }
 
@@ -243,8 +247,11 @@ impl VertexArray {
             self.delete_buffer();
         }
 
-        // If the list of vertices provided by the user is empty, there actually is nothing to do.
+        // If the list of vertices provided by the user is empty, there actually is nothing to do
+        // other than resetting the bounding box.
         if vertices.is_empty() {
+            self.bounds = Box::default();
+
             return
         }
 
@@ -260,6 +267,13 @@ impl VertexArray {
                 from_usage(self.usage),
             ));
         };
+
+        // Re-compute the bounding box.
+        self.bounds = Self::compute_bounds(&vertices);
+    }
+
+    pub fn bounds(&self) -> Box<f32> {
+        self.bounds
     }
 
     /// Returns the drawing primitive.
@@ -405,6 +419,35 @@ impl VertexArray {
         }
         self.buffer = 0;
     }
+
+    fn compute_bounds(vertices: &Vec<Vertex>) -> Box<f32> {
+        if vertices.is_empty() {
+            return Box::default()
+        }
+
+        let mut left   = vertices[0].x;
+        let mut top    = vertices[0].y;
+        let mut right  = vertices[0].x;
+        let mut bottom = vertices[0].y;
+
+        for vertex in vertices.iter() {
+            if vertex.x < left {
+                left = vertex.x;
+            }
+            else if vertex.x > right {
+                right = vertex.x;
+            }
+
+            if vertex.y < top {
+                top = vertex.y;
+            }
+            else if vertex.y > bottom {
+                bottom = vertex.y;
+            }
+        };
+
+        Box::new(Position::new(left, top), Size::new(right - left, bottom - top))
+    }
 }
 
 impl Drop for VertexArray {
@@ -499,6 +542,11 @@ mod tests {
         assert_eq!(vertex_array.usage(), Usage::Static);
         assert_eq!(vertex_array.vertices(), vertices);
         assert_eq!(vertex_array.size(), 3);
+    }
+
+    #[test]
+    fn vertex_array_bounds() {
+        // To be implemented.
     }
 
     #[test]

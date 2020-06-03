@@ -20,11 +20,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build source
       run: cargo build --verbose
-    - name: Run tests
-      env:
-        DISPLAY: ":99"
-      run: |
-        sudo apt-get install -y libgl1-mesa-glx libgl1-mesa-dev xvfb
-        xvfb-run -n 99 -s "-screen 0 640x480x24 -pixdepths 24 +extension GLX +render -noreset" cargo test --verbose -- --test-threads=1
+    # - name: Run tests
+    #   env:
+    #     DISPLAY: ":99"
+    #   run: |
+    #     sudo apt-get install -y libgl1-mesa-glx libgl1-mesa-dev xvfb
+    #     xvfb-run -n 99 -s "-screen 0 640x480x24 -pixdepths 24 +extension GLX +render -noreset" cargo test --verbose -- --test-threads=1
     - name: Generate documentation
       run: cargo doc --verbose

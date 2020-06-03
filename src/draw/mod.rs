@@ -85,6 +85,9 @@ mod usage;
 mod vertex;
 mod vertex_array;
 
+mod shape;
+pub mod shapes;
+
 mod glyph;
 mod font;
 mod text;
@@ -101,8 +104,8 @@ pub use usage::Usage;
 pub use vertex::Vertex;
 pub use vertex_array::VertexArray;
 
+pub use shape::Shape;
+
 pub use glyph::Glyph;
 pub use font::Font;
 pub use text::Text;
-
-pub mod shapes;

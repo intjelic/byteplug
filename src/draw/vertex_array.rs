@@ -421,6 +421,8 @@ impl VertexArray {
     }
 
     fn compute_bounds(vertices: &Vec<Vertex>) -> Box<f32> {
+        // There could be a smarter way to implement this and merge it with the code of
+        // `compute_bounds()` but for now it's unnecessarily complicated.
         if vertices.is_empty() {
             return Box::default()
         }

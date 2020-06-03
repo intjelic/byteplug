@@ -8,6 +8,8 @@
 //! Mathematical utilities related to geometry
 //!
 //! Additional documentation is to be written here.
+mod utils;
+
 mod position;
 mod size;
 mod box_;
@@ -27,6 +29,8 @@ mod point;
 mod line;
 mod rectangle;
 mod circle;
+
+pub use utils::compute_bounds;
 
 pub use position::Position;
 pub use size::Size;

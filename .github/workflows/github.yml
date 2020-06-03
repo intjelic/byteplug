@@ -24,7 +24,7 @@ jobs:
       env:
         DISPLAY: ":99"
       run: |
-        sudo apt install -y xvfb
-        xvfb-run -n 99 cargo test --verbose -- --test-threads=1
+        sudo apt-get install -y xvfb
+        xvfb-run -n 99 -s "-screen 0 640x480x24+32 -noreset" cargo test --verbose -- --test-threads=1
     - name: Generate documentation
       run: cargo doc --verbose

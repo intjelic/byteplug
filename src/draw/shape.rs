@@ -473,8 +473,8 @@ impl Shape {
         self.update();
 
         // Draw the shape vertices first, then the outline vertices.
-        self.vertices.draw(surface); // It should be the other way round ?
-        self.outline_vertices.draw(surface); // It should be the other way round ?
+        surface.draw_vertices(&self.vertices);
+        surface.draw_vertices(&self.outline_vertices);
     }
 }
 

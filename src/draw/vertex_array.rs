@@ -344,16 +344,7 @@ impl VertexArray {
     ///
     /// This functions draws the vertex array on a surface according to its drawing primitive.
     ///
-    pub fn draw(&self, surface: &mut Surface) {
-
-        // To draw on the surface, we must make its underlying OpenGL context (and thus associated
-        // framebuffer) current. This is so the DrawArrays() function operates on it.
-        surface.activate();
-
-        // The vertex array is using the default shader program; make it current.
-        let default_shader = get_or_create_default_shader();
-        default_shader.bind();
-
+    pub(crate) fn draw(&self, surface: &mut Surface) {
         // Make the OpenGL object buffer current (so VertexAttribPointer() and
         // EnableVertexAttribArray() operate on it).
         self.bind();

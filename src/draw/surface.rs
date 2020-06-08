@@ -211,6 +211,23 @@ impl Surface {
 
     /// Brief description
     ///
+    /// The **draw_vertices() function** is not documented yet. Pull requests are welcome.
+    ///
+    pub fn draw_vertices(&mut self, vertices: &VertexArray) {
+        // To draw on the surface, we must make its underlying OpenGL context (and thus associated
+        // framebuffer) current. This is so the DrawArrays() function operates on it.
+        self.activate();
+
+        // For now, it's always using the default shader program; make it current.
+        let default_shader = get_or_create_default_shader();
+        default_shader.bind();
+
+        // Delegate the drawing calls to the vertices.
+        vertices.draw(self);
+    }
+
+    /// Brief description
+    ///
     /// The **swap() function** is not documented yet. Pull requests are welcome.
     ///
     pub fn swap(&mut self) {

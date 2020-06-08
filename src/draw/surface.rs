@@ -124,6 +124,10 @@ impl Surface {
     /// The **from_window() function** is not documented yet. Pull requests are welcome.
     ///
     pub fn from_window(context: RawContext<NotCurrent>, size: Size) -> Surface {
+        unsafe {
+            gl_check!(gl::Viewport(0, 0, size.width as _, size.height as _));
+        }
+
         Surface {
             context: Some(UnderlyingContext::WithWindow(context)),
             render_buffer: 0, // not used
@@ -162,7 +166,9 @@ impl Surface {
                 underlying_context = unsafe {
                     let current_context = underlying_context.make_current().unwrap();
                     current_context.resize(winit::dpi::PhysicalSize::new(size.width as _, size.height as _));
-
+                    unsafe {
+                        gl_check!(gl::Viewport(0, 0, size.width as _, size.height as _));
+                    }
                     current_context.treat_as_not_current()
                 };
 

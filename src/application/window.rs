@@ -379,6 +379,10 @@ impl<States> Window<States> {
         winit::event_loop::ControlFlow::Wait
     }
 
+    pub fn redraw(&mut self) {
+        self.window.request_redraw();
+    }
+
     /// Handle window-related event triggered by the event loop
     ///
     /// This function is not documented yet.

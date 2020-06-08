@@ -45,6 +45,7 @@ fn ensure_default_shader() {
             None => {
                 // Make sure context is created
                 let _context = get_or_create_context();
+                make_context_current();
 
                 let default_shader = Shader::new(VERTEX_SHADER_SRC, FRAGMENT_SHADER_SRC);
                 DEFAULT_SHADER = Some(default_shader);

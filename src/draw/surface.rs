@@ -42,7 +42,7 @@ enum UnderlyingContext {
     WithWindow(RawContext<NotCurrent>)
 }
 
-/// A drawing area of a fixed size
+/// A drawing area on the graphic card
 ///
 /// The **Surface struct** is not documented yet. Pull requests are welcome.
 ///

@@ -5,7 +5,7 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-/// Brief description
+/// A drawable text of a given font.
 ///
 /// The **Text struct** is not documented yet. Pull requests are welcome.
 ///

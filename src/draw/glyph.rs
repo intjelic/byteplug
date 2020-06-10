@@ -5,7 +5,7 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-/// Brief description
+/// The information to display a character of a given font.
 ///
 /// The **Glyph struct** is not documented yet. Pull requests are welcome.
 ///

@@ -8,7 +8,7 @@
 use std::string::String;
 use crate::draw::gl;
 
-/// Brief description
+/// A drawing program stored on the graphics card.
 ///
 /// The **Shader struct** is not documented yet. Pull requests are welcome.
 ///

@@ -18,7 +18,7 @@
 //! mechanism; it will pick up what is available, whether it's actually hardware
 //! accelerated or software emulated, and work.
 //!
-//! The goal is to provide a 'quick to use and manage' interface to the powerful
+//! The goal is to provide an 'easy and quick to use' interface to the powerful
 //! rendering arsenal that OpenGL is, while giving the opportunity to more
 //! experimented programmer to combine it with direct OpenGL code later, when
 //! the need arises.
@@ -35,7 +35,7 @@
 pub mod gl {
     //! The OpenGL module
     //!
-    //! This module exposes the OpenGL ES 3.2 that the draw module is using to perform rendering.
+    //! This module exposes OpenGL ES 3.2 API that the draw module uses to perform the rendering.
     //!
     include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 }

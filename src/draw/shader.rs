@@ -37,16 +37,16 @@ fn compile_shader(source: &[u8], type_: u32) -> Result<u32, String> {
         gl_check!(gl::CompileShader(shader));
 
         let mut success = 0;
-        gl::GetShaderiv(shader, gl::COMPILE_STATUS, &mut success);
+        gl_check!(gl::GetShaderiv(shader, gl::COMPILE_STATUS, &mut success));
 
         if success == gl::FALSE as _ {
             let mut length: i32 = 0;
             let mut info_log: [u8; 1024] = [0; 1024];
-            gl::GetShaderInfoLog(shader,
+            gl_check!(gl::GetShaderInfoLog(shader,
                                  1024,
                                  &mut length,
                                  info_log.as_mut_ptr() as *mut _
-            );
+            ));
             assert_ne!(length, 0);
 
             // Make a UTF-8 Rust string out of the ASCII C 'info log' string (note that ASCII is
@@ -124,7 +124,7 @@ impl Shader {
     ///
     pub fn bind(&self) {
         unsafe {
-            gl::UseProgram(self.program);
+            gl_check!(gl::UseProgram(self.program));
         }
     }
 }

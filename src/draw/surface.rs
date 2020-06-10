@@ -91,24 +91,24 @@ impl Surface {
         let mut render_buffer = 0;
         let mut frame_buffer = 0;
         unsafe {
-            gl::GenRenderbuffers(1, &mut render_buffer);
-            gl::BindRenderbuffer(gl::RENDERBUFFER, render_buffer);
-            gl::RenderbufferStorage(
+            gl_check!(gl::GenRenderbuffers(1, &mut render_buffer));
+            gl_check!(gl::BindRenderbuffer(gl::RENDERBUFFER, render_buffer));
+            gl_check!(gl::RenderbufferStorage(
                 gl::RENDERBUFFER,
                 gl::RGB8,
                 size.width as _,
                 size.height as _,
-            );
-            gl::GenFramebuffers(1, &mut frame_buffer);
-            gl::BindFramebuffer(gl::FRAMEBUFFER, frame_buffer);
-            gl::FramebufferRenderbuffer(
+            ));
+            gl_check!(gl::GenFramebuffers(1, &mut frame_buffer));
+            gl_check!(gl::BindFramebuffer(gl::FRAMEBUFFER, frame_buffer));
+            gl_check!(gl::FramebufferRenderbuffer(
                 gl::FRAMEBUFFER,
                 gl::COLOR_ATTACHMENT0,
                 gl::RENDERBUFFER,
                 render_buffer,
-            );
+            ));
 
-            gl::Viewport(0, 0, size.width as _, size.height as _);
+            gl_check!(gl::Viewport(0, 0, size.width as _, size.height as _));
         }
 
         Surface {
@@ -188,8 +188,8 @@ impl Surface {
         let color: [f32; 4] = [1.0, 1.0, 1.0, 1.0];
 
         unsafe {
-            gl::ClearColor(color[0], color[1], color[2], color[3]);
-            gl::Clear(gl::COLOR_BUFFER_BIT);
+            gl_check!(gl::ClearColor(color[0], color[1], color[2], color[3]));
+            gl_check!(gl::Clear(gl::COLOR_BUFFER_BIT));
         }
     }
 

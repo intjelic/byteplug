@@ -207,12 +207,12 @@ impl VertexArray {
         self.bind();
         let vertices = unsafe {
             let length = size * std::mem::size_of::<Vertex>();
-            let pointer = gl::MapBufferRange(
+            gl_check!(let pointer = gl::MapBufferRange(
                 gl::ARRAY_BUFFER,
                 0,
                 length as _,
                 gl::MAP_READ_BIT
-            );
+            ));
 
             // The strategy is to make a `Vec<Vertex>` from the mapped data (which we don't own), so
             // we can easily make a copy of it. We manually ask not to drop the data as we don't own
@@ -425,7 +425,7 @@ impl VertexArray {
     fn delete_buffer(&mut self) {
         assert_ne!(self.buffer, 0);
         unsafe {
-            gl::DeleteBuffers(1, &mut self.buffer)
+            gl_check!(gl::DeleteBuffers(1, &mut self.buffer));
         }
         self.buffer = 0;
     }
@@ -471,7 +471,7 @@ impl Drop for VertexArray {
         }
 
         unsafe {
-            gl::DeleteBuffers(1, &mut self.buffer)
+            gl_check!(gl::DeleteBuffers(1, &mut self.buffer));
         }
     }
 }

@@ -10,14 +10,14 @@
 /// The **Vector struct** is not documented yet. Pull requests are welcome.
 ///
 #[derive(Debug, Copy, Clone, PartialEq)] // implement Eq ?
-pub struct Vector<T = f64> {
-    pub radius: T,
-    pub angle:  f64
+pub struct Vector {
+    pub radius: f32,
+    pub angle: f32
 }
 
-impl<T> Vector<T> {
-    pub fn new(radius: T, angle: f64) -> Vector<T> {
-        Vector::<T> {
+impl Vector {
+    pub fn new(radius: f32, angle: f32) -> Vector {
+        Vector {
             radius: radius,
             angle:  angle
         }

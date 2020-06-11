@@ -22,4 +22,32 @@ impl Vector {
             angle:  angle
         }
     }
+
+    pub fn x(&self) -> f32 {
+        self.angle.cos() * self.radius
+    }
+
+    pub fn y(&self) -> f32 {
+        self.angle.sin() * self.radius
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn vector_new() {
+        // To be written.
+    }
+
+    #[test]
+    fn vector_x() {
+        // To be written.
+    }
+
+    #[test]
+    fn vector_y() {
+        // To be written.
+    }
 }

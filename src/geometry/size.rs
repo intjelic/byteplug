@@ -16,10 +16,28 @@ pub struct Size<T = f32> {
 }
 
 impl<T> Size<T> {
+
+    /// Brief description
+    ///
+    /// The **new() function** is not documented yet. Pull requests are welcome.
+    ///
     pub fn new(width: T, height: T) -> Size<T> {
         Size::<T> {
             width: width,
             height: height
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn size_new() {
+        let size = Size::new(1, 2);
+
+        assert_eq!(size.width, 1);
+        assert_eq!(size.height, 2);
     }
 }

@@ -16,7 +16,8 @@ use crate::geometry::{Position, Size};
 /// - The interface and implementation will change a lot.
 ///
 #[derive(Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Debug, Default)]
-pub struct Box<T = i32> {
+pub struct Box<T = f32>
+{
     pub position: Position<T>,
     pub size: Size<T>
 }

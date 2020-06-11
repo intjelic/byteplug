@@ -37,6 +37,11 @@ pub struct Position<T = f32> {
 }
 
 impl<T> Position<T> {
+
+    /// Brief description
+    ///
+    /// The **new() function** is not documented yet. Pull requests are welcome.
+    ///
     pub fn new(x: T, y: T) -> Position<T> {
         Position::<T> {
             x: x,
@@ -139,6 +144,14 @@ impl<T: Neg<Output = T>> Neg for Position<T> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn position_new() {
+        let position = Position::new(1, 2);
+
+        assert_eq!(position.x, 1);
+        assert_eq!(position.y, 2);
+    }
 
     #[test]
     fn position_add() {

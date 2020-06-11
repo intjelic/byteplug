@@ -13,7 +13,9 @@ mod utils;
 mod position;
 mod size;
 mod box_;
+
 mod vector;
+mod matrix;
 
 mod transform;
 
@@ -35,7 +37,9 @@ pub use utils::compute_bounds;
 pub use position::Position;
 pub use size::Size;
 pub use box_::Box;
+
 pub use vector::Vector;
+pub use matrix::Matrix;
 
 pub use transform::Transform;
 

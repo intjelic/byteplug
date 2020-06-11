@@ -78,7 +78,7 @@ pub struct Surface {
     context: Option<UnderlyingContext>, // shouldn't be a Option, but the make_current() methods consume themselves
     render_buffer: u32, // not used in the case of a window surface
     frame_buffer: u32,  // not used in the case of a window surface
-    size: Size,
+    size: Size<i32>,
     default_texture: Texture
 }
 
@@ -87,7 +87,7 @@ impl Surface {
     ///
     /// The **new() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn new(size: Size, options: Options) -> Surface {
+    pub fn new(size: Size<i32>, options: Options) -> Surface {
 
         let event_loop = get_or_create_event_loop();
         let shared_context = get_or_create_context();
@@ -138,7 +138,7 @@ impl Surface {
     ///
     /// The **from_window() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn from_window(context: RawContext<NotCurrent>, size: Size) -> Surface {
+    pub fn from_window(context: RawContext<NotCurrent>, size: Size<i32>) -> Surface {
         unsafe {
             gl_check!(gl::Viewport(0, 0, size.width as _, size.height as _));
         }

@@ -69,7 +69,7 @@ impl Texture {
     ///
     /// The **with_size() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn with_size(size: Size, color: Color) -> Texture {
+    pub fn with_size(size: Size<i32>, color: Color) -> Texture {
         let mut texture = Texture::new();
         texture.resize(size, color);
 
@@ -100,7 +100,7 @@ impl Texture {
     ///
     /// The **size() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn size(&self) -> Size {
+    pub fn size(&self) -> Size<i32> {
         // Make the OpenGL texture object current (so GetTexLevelParameteriv() operates on it).
         self.bind();
 
@@ -133,7 +133,7 @@ impl Texture {
     ///
     /// The **resize() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn resize(&mut self, size: Size, color: Color) {
+    pub fn resize(&mut self, size: Size<i32>, color: Color) {
         // The implementation of this function is a bit complicated; for now, it cleans up the
         // entire area but it should not.
         let size_usize = Size::new(size.width as usize, size.height as usize); // should be removed

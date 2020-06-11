@@ -31,7 +31,7 @@ use std::ops::Neg;
 ///   those automatically ?
 ///
 #[derive(Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Debug, Default)]
-pub struct Position<T = i32> {
+pub struct Position<T = f32> {
     pub x: T,
     pub y: T
 }

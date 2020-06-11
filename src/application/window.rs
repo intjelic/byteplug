@@ -47,8 +47,8 @@ fn map_key_code(key: Option<winit::event::VirtualKeyCode>) -> keyboard::Key {
 ///
 pub struct Window<States> {
     title: String,
-    position: Position,
-    size: Size,
+    position: Position<i32>,
+    size: Size<i32>,
 
     window: winit::window::Window,
     surface: Surface,
@@ -80,7 +80,7 @@ impl<States> Window<States> {
     ///
     /// The **new() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn new(size: Size) -> Window<States> {
+    pub fn new(size: Size<i32>) -> Window<States> {
         let event_loop = get_or_create_event_loop();
         let shared_context = get_or_create_context();
 

@@ -17,7 +17,7 @@ use crate::image::Color;
 ///
 /// * `position` - The new widget position (relative to its parent).
 ///
-pub type WidgetMoveFunction<Window, States> = fn(window: &mut Window, position: Position, states: &mut States) -> ();
+pub type WidgetMoveFunction<Window, States> = fn(window: &mut Window, position: Position<i32>, states: &mut States) -> ();
 
 /// The widget resize callback function
 ///
@@ -26,7 +26,7 @@ pub type WidgetMoveFunction<Window, States> = fn(window: &mut Window, position: 
 ///
 /// * `size` - The new widget size.
 ///
-pub type WidgetResizeFunction<Window, States> = fn(window: &mut Window, size: Size, states: &mut States) -> ();
+pub type WidgetResizeFunction<Window, States> = fn(window: &mut Window, size: Size<i32>, states: &mut States) -> ();
 
 /// The widget redraw callback function
 ///
@@ -105,7 +105,7 @@ pub type CharacterEnterFunction<Window, States> = fn(window: &mut Window, charac
 ///
 /// * `position` - The cursor position (relative to the top-left corner).
 ///
-pub type CursorEnterFunction<Window, States> = fn(window: &mut Window, position: Position, states: &mut States) -> ();
+pub type CursorEnterFunction<Window, States> = fn(window: &mut Window, position: Position<i32>, states: &mut States) -> ();
 
 /// The cursor leave callback function
 ///
@@ -115,7 +115,7 @@ pub type CursorEnterFunction<Window, States> = fn(window: &mut Window, position:
 ///
 /// * `position` - The cursor position (relative to the top-left corner).
 ///
-pub type CursorLeaveFunction<Window, States> = fn(window: &mut Window, position: Position, states: &mut States) -> ();
+pub type CursorLeaveFunction<Window, States> = fn(window: &mut Window, position: Position<i32>, states: &mut States) -> ();
 
 /// The cursor move callback function
 ///
@@ -127,7 +127,7 @@ pub type CursorLeaveFunction<Window, States> = fn(window: &mut Window, position:
 /// * `position` - The new cursor position (relative to the top-left corner).
 /// * `movement` - The movement of the cursor in pixels coordinate.
 ///
-pub type CursorMoveFunction<Window, States> = fn(window: &mut Window, position: Position, movement: Vector, states: &mut States) -> ();
+pub type CursorMoveFunction<Window, States> = fn(window: &mut Window, position: Position<i32>, movement: Vector, states: &mut States) -> ();
 
 /// The mouse button down callback function
 ///
@@ -139,7 +139,7 @@ pub type CursorMoveFunction<Window, States> = fn(window: &mut Window, position: 
 /// * `button` - The identifier of the button being pressed.
 /// * `position` - The current cursor position.
 ///
-pub type MouseDownFunction<Window, States> = fn(window: &mut Window, button: Button, position: Position, states: &mut States) -> ();
+pub type MouseDownFunction<Window, States> = fn(window: &mut Window, button: Button, position: Position<i32>, states: &mut States) -> ();
 
 /// The mouse button up callback function
 ///
@@ -151,7 +151,7 @@ pub type MouseDownFunction<Window, States> = fn(window: &mut Window, button: But
 /// * `button` - The identifier of the button being released.
 /// * `position` - The current cursor position (relative to the top-left corner).
 ///
-pub type MouseUpFunction<Window, States> = fn(window: &mut Window, button: Button, position: Position, states: &mut States) -> ();
+pub type MouseUpFunction<Window, States> = fn(window: &mut Window, button: Button, position: Position<i32>, states: &mut States) -> ();
 
 /// The mouse wheel scroll callback function
 ///

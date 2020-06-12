@@ -36,7 +36,9 @@ pub struct Position<T = f32> {
     pub y: T
 }
 
-impl<T> Position<T> {
+impl<T> Position<T>
+    where T: Default + PartialEq
+{
 
     /// Brief description
     ///
@@ -47,6 +49,22 @@ impl<T> Position<T> {
             x: x,
             y: y
         }
+    }
+
+    /// Brief description
+    ///
+    /// The **zero() function** is not documented yet. Pull requests are welcome.
+    ///
+    pub fn zero() -> Position<T> {
+        Position::new(T::default(), T::default())
+    }
+
+    /// Brief description
+    ///
+    /// The **is_zero() function** is not documented yet. Pull requests are welcome.
+    ///
+    pub fn is_zero(&self) -> bool {
+        self.x == T::default() && self.y == T::default()
     }
 }
 
@@ -151,6 +169,28 @@ mod tests {
 
         assert_eq!(position.x, 1);
         assert_eq!(position.y, 2);
+    }
+
+    #[test]
+    fn position_zero() {
+        let position: Position<f32> = Position::zero();
+
+        assert_eq!(position.x, 0.0);
+        assert_eq!(position.y, 0.0);
+    }
+
+    #[test]
+    fn position_is_null() {
+        let mut position: Position<f32> = Position::zero();
+        assert_eq!(position.is_zero(), true);
+
+        position.x = 1.0;
+        position.y = 0.0;
+        assert_eq!(position.is_zero(), false);
+
+        position.x = 0.0;
+        position.y = -1.0;
+        assert_eq!(position.is_zero(), false);
     }
 
     #[test]

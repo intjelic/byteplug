@@ -15,7 +15,9 @@ pub struct Size<T = f32> {
     pub height: T
 }
 
-impl<T> Size<T> {
+impl<T> Size<T>
+    where T: PartialEq + Default
+{
 
     /// Brief description
     ///
@@ -26,6 +28,22 @@ impl<T> Size<T> {
             width: width,
             height: height
         }
+    }
+
+    /// Brief description
+    ///
+    /// The **zero() function** is not documented yet. Pull requests are welcome.
+    ///
+    pub fn zero() -> Size<T> {
+        Size::new(T::default(), T::default())
+    }
+
+    /// Brief description
+    ///
+    /// The **is_zero() function** is not documented yet. Pull requests are welcome.
+    ///
+    pub fn is_zero(&self) -> bool {
+        self.width == T::default() && self.height == T::default()
     }
 }
 
@@ -39,5 +57,27 @@ mod tests {
 
         assert_eq!(size.width, 1);
         assert_eq!(size.height, 2);
+    }
+
+    #[test]
+    fn size_zero() {
+        let size: Size<f32> = Size::zero();
+
+        assert_eq!(size.width, 0.0);
+        assert_eq!(size.height, 0.0);
+    }
+
+    #[test]
+    fn size_is_zero() {
+        let mut size: Size<f32> = Size::zero();
+        assert_eq!(size.is_zero(), true);
+
+        size.width = 1.0;
+        size.height = 0.0;
+        assert_eq!(size.is_zero(), false);
+
+        size.width = 0.0;
+        size.height = -1.0;
+        assert_eq!(size.is_zero(), false);
     }
 }

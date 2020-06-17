@@ -5,7 +5,7 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-/// Brief description
+/// Geometric information of a circle.
 ///
 /// The **Circle struct** is not documented yet. Pull requests are welcome.
 ///

@@ -9,7 +9,7 @@ use std::ops::{Add, AddAssign, Sub, SubAssign};
 use std::ops::{Mul, MulAssign, Div, DivAssign};
 use std::ops::Neg;
 
-/// Brief description
+/// A two-dimensional coordinate.
 ///
 /// The **Position struct** is not documented yet. Pull requests are welcome.
 ///

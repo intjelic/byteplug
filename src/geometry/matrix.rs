@@ -7,7 +7,7 @@
 
 use std::ops::{Index, IndexMut};
 
-/// Brief description
+/// A matrix for the Euclidean plane.
 ///
 /// The **Matrix struct** is not documented yet. Pull requests are welcome.
 ///

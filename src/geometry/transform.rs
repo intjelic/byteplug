@@ -10,7 +10,7 @@ use crate::geometry::Position;
 use crate::geometry::Box;
 use crate::geometry::{Vector, Matrix};
 
-/// Brief description
+/// A position and rectangle transformer.
 ///
 /// The **Transform struct** is not documented yet. Pull requests are welcome.
 ///

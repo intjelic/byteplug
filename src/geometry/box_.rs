@@ -7,7 +7,7 @@
 
 use crate::geometry::{Position, Size};
 
-/// Brief description
+/// A two-dimensional box.
 ///
 /// The **Box struct** is not documented yet. Pull requests are welcome.
 ///

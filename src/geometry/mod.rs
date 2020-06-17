@@ -33,6 +33,23 @@
 //! it supports some common geometrical operations. Points, lines, rectangles, circles and polygons
 //! items hold geometrical information and allow to compute collision detection.
 //!
+//! **Implementation status**
+//!
+//! - Traits (movable, resizable, rotable, scalable) aren't implemented yet and are subject to be
+//!   removed.
+//! - Trait `Transformable` still need to be defined; perhaps will be removed in the future.
+//! - Points, lines, circles and rectangles aren't implemented yet. They're expected to have an
+//!   interface to detect collisions.
+//! - Polygon is to be added and implemented too.
+//! - The `Box` item is likely to be renamed because it's clashing with the `box` Rust keyword.
+//! - Many unit tests are missing.
+//! - Implement `From` and `Into` trait to convert 2D coordinates-like items into each other (
+//!   Position, Vector and perhaps Size).
+//! - Implementation the `Scalar` trait or struct to solve few issues with the design. It would
+//!   represent any valid built-in numeric types. It will allow to know what is the zero() version
+//!   for item T constrained by the Scalar trait. It will also allow to implement vector and matrix
+//!   multiplication with a scalar (implementing it for type T is conflicting with other stuff).
+//!
 mod utils;
 
 mod position;

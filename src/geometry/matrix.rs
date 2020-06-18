@@ -23,6 +23,8 @@ use crate::geometry::Vector;
 /// - Internally, it's a 4x4 matrix, but is it necessary ? Or is it just because it's passed down
 ///   to OpenGL which works in 3D.
 /// - Arithmetic operator overloads aren't implemented yet.
+/// - Should there be as_array() to return raw 9 or 16 long arrays ? See private `as_array()` method
+///   below.
 ///
 #[derive(Copy, Clone, Debug, Default)]
 pub struct Matrix {
@@ -153,6 +155,10 @@ impl Matrix {
             1.0
         ]
     };
+
+    pub(crate) fn as_array(&self) -> &[f32; 16] {
+        &self.values
+    }
 }
 
 fn index_9_to_16(index: usize) -> usize {

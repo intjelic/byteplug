@@ -17,6 +17,7 @@ use crate::image::Color;
 use crate::draw::context::get_or_create_context;
 use crate::draw::{gl, Options};
 use crate::draw::{Texture, VertexArray};
+use crate::draw::Uniform;
 use crate::draw::default_shader::get_or_create_default_shader;
 use crate::draw::View;
 use crate::application::get_or_create_event_loop;
@@ -280,6 +281,9 @@ impl Surface {
         // For now, it's always using the default shader program; make it current.
         let default_shader = get_or_create_default_shader();
         default_shader.bind();
+
+        // Set the viewport uniform (commonly called the projection matrix)
+        default_shader.set_uniform("viewport", Uniform::Matrix4(*self.view.matrix().as_array()));
 
         // Delegate the drawing calls to the vertices.
         vertices.draw(self);

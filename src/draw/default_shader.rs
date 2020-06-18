@@ -21,8 +21,10 @@ layout(location = 2) in vec2 vertex_texture;
 out vec4 fragment_color;
 out vec2 fragment_texture;
 
+uniform mat4 viewport;
+
 void main() {
-    gl_Position = vec4(vertex_position, 0.0, 1.0);
+    gl_Position = viewport * vec4(vertex_position, 0.0, 1.0);
 
     fragment_color = vertex_color;
     fragment_texture = vertex_texture;

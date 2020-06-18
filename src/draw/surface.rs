@@ -168,7 +168,7 @@ impl Surface {
     ///
     /// The **resize() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn resize(&mut self, size: Size) {
+    pub fn resize(&mut self, size: Size<i32>) {
         // The code is a little bit tricky because make_current() methods of the context consume
         // the context, but we only have a reference to self, and thus a reference to the context
         // (we cannot take ownership, even temporarily).
@@ -181,7 +181,7 @@ impl Surface {
                 underlying_context = unsafe {
                     let current_context = underlying_context.make_current().unwrap();
 
-                    // todo: destory the generated buffer and re-create it
+                    // todo: destroy the generated buffer and re-create it
 
                     current_context.treat_as_not_current()
                 };
@@ -194,9 +194,20 @@ impl Surface {
                 underlying_context = unsafe {
                     let current_context = underlying_context.make_current().unwrap();
                     current_context.resize(winit::dpi::PhysicalSize::new(size.width as _, size.height as _));
+
+                    self.size = size;
+
+                    // fix this when a solution to cast Size to different T type is found
+                    let view_size = Size::<f32>::new(size.width as f32, size.height as f32);
+                    self.view.reset(Box::new(Position::zero(), view_size));
+
+                    let viewport = self.compute_viewport();
+                    let top = self.size.height - (viewport.top() + viewport.size.height);
+
                     unsafe {
-                        gl_check!(gl::Viewport(0, 0, size.width as _, size.height as _));
+                        gl_check!(gl::Viewport(viewport.left(), top, viewport.size.width, viewport.size.height));
                     }
+
                     current_context.treat_as_not_current()
                 };
 
@@ -207,6 +218,24 @@ impl Surface {
         self.context = Some(context);
 
 
+    }
+
+    // should not be public
+    fn compute_viewport(&self) -> Box<i32> {
+        // If a SFML-like notion of viewport is implemented in the public API, then those constant
+        // will disappear.
+        const viewport_left:   f32 = 0.0;
+        const viewport_top:    f32 = 0.0;
+        const viewport_width:  f32 = 1.0;
+        const viewport_height: f32 = 1.0;
+
+        let x = 0.5 + self.size.width as f32  * viewport_left;
+        let y = 0.5 + self.size.height as f32 * viewport_top;
+
+        let width  = 0.5 + self.size.width  as f32 * viewport_width;
+        let height = 0.5 + self.size.height as f32 * viewport_height;
+
+        Box::new(Position::new(x as i32, y as i32), Size::new(width as i32, height as i32))
     }
 
     pub fn view(&self) -> &View {

@@ -5,8 +5,10 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, May 2020
 
+use std::ffi::CString;
 use std::string::String;
 use crate::draw::gl;
+use crate::draw::Uniform;
 
 /// A drawing program stored on the graphics card.
 ///
@@ -15,6 +17,7 @@ use crate::draw::gl;
 /// **Implementation notes**
 ///
 /// - Very primitive implementation of the shader class; will obviously change a lot.
+/// - Boolean uniform setter is missing.
 ///
 pub struct Shader {
     vertex_shader: gl::types::GLuint,
@@ -115,6 +118,63 @@ impl Shader {
             vertex_shader: vertex_shader,
             fragment_shader: fragment_shader,
             program: program
+        }
+    }
+
+    /// Brief description
+    ///
+    /// The **set_uniform() method** is not documented yet. Pull requests are welcome.
+    ///
+    pub fn set_uniform(&mut self, name: &str, uniform: Uniform) {
+        self.bind();
+
+        let location = unsafe {
+            gl_check!(let location = gl::GetUniformLocation(self.program, CString::new(name).unwrap().into_raw()));
+
+            location
+        };
+
+        match uniform {
+            Uniform::Integer(value) => {
+                unsafe {
+                    gl_check!(gl::Uniform1i(location, value));
+                }
+            },
+            Uniform::UnsignedInteger(value) => {
+                unsafe {
+                    gl_check!(gl::Uniform1ui(location, value));
+                }
+            },
+            Uniform::Float(value) => {
+                unsafe {
+                    gl_check!(gl::Uniform1f(location, value));
+                }
+            },
+            Uniform::Vector2(x, y) => {
+                unsafe {
+                    gl_check!(gl::Uniform2f(location, x, y));
+                }
+            },
+            Uniform::Vector3(x, y, z) => {
+                unsafe {
+                    gl_check!(gl::Uniform3f(location, x, y, z));
+                }
+            },
+            Uniform::Matrix2(value) => {
+                unsafe {
+                    gl_check!(gl::UniformMatrix2fv(location, 1, gl::FALSE, value.as_ptr() as _));
+                }
+            },
+            Uniform::Matrix3(value) => {
+                unsafe {
+                    gl_check!(gl::UniformMatrix3fv(location, 1, gl::FALSE, value.as_ptr() as _));
+                }
+            },
+            Uniform::Matrix4(value) => {
+                unsafe {
+                    gl_check!(gl::UniformMatrix4fv(location, 1, gl::FALSE, value.as_ptr() as _));
+                }
+            }
         }
     }
 

@@ -80,6 +80,7 @@ mod options;
 mod surface;
 mod view;
 
+mod uniform;
 mod shader;
 mod default_shader;
 mod texture;
@@ -100,6 +101,7 @@ pub use options::Options;
 pub use surface::Surface;
 pub use view::View;
 
+pub use uniform::Uniform;
 pub use shader::Shader;
 pub use texture::Texture;
 

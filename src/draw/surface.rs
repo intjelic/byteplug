@@ -13,9 +13,22 @@ use glutin::{
     NotCurrent
 };
 use crate::geometry::Size;
+use crate::image::Color;
 use crate::draw::context::get_or_create_context;
 use crate::draw::{gl, Options};
+use crate::draw::{Texture, VertexArray};
+use crate::draw::default_shader::get_or_create_default_shader;
 use crate::application::get_or_create_event_loop;
+
+fn make_default_texture() -> Texture {
+    // There must always be a current texture when using the default shader. This simply is a 1x1
+    // white texture because white is the identity color (won't change the vertex color after
+    // multiplication).
+    let mut texture = Texture::new();
+    texture.resize(Size::new(1, 1), Color::WHITE);
+
+    texture
+}
 
 /// The underlying glutin context type
 ///
@@ -44,11 +57,11 @@ enum UnderlyingContext {
 /// - A surface represents a drawing area of a fixed size which is either virtual (not directly
 ///   visible) or real (directly visible, mapped to the surface of a window).
 /// - In both cases, the underlying OpenGL concept is a 'framebuffer', but in the case of a window,
-///   it's the 'default fraembuffer' of a OpenGL context and in the case of a non-window surface,
+///   it's the 'default framebuffer' of a OpenGL context and in the case of a non-window surface,
 ///   it's a framebuffer that must be created and bound later. It's important to notice that to
 ///   create the framebuffer for a window, an OpenGL context MUST be created, whereas the non-window
-///   framebuffers can be created indefinitvely from a single OpenGL context.
-/// - It's the reason why having one OpenGL context per surface simplifies enormouesly the
+///   framebuffers can be created indefinitely from a single OpenGL context.
+/// - It's the reason why having one OpenGL context per surface simplifies enormously the
 ///   implementation as now, we only have to think in terms of making the OpenGL context associated
 ///   to the surface current; in the case of a window, no framebuffer is bound, OpenGL will draw
 ///   on the default framebuffer, in the case of a non-window surface, the single framebuffer is
@@ -56,16 +69,17 @@ enum UnderlyingContext {
 /// - As an example, resizing the surface will be about either resizing the default framebuffer in
 ///   the case of a window, or the generated framebuffer in the case of non-window.
 /// - By the terms used by `glutin`, 'raw' contexts are created for windows (using their handles)
-///   and headless contexts are created for the non-window surfaces. Note that headless winodws are
+///   and headless contexts are created for the non-window surfaces. Note that headless windows are
 ///   created with size (1, 1) for their default framebuffer but it doesn't matter because what
 ///   matters in their case is the framebuffer that is created later.
 /// - The notion of surface size overlaps with the notion of window size. It's the user's
-///   responsability to resize the surface according to the window size.
+///   responsibility to resize the surface according to the window size.
 pub struct Surface {
     context: Option<UnderlyingContext>, // shouldn't be a Option, but the make_current() methods consume themselves
     render_buffer: u32, // not used in the case of a window surface
     frame_buffer: u32,  // not used in the case of a window surface
-    size: Size
+    size: Size,
+    default_texture: Texture
 }
 
 impl Surface {
@@ -115,7 +129,8 @@ impl Surface {
             context: Some(UnderlyingContext::NoWindow(context)),
             render_buffer: render_buffer,
             frame_buffer: frame_buffer,
-            size: size
+            size: size,
+            default_texture: make_default_texture()
         }
     }
 
@@ -132,7 +147,8 @@ impl Surface {
             context: Some(UnderlyingContext::WithWindow(context)),
             render_buffer: 0, // not used
             frame_buffer: 0,  // not used
-            size: size
+            size: size,
+            default_texture: make_default_texture()
         }
     }
 

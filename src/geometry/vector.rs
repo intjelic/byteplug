@@ -8,9 +8,21 @@
 use std::ops::{Add, Sub, Mul};
 use crate::geometry::Matrix;
 
-/// Brief description
+/// A vector for the Euclidean plane.
 ///
-/// The **Vector struct** is not documented yet. Pull requests are welcome.
+/// A vector represents **a length** and **an angle**; it can be seen as an arrow. With matrices,
+/// it's one of the two mathematical primitives used to compute in **the Euclidean plane**; it's
+/// mostly used to transform points. Also note that, unlike the mathematical literature, vectors are
+/// not directly a one dimension matrix (or a "row vector" or a "column vector"), even though they
+/// can be thought in that way.
+///
+/// **Implementation notes**
+///
+/// - Rename `radius` to `length` later.
+/// - Implement unit vector constant.
+/// - Implement in-place arithmetic operation equivalents (AddAssign, SubAssign, MulAssign)
+/// - Implement scalar and update to allow multiplication with scalar.
+/// - Think about `normalize()` versus `normalized()`.
 ///
 #[derive(Copy, Clone, PartialEq, Debug, Default)]
 pub struct Vector {

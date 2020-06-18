@@ -5,6 +5,9 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
+use std::ops::{Add, Sub, Mul};
+use crate::geometry::Matrix;
+
 /// Brief description
 ///
 /// The **Vector struct** is not documented yet. Pull requests are welcome.
@@ -44,6 +47,38 @@ impl Vector {
     }
 }
 
+impl Add<Vector> for Vector {
+    type Output = Self;
+
+    fn add(self, rhs: Vector) -> Self {
+        Vector::default()
+    }
+}
+
+impl Sub<Vector> for Vector {
+    type Output = Self;
+
+    fn sub(self, rhs: Vector) -> Self {
+        Vector::default()
+    }
+}
+
+impl Mul<Vector> for Vector {
+    type Output = Self;
+
+    fn mul(self, rhs: Vector) -> Self {
+        Vector::default()
+    }
+}
+
+impl Mul<Matrix> for Vector {
+    type Output = Matrix;
+
+    fn mul(self, rhs: Matrix) -> Matrix {
+        Matrix::default()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -76,5 +111,34 @@ mod tests {
     #[test]
     fn vector_cross_product() {
         // To be written.
+    }
+
+    #[test]
+    fn vector_addition() {
+        // To be written.
+        let vector = Vector::default();
+        let another_vector = Vector::default();
+
+        let result = vector + another_vector;
+    }
+
+    #[test]
+    fn vector_subtraction() {
+        // To be written.
+        let vector = Vector::default();
+        let another_vector = Vector::default();
+
+        let result = vector - another_vector;
+    }
+
+    #[test]
+    fn vector_multiplication() {
+        // To be written.
+        let vector = Vector::default();
+        let another_vector = Vector::default();
+        let matrix = Matrix::new();
+
+        let result_vector = vector * another_vector;
+        let result_matrix = vector * matrix;
     }
 }

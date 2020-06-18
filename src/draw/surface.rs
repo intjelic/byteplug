@@ -12,12 +12,13 @@ use glutin::{
     Context, RawContext,
     NotCurrent
 };
-use crate::geometry::Size;
+use crate::geometry::{Position, Size, Box};
 use crate::image::Color;
 use crate::draw::context::get_or_create_context;
 use crate::draw::{gl, Options};
 use crate::draw::{Texture, VertexArray};
 use crate::draw::default_shader::get_or_create_default_shader;
+use crate::draw::View;
 use crate::application::get_or_create_event_loop;
 
 fn make_default_texture() -> Texture {
@@ -79,6 +80,7 @@ pub struct Surface {
     render_buffer: u32, // not used in the case of a window surface
     frame_buffer: u32,  // not used in the case of a window surface
     size: Size<i32>,
+    view: View,
     default_texture: Texture
 }
 
@@ -125,11 +127,16 @@ impl Surface {
             gl_check!(gl::Viewport(0, 0, size.width as _, size.height as _));
         }
 
+        // fix this when a solution to cast Size to different T type is found
+        let view_size = Size::<f32>::new(size.width as f32, size.height as f32);
+        let view = View::with_box(Box::new(Position::zero(), view_size));
+
         Surface {
             context: Some(UnderlyingContext::NoWindow(context)),
             render_buffer: render_buffer,
             frame_buffer: frame_buffer,
             size: size,
+            view: view,
             default_texture: make_default_texture()
         }
     }
@@ -143,11 +150,16 @@ impl Surface {
             gl_check!(gl::Viewport(0, 0, size.width as _, size.height as _));
         }
 
+        // fix this when a solution to cast Size to different T type is found
+        let view_size = Size::<f32>::new(size.width as f32, size.height as f32);
+        let view = View::with_box(Box::new(Position::zero(), view_size));
+
         Surface {
             context: Some(UnderlyingContext::WithWindow(context)),
             render_buffer: 0, // not used
             frame_buffer: 0,  // not used
             size: size,
+            view: view,
             default_texture: make_default_texture()
         }
     }
@@ -193,6 +205,24 @@ impl Surface {
         };
 
         self.context = Some(context);
+
+
+    }
+
+    pub fn view(&self) -> &View {
+        &self.view
+    }
+
+    pub fn default_view(&self) -> View {
+        // can something be done to cast Position and Size to different type ?
+        let center = Position::new(self.size.width as f32 / 2.0, self.size.height as f32 / 2.0);
+        let size = Size::new(self.size.width as f32, self.size.height as f32);
+
+        View::new(center, size)
+    }
+
+    pub fn set_view(&mut self, view: &View) {
+        self.view = (*view).clone();
     }
 
     /// Brief description

@@ -5,7 +5,9 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
+use std::ops::{Add, Sub, Mul};
 use std::ops::{Index, IndexMut};
+use crate::geometry::Vector;
 
 /// A matrix for the Euclidean plane.
 ///
@@ -190,7 +192,40 @@ impl PartialEq for Matrix {
         self.values() == other.values()
     }
 }
+
 impl Eq for Matrix {}
+
+impl Add<Matrix> for Matrix {
+    type Output = Self;
+
+    fn add(self, rhs: Matrix) -> Self {
+        Matrix::default()
+    }
+}
+
+impl Sub<Matrix> for Matrix {
+    type Output = Self;
+
+    fn sub(self, rhs: Matrix) -> Self {
+        Matrix::default()
+    }
+}
+
+impl Mul<Vector> for Matrix {
+    type Output = Self;
+
+    fn mul(self, rhs: Vector) -> Self {
+        Matrix::default()
+    }
+}
+
+impl Mul<Matrix> for Matrix {
+    type Output = Self;
+
+    fn mul(self, rhs: Matrix) -> Self {
+        Matrix::default()
+    }
+}
 
 #[cfg(test)]
 mod tests {
@@ -271,5 +306,33 @@ mod tests {
     #[test]
     fn matrix_comparison() {
         // To be written.
+    }
+
+    #[test]
+    fn matrix_addition() {
+        // To be written.
+        let matrix = Matrix::new();
+        let another_matrix = Matrix::new();
+
+        let result = matrix + another_matrix;
+    }
+
+    #[test]
+    fn matrix_subtraction() {
+        // To be written.
+        let matrix = Matrix::new();
+        let another_matrix = Matrix::new();
+
+        let result = matrix - another_matrix;
+    }
+
+    #[test]
+    fn matrix_multiplication() {
+        let matrix = Matrix::new();
+        let vector = Vector::new(0.0, 0.0);
+        let another_matrix = Matrix::new();
+
+        let result_vector = matrix * vector;
+        let result_matrix = matrix * another_matrix;
     }
 }

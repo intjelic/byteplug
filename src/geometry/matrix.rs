@@ -11,14 +11,11 @@ use crate::geometry::Vector;
 
 /// A matrix for the Euclidean plane.
 ///
-/// The **Matrix struct** is not documented yet. Pull requests are welcome.
-///
-/// - mention order
-/// - new()
-/// - with_values() and values()
-/// - index and index_mut
-/// - combine() and inverse()
-/// - IDENTITY
+/// A matrix represents a rectangular array of numbers made of 3 rows and 3 columns (aka **3x3
+/// **matrix). With vectors, it's one of the two mathematical primitives used to compute in **the
+/// Euclidean plane**; it's mostly used to transform points. Matrices are a raw mathematical
+/// concept, in practice, it's used with a `Transform` which operates on a matrix in order to
+/// transform positions.
 ///
 /// **Implementation notes**
 ///

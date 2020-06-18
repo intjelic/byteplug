@@ -5,7 +5,7 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, May 2020
 
-use crate::draw::context::get_or_create_context;
+use crate::draw::context::{get_or_create_context, make_context_current};
 use crate::draw::shader::Shader;
 
 static mut DEFAULT_SHADER: Option<Shader> = None;

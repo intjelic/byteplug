@@ -30,6 +30,18 @@ impl Vector {
     pub fn y(&self) -> f32 {
         self.angle.sin() * self.radius
     }
+
+    pub fn normalize(&mut self) {
+        // To be implemented.
+    }
+
+    pub fn dot_product(&mut self) {
+        // To be implemented.
+    }
+
+    pub fn cross_product(&mut self) {
+        // To be implemented.
+    }
 }
 
 #[cfg(test)]
@@ -48,6 +60,21 @@ mod tests {
 
     #[test]
     fn vector_y() {
+        // To be written.
+    }
+
+    #[test]
+    fn vector_normalize() {
+        // To be written.
+    }
+
+    #[test]
+    fn vector_dot_product() {
+        // To be written.
+    }
+
+    #[test]
+    fn vector_cross_product() {
         // To be written.
     }
 }

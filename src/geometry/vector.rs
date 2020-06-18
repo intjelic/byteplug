@@ -9,7 +9,7 @@
 ///
 /// The **Vector struct** is not documented yet. Pull requests are welcome.
 ///
-#[derive(Debug, Copy, Clone, PartialEq)] // implement Eq ?
+#[derive(Copy, Clone, PartialEq, Debug, Default)]
 pub struct Vector {
     pub radius: f32,
     pub angle: f32

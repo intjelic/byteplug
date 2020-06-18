@@ -15,10 +15,10 @@ const VERTEX_SHADER_SRC: &'static [u8] = b"
 precision mediump float;
 
 layout(location = 0) in vec2 vertex_position;
-layout(location = 1) in vec3 vertex_color;
+layout(location = 1) in vec4 vertex_color;
 layout(location = 2) in vec2 vertex_texture;
 
-out vec3 fragment_color;
+out vec4 fragment_color;
 out vec2 fragment_texture;
 
 void main() {
@@ -33,14 +33,14 @@ const FRAGMENT_SHADER_SRC: &'static [u8] = b"
 #version 300 es
 precision mediump float;
 
-in vec3 fragment_color;
+in vec4 fragment_color;
 in vec2 fragment_texture;
 out vec4 out_color;
 
 uniform sampler2D current_texture;
 
 void main() {
-    out_color = texture(current_texture, fragment_texture);
+    out_color = texture(current_texture, fragment_texture) * fragment_color;
 }
 \0";
 

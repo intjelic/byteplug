@@ -55,7 +55,7 @@ impl Vertex {
     pub fn new() -> Vertex {
         Vertex {
             x: 0.0, y: 0.0,
-            r: 0.0, g: 0.0, b: 0.0, a: 1.0,
+            r: 0.0, g: 0.0, b: 0.0, a: 0.0,
             u: 0.0, v: 0.0
         }
     }

@@ -369,7 +369,7 @@ impl VertexArray {
             ));
             gl_check!(gl::VertexAttribPointer(
                 VERTEX_COLOR,
-                3,
+                4,
                 gl::FLOAT,
                 0,
                 std::mem::size_of::<Vertex>() as gl::types::GLsizei,

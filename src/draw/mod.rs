@@ -91,7 +91,6 @@ mod vertex;
 mod vertex_array;
 
 mod shape;
-pub mod shapes;
 
 mod glyph;
 mod font;

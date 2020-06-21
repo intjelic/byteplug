@@ -61,14 +61,6 @@ mod matrix;
 
 mod transform;
 
-mod movable;
-mod rotable;
-mod scalable;
-
-mod resizable;
-
-mod transformable;
-
 mod point;
 mod line;
 mod rectangle;
@@ -84,14 +76,6 @@ pub use vector::Vector;
 pub use matrix::Matrix;
 
 pub use transform::Transform;
-
-pub use movable::Movable;
-pub use rotable::Rotable;
-pub use scalable::Scalable;
-
-pub use resizable::Resizable;
-
-pub use transformable::Transformable;
 
 pub use point::Point;
 pub use line::Line;

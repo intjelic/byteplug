@@ -5,12 +5,12 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, June 2020
 
-use std::ops::Sub;
+use std::ops::{Add, Sub};
 use crate::geometry::{Position, Size};
 use crate::geometry::Box;
 
 pub fn compute_bounds<T>(points: &Vec<Position<T>>) -> Box<T>
-where T: Sub<Output = T> + PartialOrd + Default + Copy
+where T: PartialOrd + Default + Copy + Add<Output = T> + Sub<Output = T>
 {
     if points.is_empty() {
         return Box::default()

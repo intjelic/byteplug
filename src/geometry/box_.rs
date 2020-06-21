@@ -5,6 +5,7 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, May 2020
 
+use std::ops::Add;
 use crate::geometry::{Position, Size};
 
 /// A two-dimensional box.
@@ -23,7 +24,7 @@ pub struct Box<T = f32>
 }
 
 impl<T> Box<T>
-    where T: PartialEq + Default
+    where T: Copy + PartialEq + Default + Add<Output=T>
 {
     /// Brief description
     ///
@@ -50,6 +51,81 @@ impl<T> Box<T>
     ///
     pub fn is_zero(&self) -> bool {
         self.position == Position::zero() && self.size == Size::zero()
+    }
+
+    /// Brief description
+    ///
+    /// The **top_left() function** is not documented yet. Pull requests are welcome.
+    ///
+    pub fn top_left(&self) -> Position<T> {
+        self.position
+    }
+
+    /// Brief description
+    ///
+    /// The **top() function** is not documented yet. Pull requests are welcome.
+    ///
+    pub fn top(&self) -> T {
+        self.position.y
+    }
+
+    /// Brief description
+    ///
+    /// The **top_right() function** is not documented yet. Pull requests are welcome.
+    ///
+    pub fn top_right(&self) -> Position<T> {
+        Position::new(self.position.x + self.size.width, self.position.y)
+    }
+
+    /// Brief description
+    ///
+    /// The **left() function** is not documented yet. Pull requests are welcome.
+    ///
+    pub fn left(&self) -> T {
+        self.position.x
+    }
+
+    // /// Brief description
+    // ///
+    // /// The **center() function** is not documented yet. Pull requests are welcome.
+    // ///
+    // pub fn center(&self) -> Position<T> {
+    //     Position::new(
+    //         self.position.x + self.size.width / 2,
+    //         self.position.y + self.size.height / 2
+    //     )
+    // }
+
+    /// Brief description
+    ///
+    /// The **right() function** is not documented yet. Pull requests are welcome.
+    ///
+    pub fn right(&self) -> T {
+        self.position.x + self.size.width
+    }
+
+    /// Brief description
+    ///
+    /// The **bottom_left() function** is not documented yet. Pull requests are welcome.
+    ///
+    pub fn bottom_left(&self) -> Position<T> {
+        Position::new(self.position.x, self.position.y + self.size.height)
+    }
+
+    /// Brief description
+    ///
+    /// The **bottom() function** is not documented yet. Pull requests are welcome.
+    ///
+    pub fn bottom(&self) -> T {
+        self.position.y + self.size.height
+    }
+
+    /// Brief description
+    ///
+    /// The **bottom_right() function** is not documented yet. Pull requests are welcome.
+    ///
+    pub fn bottom_right(&self) -> Position<T> {
+        Position::new(self.position.x + self.size.width, self.position.y + self.size.height)
     }
 }
 

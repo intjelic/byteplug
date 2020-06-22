@@ -8,8 +8,8 @@
 use crate::geometry::compute_bounds;
 use crate::geometry::{Position, Box};
 use crate::image::Color;
+use crate::draw::{Surface, Texture};
 use crate::draw::{Primitive, Usage};
-use crate::draw::Surface;
 use crate::draw::{Vertex, VertexArray};
 use crate::draw::Drawable;
 
@@ -129,12 +129,14 @@ fn dot_product(p1: &Position<f32>, p2: &Position<f32>) -> f32 {
 /// - The set_usage() could be exposed, but is that really needed in practice ?
 /// - If the shape has less than 3 points, nothing is drawn. No error message is displayed too.
 ///   Should that change ?
+/// - Should it implement a texture rect like SFML ?
 ///
-pub struct Shape {
+pub struct Shape<'a> {
     points: Vec<Position<f32>>,
     color: Color,
     outline_color: Color,
     outline_thickness: f32,
+    texture: Option<&'a Texture>,
     vertices: VertexArray,
     outline_vertices: VertexArray,
     center: Position<f32>,
@@ -144,14 +146,14 @@ pub struct Shape {
     update_outline: bool // indicate if the vertices of the outline need to be re-computed
 }
 
-impl Shape {
+impl<'a> Shape<'a> {
 
     /// Constructs an empty shape.
     ///
     /// This function is the default constructor. It creates a shape with no points (aka. an empty
     /// shape); nothing is drawn until the shape is updated with at least 3 points.
     ///
-    pub fn new() -> Shape {
+    pub fn new() -> Shape<'a> {
         let mut vertices = VertexArray::new();
         vertices.set_primitive(Primitive::TriangleFans);
         vertices.set_usage(Usage::Stream);
@@ -165,6 +167,7 @@ impl Shape {
             color: Color::BLACK,
             outline_color: Color::BLACK,
             outline_thickness: 0.0,
+            texture: None,
             vertices: vertices,
             outline_vertices: outline_vertices,
             center: Position::default(),
@@ -320,6 +323,19 @@ impl Shape {
         self.update_outline = true;
     }
 
+    pub fn texture(&self) -> Option<&'a Texture> {
+        self.texture
+    }
+
+    pub fn set_texture(&mut self, texture: &'a Texture) {
+        self.texture = Some(texture)
+
+    }
+
+    pub fn unset_texture(&mut self) {
+        self.texture = None;
+    }
+
     /// Brief description.
     ///
     /// Long description.
@@ -388,7 +404,15 @@ impl Shape {
         }
 
         // Set up the texture property of the vertices.
-        // ... to be done after texture is implemented.
+        for vertex in vertices.iter_mut() {
+            if self.inside_bounds.size.width > 0.0 {
+                vertex.u = (vertex.x - self.inside_bounds.left()) / self.inside_bounds.size.width;
+            }
+
+            if self.inside_bounds.size.height > 0.0 {
+                vertex.v = (vertex.y - self.inside_bounds.top()) / self.inside_bounds.size.height;
+            }
+        }
 
         // Update the shape vertices with the newly computed vertices.
         self.vertices.update_vertices(&vertices);
@@ -466,7 +490,7 @@ impl Shape {
     }
 }
 
-impl Drawable for Shape {
+impl<'a> Drawable for Shape<'a> {
     fn draw(&self, surface: &mut Surface) {
         // Draw the shape vertices first, then the outline vertices.
         surface.draw_vertices(&self.vertices, self.texture);

@@ -11,6 +11,7 @@ use crate::image::Color;
 use crate::draw::{Primitive, Usage};
 use crate::draw::Surface;
 use crate::draw::{Vertex, VertexArray};
+use crate::draw::Drawable;
 
 fn compute_normal(p1: &Position<f32>, p2: &Position<f32>) -> Position<f32> {
     // Compute the dot product of two vectors.
@@ -463,18 +464,13 @@ impl Shape {
         // Compute and update the outside bounds of the shape.
         self.bounds = self.outline_vertices.bounds();
     }
+}
 
-    /// Brief description.
-    ///
-    /// Long description.
-    ///
-    pub fn draw(&mut self, surface: &mut Surface) {
-        // Make sure the graphics memory is synchronized with the vertices on system memory.
-        self.update();
-
+impl Drawable for Shape {
+    fn draw(&self, surface: &mut Surface) {
         // Draw the shape vertices first, then the outline vertices.
-        surface.draw_vertices(&self.vertices);
-        surface.draw_vertices(&self.outline_vertices);
+        surface.draw_vertices(&self.vertices, self.texture);
+        surface.draw_vertices(&self.outline_vertices, self.texture);
     }
 }
 

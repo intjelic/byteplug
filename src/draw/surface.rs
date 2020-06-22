@@ -278,7 +278,8 @@ impl Surface {
     ///
     /// The **draw_vertices() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn draw_vertices(&mut self, vertices: &VertexArray) {
+    pub fn draw_vertices(&mut self, vertices: &VertexArray, texture: Option<&Texture>) {
+
         // To draw on the surface, we must make its underlying OpenGL context (and thus associated
         // framebuffer) current. This is so the DrawArrays() function operates on it.
         self.activate();
@@ -289,6 +290,21 @@ impl Surface {
 
         // Set the viewport uniform (commonly called the projection matrix)
         default_shader.set_uniform("viewport", Uniform::Matrix4(*self.view.matrix().as_array()));
+
+        // Set up the texture (mandatory to have one with the default shader); it's either the user
+        // specified texture, or the default texture which is an "identity" texture.
+        match texture {
+            Some(texture) => {
+                texture.bind();
+            },
+            None => {
+                self.default_texture.bind();
+            }
+        };
+
+        unsafe {
+            gl::ActiveTexture(gl::TEXTURE0);
+        };
 
         // Delegate the drawing calls to the vertices.
         vertices.draw(self);

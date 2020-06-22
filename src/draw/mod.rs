@@ -90,6 +90,8 @@ mod usage;
 mod vertex;
 mod vertex_array;
 
+mod drawable;
+
 mod shape;
 
 mod glyph;
@@ -108,6 +110,8 @@ pub use primitive::Primitive;
 pub use usage::Usage;
 pub use vertex::Vertex;
 pub use vertex_array::VertexArray;
+
+pub use drawable::Drawable;
 
 pub use shape::Shape;
 

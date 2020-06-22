@@ -20,6 +20,7 @@ use crate::draw::{Texture, VertexArray};
 use crate::draw::Uniform;
 use crate::draw::default_shader::get_or_create_default_shader;
 use crate::draw::View;
+use crate::draw::Drawable;
 use crate::application::get_or_create_event_loop;
 
 fn make_default_texture() -> Texture {
@@ -267,6 +268,10 @@ impl Surface {
             gl_check!(gl::ClearColor(color[0], color[1], color[2], color[3]));
             gl_check!(gl::Clear(gl::COLOR_BUFFER_BIT));
         }
+    }
+
+    pub fn draw(&mut self, drawable: &dyn Drawable) {
+        drawable.draw(self);
     }
 
     /// Brief description

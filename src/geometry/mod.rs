@@ -60,6 +60,7 @@ mod vector;
 mod matrix;
 
 mod transform;
+mod transformable;
 
 mod point;
 mod line;
@@ -76,6 +77,7 @@ pub use vector::Vector;
 pub use matrix::Matrix;
 
 pub use transform::Transform;
+pub use transformable::Transformable;
 
 pub use point::Point;
 pub use line::Line;

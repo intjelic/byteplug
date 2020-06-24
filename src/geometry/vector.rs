@@ -87,7 +87,7 @@ impl Vector {
     /// The **cross_product() function** is not documented yet. Pull requests are welcome.
     ///
     pub fn cross_product(&self, vector: Vector) -> f32 {
-        // To be implemented.
+        (self.x * vector.y) - (self.y * vector.x)
     }
 }
 
@@ -134,7 +134,15 @@ mod tests {
 
     #[test]
     fn vector_cross_product() {
-        // To be written.
+        let vector = Vector::from_xy(1.0, 2.0);
+        let other_vector = Vector::from_xy(5.0, 7.0);
+        assert_eq!(vector.dot_product(other_vector), 19.0);
+        assert_eq!(other_vector.dot_product(vector), 19.0);
+
+        let vector = Vector::from_xy(1.0, -2.0);
+        let other_vector = Vector::from_xy(-4.0, 7.0);
+        assert_eq!(vector.dot_product(other_vector), -18.0);
+        assert_eq!(other_vector.dot_product(vector), -18.0);
     }
 
     #[test]

@@ -6,6 +6,7 @@
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
 use std::f32::consts::PI;
+use crate::geometry::compute_bounds;
 use crate::geometry::Position;
 use crate::geometry::Box;
 use crate::geometry::{Vector, Matrix};
@@ -142,33 +143,18 @@ impl Transform {
     ///
     /// The **transform_box() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn transform_box(&self, boxx: &Box<f32>) -> Box<f32> {
+    pub fn transform_box(&self, box_: &Box<f32>) -> Box<f32> {
 
-        // // Transform the 4 corners of the rectangle
-        // const Vector2f points[] =
-        // {
-        //     transformPoint(rectangle.left, rectangle.top),
-        //     transformPoint(rectangle.left, rectangle.top + rectangle.height),
-        //     transformPoint(rectangle.left + rectangle.width, rectangle.top),
-        //     transformPoint(rectangle.left + rectangle.width, rectangle.top + rectangle.height)
-        // };
+        // Transform the 4 corners of the box.
+        let points = vec!(
+            self.transform_position(&box_.top_left()),
+            self.transform_position(&box_.top_right()),
+            self.transform_position(&box_.bottom_left()),
+            self.transform_position(&box_.bottom_right())
+        );
 
-        // // Compute the bounding rectangle of the transformed points
-        // float left = points[0].x;
-        // float top = points[0].y;
-        // float right = points[0].x;
-        // float bottom = points[0].y;
-        // for (int i = 1; i < 4; ++i)
-        // {
-        //     if      (points[i].x < left)   left = points[i].x;
-        //     else if (points[i].x > right)  right = points[i].x;
-        //     if      (points[i].y < top)    top = points[i].y;
-        //     else if (points[i].y > bottom) bottom = points[i].y;
-        // }
-
-        // return FloatRect(left, top, right - left, bottom - top);
-
-        Box::default()
+        // Compute the bounding box of the transformed points.
+        compute_bounds(&points)
     }
 }
 

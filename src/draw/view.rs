@@ -188,10 +188,9 @@ impl View {
             let d = -b * self.center.y;
 
             // Rebuild the projection matrix.
-            self.matrix = Matrix::with_values([
+            self.matrix = Matrix::with_elements([
                  a * cosine, a * sine,   a * tx + c,
-                -b * sine,   b * cosine, b * ty + d,
-                 0.0,        0.0,        1.0
+                -b * sine,   b * cosine, b * ty + d
             ]);
 
             self.update = false;

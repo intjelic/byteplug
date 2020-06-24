@@ -15,12 +15,6 @@ use crate::geometry::{Vector, Matrix};
 ///
 /// The **Transform struct** is not documented yet. Pull requests are welcome.
 ///
-/// **Implementation notes**
-///
-/// - The translate(), rotate(), scale() and combine() methods consume and return `self`; is that
-///   good design ?
-/// - Is combine() method necessary ?
-///
 pub struct Transform {
     pub matrix: Matrix
 }
@@ -31,9 +25,7 @@ impl Transform {
     /// The **new() function** is not documented yet. Pull requests are welcome.
     ///
     pub fn new() -> Transform {
-        Transform {
-            matrix: Matrix::new()
-        }
+        Transform::with_matrix(Matrix::new())
     }
 
     /// Brief description
@@ -50,14 +42,13 @@ impl Transform {
     ///
     /// The **translate() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn translate(mut self, offset: Vector) -> Transform {
-        let matrix = Matrix::with_values([
-            1.0, 0.0, offset.x(),
-            0.0, 1.0, offset.y(),
-            0.0, 0.0, 1.0,
+    pub fn translate(mut self, offset: Position) -> Transform {
+        let matrix = Matrix::with_elements([
+            1.0, 0.0, offset.x,
+            0.0, 1.0, offset.y
         ]);
 
-        self.matrix = self.matrix.combine(&matrix);
+        self.matrix = self.matrix.combine(matrix);
         self
     }
 
@@ -66,29 +57,26 @@ impl Transform {
     /// The **rotate() function** is not documented yet. Pull requests are welcome.
     ///
     pub fn rotate(mut self, angle: f32, center: Option<Position>) -> Transform {
-
         let radian = angle * PI / 180.0;
         let cosine = radian.cos();
         let sine = radian.sin();
 
         let matrix = match center {
             Some(position) => {
-                Matrix::with_values([
+                Matrix::with_elements([
                     cosine, -sine,   position.x * (1.0 - cosine) + position.y * sine,
-                    sine,    cosine, position.y * (1.0 - cosine) - position.x * sine,
-                    0.0,     0.0,    1.0,
+                    sine,    cosine, position.y * (1.0 - cosine) - position.x * sine
                 ])
             },
             None => {
-                Matrix::with_values([
+                Matrix::with_elements([
                     cosine, -sine,   0.0,
-                    sine,    cosine, 0.0,
-                    0.0,     0.0,    1.0,
+                    sine,    cosine, 0.0
                 ])
             }
         };
 
-        self.matrix = self.matrix.combine(&matrix);
+        self.matrix = self.matrix.combine(matrix);
         self
     }
 
@@ -97,33 +85,21 @@ impl Transform {
     /// The **scale() function** is not documented yet. Pull requests are welcome.
     ///
     pub fn scale(mut self, factor: Vector, center: Option<Position>) -> Transform {
-
         let matrix = match center {
             Some(position) => {
-                Matrix::with_values([
+                Matrix::with_elements([
                     factor.x(), 0.0,        position.x * (1.0 - factor.x()),
-                    0.0,        factor.y(), position.y * (1.0 - factor.y()),
-                    0.0,        0.0,        1.0
+                    0.0,        factor.y(), position.y * (1.0 - factor.y())
                 ])
             },
             None => {
-                Matrix::with_values([
-                    factor.x(), 0.0,        0.0,
-                    0.0,        factor.y(), 0.0,
-                    0.0,        0.0,        1.0
+                Matrix::with_elements([
+                    factor.x(), 0.0,       0.0,
+                    0.0,        factor.y(), 0.0
                 ])
             }
         };
 
-        self.matrix = self.matrix.combine(&matrix);
-        self
-    }
-
-    // /// Brief description
-    ///
-    /// The **combine() function** is not documented yet. Pull requests are welcome.
-    ///
-    pub fn combine(mut self, matrix: &Matrix) -> Transform {
         self.matrix = self.matrix.combine(matrix);
         self
     }
@@ -134,8 +110,8 @@ impl Transform {
     ///
     pub fn transform_position(&self, position: &Position<f32>) -> Position<f32> {
         Position::new(
-            self.matrix[0] * position.x + self.matrix[1] * position.y + self.matrix[2],
-            self.matrix[3] * position.x + self.matrix[4] * position.y + self.matrix[5]
+            self.matrix.elements[0] * position.x + self.matrix.elements[1] * position.y + self.matrix.elements[2],
+            self.matrix.elements[3] * position.x + self.matrix.elements[4] * position.y + self.matrix.elements[5]
         )
     }
 

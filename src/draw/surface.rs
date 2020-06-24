@@ -289,7 +289,7 @@ impl Surface {
         default_shader.bind();
 
         // Set the viewport uniform (commonly called the projection matrix)
-        default_shader.set_uniform("viewport", Uniform::Matrix4(*self.view.matrix().as_array()));
+        default_shader.set_uniform("viewport", Uniform::Matrix4(self.view.matrix().as_4x4_array()));
 
         // Set up the texture (mandatory to have one with the default shader); it's either the user
         // specified texture, or the default texture which is an "identity" texture.

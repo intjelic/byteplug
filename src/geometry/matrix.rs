@@ -202,20 +202,42 @@ mod tests {
         assert_eq!(Matrix::with_elements(elements).elements, elements);
     }
 
-
     #[test]
     fn matrix_combine() {
-        // To be written.
+        let matrix = Matrix::with_elements([11.0, 12.0, 13.0, 14.0, 15.0, 16.0]);
+        let other_matrix = Matrix::with_elements([21.0, 22.0, 23.0, 24.0, 25.0, 26.0]);
+        let mut result = Matrix::default();
+
+        result = matrix.combine(other_matrix);
+        assert_eq!(result, Matrix::with_elements([519.0, 542.0, 578.0, 654.0, 683.0, 728.0]));
+
+        result = other_matrix.combine(matrix);
+        assert_eq!(result, Matrix::with_elements([539.0, 582.0, 648.0, 614.0, 663.0, 738.0]));
     }
 
     #[test]
     fn matrix_determinant() {
-        // To be written.
+        let mut matrix = Matrix::default();
+
+        matrix = Matrix::with_elements([1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
+        assert_eq!(matrix.determinant(), -3.0);
+
+        matrix = Matrix::with_elements([-6.0, -5.0, -4.0, -3.0, -2.0, -1.0]);
+        assert_eq!(matrix.determinant(), -3.0);
+
+        matrix = Matrix::with_elements([7.0, 8.0, 12.0, -8.0, -14.0, -10.0]);
+        assert_eq!(matrix.determinant(), -34.0);
     }
 
     #[test]
     fn matrix_inverse() {
-        // To be written.
+        let mut matrix = Matrix::default();
+
+        let matrix = Matrix::with_elements([11.0, 12.0, 13.0, 14.0, 15.0, 16.0]);
+        assert_eq!(matrix.inverse(), Matrix::with_elements([-5.0, 4.0, 1.0, 4.6666665, -3.6666667, -2.0]));
+
+        let matrix = Matrix::with_elements([21.0, 22.0, 23.0, 24.0, 25.0, 26.0]);
+        assert_eq!(matrix.inverse(), Matrix::with_elements([-8.333333, 7.3333335, 1.0, 8.0, -7.0, -2.0]));
     }
 
     #[test]

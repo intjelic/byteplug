@@ -10,7 +10,7 @@ use crate::geometry::Matrix;
 
 /// A vector for the Euclidean plane.
 ///
-/// A 2D vector with a hidden homogenous coordinates (z equal to 1) and therefore behaves as a 3D
+/// A 2D vector with a hidden homogenous coordinates (z equal to 0) and therefore behaves as a 3D
 /// vector. It's used in conjunction with matrices to transform 2D coordinates. It can effectively
 /// represent coordinates or directions in the Euclidean plane that are later transformed with
 /// matrices.
@@ -68,8 +68,8 @@ impl Vector {
         // To be implemented.
     }
 
-    pub fn dot_product(&mut self) {
-        // To be implemented.
+    pub fn dot_product(&self, vector: Vector) -> f32 {
+        self.x * vector.x + self.y * vector.y
     }
 
     pub fn cross_product(&mut self) {
@@ -136,7 +136,12 @@ mod tests {
 
     #[test]
     fn vector_dot_product() {
-        // To be written.
+        let mut vector = Vector::from_xy(1.0, 2.0);
+        let mut other_vector = Vector::from_xy(5.0, 7.0);
+
+        assert_eq!(vector.dot_product(other_vector), 19.0);
+        assert_eq!(other_vector.dot_product(vector), 19.0);
+
     }
 
     #[test]

@@ -273,7 +273,7 @@ mod tests {
     #[test]
     fn matrix_multiplication() {
         let matrix = Matrix::new();
-        let vector = Vector::new(0.0, 0.0);
+        let vector = Vector::from_xy(0.0, 0.0);
         let another_matrix = Matrix::new();
 
         let result_vector = matrix * vector;

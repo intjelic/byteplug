@@ -276,7 +276,7 @@ impl<States> Window<States> {
                            position: &winit::dpi::PhysicalPosition<f64>,
                            _modifiers: &winit::event::ModifiersState) {
         let position = Position::new(position.x as i32, position.y as i32);
-        let vector = Vector::new(0., 0.);
+        let vector = Vector::from_xy(0.0, 0.0);
 
         match self.on_cursor_move {
             None => (),

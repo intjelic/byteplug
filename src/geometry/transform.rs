@@ -88,14 +88,14 @@ impl Transform {
         let matrix = match center {
             Some(position) => {
                 Matrix::with_elements([
-                    factor.x(), 0.0,        position.x * (1.0 - factor.x()),
-                    0.0,        factor.y(), position.y * (1.0 - factor.y())
+                    factor.x, 0.0,      position.x * (1.0 - factor.x),
+                    0.0,      factor.y, position.y * (1.0 - factor.y)
                 ])
             },
             None => {
                 Matrix::with_elements([
-                    factor.x(), 0.0,       0.0,
-                    0.0,        factor.y(), 0.0
+                    factor.x, 0.0,      0.0,
+                    0.0,      factor.y, 0.0
                 ])
             }
         };

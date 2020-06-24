@@ -10,40 +10,58 @@ use crate::geometry::Matrix;
 
 /// A vector for the Euclidean plane.
 ///
-/// A vector represents **a length** and **an angle**; it can be seen as an arrow. With matrices,
-/// it's one of the two mathematical primitives used to compute in **the Euclidean plane**; it's
-/// mostly used to transform points. Also note that, unlike the mathematical literature, vectors are
-/// not directly a one dimension matrix (or a "row vector" or a "column vector"), even though they
-/// can be thought in that way.
+/// A 2D vector with a hidden homogenous coordinates (z equal to 1) and therefore behaves as a 3D
+/// vector. It's used in conjunction with matrices to transform 2D coordinates. It can effectively
+/// represent coordinates or directions in the Euclidean plane that are later transformed with
+/// matrices.
+///
+/// See it as an arrow which has the characteristics of having an angle and a length, but which is
+/// more commonly described with two values, x and y, which is preferred as the angle and the length
+/// can easily be computed from those values.
+///
+/// It also defines useful operations such as normalize() to obtain a unit vector, the dot product
+/// and the cross product (even if the later one isn't rigorously defined in the Euclidean plane),
+/// and it also implements the expected arithmetic operations with scalars, vectors and matrices.
+///
+/// Note that you should prefer using `Position<T>` to represent positions unless you want to
+/// transform the coordinates in which case you should use a `Vector` (both are easily convertible
+/// into one another).
 ///
 /// **Implementation notes**
 ///
-/// - Rename `radius` to `length` later.
-/// - Implement unit vector constant.
 /// - Implement in-place arithmetic operation equivalents (AddAssign, SubAssign, MulAssign)
 /// - Implement scalar and update to allow multiplication with scalar.
 /// - Think about `normalize()` versus `normalized()`.
 ///
 #[derive(Copy, Clone, PartialEq, Debug, Default)]
 pub struct Vector {
-    pub radius: f32,
-    pub angle: f32
+    pub x: f32,
+    pub y: f32
 }
 
 impl Vector {
-    pub fn new(radius: f32, angle: f32) -> Vector {
+
+    /// Brief description
+    ///
+    /// The **new() function** is not documented yet. Pull requests are welcome.
+    ///
+    pub fn new() -> Vector {
         Vector {
-            radius: radius,
-            angle:  angle
+            x: 1.0,
+            y: 0.0
         }
     }
 
-    pub fn x(&self) -> f32 {
-        self.angle.cos() * self.radius
-    }
-
-    pub fn y(&self) -> f32 {
-        self.angle.sin() * self.radius
+    /// Brief description
+    ///
+    /// The **from_xy() function** is not documented yet. Pull requests are welcome.
+    ///
+    ///
+    pub fn from_xy(x: f32, y: f32) -> Vector {
+        Vector {
+            x: x,
+            y: y
+        }
     }
 
     pub fn normalize(&mut self) {
@@ -97,17 +115,18 @@ mod tests {
 
     #[test]
     fn vector_new() {
-        // To be written.
+        let vector = Vector::new();
+
+        assert_eq!(vector.x, 1.0);
+        assert_eq!(vector.y, 0.0);
     }
 
     #[test]
-    fn vector_x() {
-        // To be written.
-    }
+    fn vector_from_xy() {
+        let vector = Vector::from_xy(0.0, 1.0);
 
-    #[test]
-    fn vector_y() {
-        // To be written.
+        assert_eq!(vector.x, 0.0);
+        assert_eq!(vector.y, 1.0);
     }
 
     #[test]

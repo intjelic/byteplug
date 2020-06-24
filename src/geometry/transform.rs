@@ -9,7 +9,7 @@ use std::f32::consts::PI;
 use crate::geometry::compute_bounds;
 use crate::geometry::Position;
 use crate::geometry::Box;
-use crate::geometry::{Vector, Matrix};
+use crate::geometry::Matrix;
 
 /// A position and rectangle transformer.
 ///
@@ -82,20 +82,20 @@ impl Transform {
 
     /// Brief description
     ///
-    /// The **scale() function** is not documented yet. Pull requests are welcome.
+    /// The **magnify() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn scale(mut self, factor: Vector, center: Option<Position>) -> Transform {
+    pub fn magnify(mut self, factor: f32, center: Option<Position>) -> Transform {
         let matrix = match center {
             Some(position) => {
                 Matrix::with_elements([
-                    factor.x, 0.0,      position.x * (1.0 - factor.x),
-                    0.0,      factor.y, position.y * (1.0 - factor.y)
+                    factor, 0.0,    position.x * (1.0 - factor),
+                    0.0,    factor, position.y * (1.0 - factor)
                 ])
             },
             None => {
                 Matrix::with_elements([
-                    factor.x, 0.0,      0.0,
-                    0.0,      factor.y, 0.0
+                    factor, 0.0,    0.0,
+                    0.0,    factor, 0.0
                 ])
             }
         };
@@ -159,7 +159,7 @@ mod tests {
     }
 
     #[test]
-    fn transform_scale() {
+    fn transform_magnify() {
         // To be written.
     }
 

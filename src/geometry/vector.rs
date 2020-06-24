@@ -66,15 +66,27 @@ impl Vector {
         }
     }
 
+    /// Brief description
+    ///
+    /// The **normalize4() function** is not documented yet. Pull requests are welcome.
+    ///
     pub fn normalize(&mut self) {
         // To be implemented.
     }
 
+    /// Brief description
+    ///
+    /// The **dot_product() function** is not documented yet. Pull requests are welcome.
+    ///
     pub fn dot_product(&self, vector: Vector) -> f32 {
         self.x * vector.x + self.y * vector.y
     }
 
-    pub fn cross_product(&mut self) {
+    /// Brief description
+    ///
+    /// The **cross_product() function** is not documented yet. Pull requests are welcome.
+    ///
+    pub fn cross_product(&self, vector: Vector) -> f32 {
         // To be implemented.
     }
 }
@@ -114,8 +126,8 @@ mod tests {
 
     #[test]
     fn vector_dot_product() {
-        let mut vector = Vector::from_xy(1.0, 2.0);
-        let mut other_vector = Vector::from_xy(5.0, 7.0);
+        let vector = Vector::from_xy(1.0, 2.0);
+        let other_vector = Vector::from_xy(5.0, 7.0);
         assert_eq!(vector.dot_product(other_vector), 19.0);
         assert_eq!(other_vector.dot_product(vector), 19.0);
     }

@@ -7,6 +7,7 @@
 
 use crate::geometry::compute_bounds;
 use crate::geometry::{Position, Box};
+use crate::geometry::Transformable;
 use crate::image::Color;
 use crate::draw::{Surface, Texture};
 use crate::draw::{Primitive, Usage};
@@ -137,6 +138,9 @@ pub struct Shape<'a> {
     outline_color: Color,
     outline_thickness: f32,
     texture: Option<&'a Texture>,
+    position: Position,
+    angle: f32,
+    magnifier: f32,
     vertices: VertexArray,
     outline_vertices: VertexArray,
     center: Position<f32>,
@@ -168,6 +172,9 @@ impl<'a> Shape<'a> {
             outline_color: Color::BLACK,
             outline_thickness: 0.0,
             texture: None,
+            position: Position::zero(),
+            angle: 0.0,
+            magnifier: 1.0,
             vertices: vertices,
             outline_vertices: outline_vertices,
             center: Position::default(),
@@ -490,11 +497,37 @@ impl<'a> Shape<'a> {
     }
 }
 
+impl<'a> Transformable for Shape<'a> {
+    fn position(&self) -> Position {
+        self.position
+    }
+
+    fn set_position(&mut self, position: Position) {
+        self.position = position;
+    }
+
+    fn angle(&self) -> f32 {
+        self.angle
+    }
+
+    fn set_angle(&mut self, angle: f32) {
+        self.angle = angle;
+    }
+
+    fn magnifier(&self) -> f32 {
+        self.magnifier
+    }
+
+    fn set_magnifier(&mut self, magnifier: f32) {
+        self.magnifier = magnifier;
+    }
+}
+
 impl<'a> Drawable for Shape<'a> {
     fn draw(&self, surface: &mut Surface) {
         // Draw the shape vertices first, then the outline vertices.
-        surface.draw_vertices(&self.vertices, self.texture, None);
-        surface.draw_vertices(&self.outline_vertices, self.texture, None);
+        surface.draw_vertices(&self.vertices, self.texture, Some(self.matrix()));
+        surface.draw_vertices(&self.outline_vertices, self.texture, Some(self.matrix()));
     }
 }
 

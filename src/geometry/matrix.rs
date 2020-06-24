@@ -5,8 +5,7 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-use std::ops::{Add, Sub, Mul};
-use crate::geometry::Vector;
+use std::ops::Mul;
 
 /// A matrix for the Euclidean plane.
 ///
@@ -18,18 +17,23 @@ use crate::geometry::Vector;
 /// See it as a rectangular array of numbers made of 2 rows and 3 columns where each number is
 /// called element. Elements are indexed from left to right, and top to bottom (note that OpenGL
 /// use a different convention but it's able to compute an array compatible with OpenGL). It also
-/// defines useful operations such a combine(), determinant(), inverse() and the expected arithmetic
-/// operations with scalars, vectors and matrices.
+/// defines useful operations such a combine(), determinant(), inverse() but it doesn't implement
+/// the common arithmetic operations with scalars, vectors and matrices because they would not
+/// preserve the homogenous coordinates or the dimension of the matrix. The only arithmetic
+/// operation implemented is the matrix-matrix multiplication, which is the same as using the
+/// combine() method.
 ///
 /// Note that it's a primitive mathematical concept which can be hard to use and understand, in
 /// practice, you use a `Transformer` which wraps a matrix and set its values for you.
 ///
 /// **Implementation notes**
 ///
-/// - Arithmetic operator overloads aren't implemented yet.
 /// - The 3x3 and 4x4 array method changes the indices convention to be OpenGL compatible.
 /// - It can't implement a `transpose()` since it's strictly a 2x3 matrix and it would change the
 ///   dimension.
+/// - It can't implement most of arithmetic operators because it would change the homogenous
+///   coordinates; only matrix-matrix multiplication is valid and thus implemented.
+/// - The AddAssign trait isn't implemented yet.
 ///
 #[derive(Copy, Clone, Debug, Default, PartialEq)]
 pub struct Matrix {
@@ -155,35 +159,11 @@ impl Matrix {
     };
 }
 
-impl Add<Matrix> for Matrix {
-    type Output = Self;
-
-    fn add(self, rhs: Matrix) -> Self {
-        Matrix::default()
-    }
-}
-
-impl Sub<Matrix> for Matrix {
-    type Output = Self;
-
-    fn sub(self, rhs: Matrix) -> Self {
-        Matrix::default()
-    }
-}
-
-impl Mul<Vector> for Matrix {
-    type Output = Self;
-
-    fn mul(self, rhs: Vector) -> Self {
-        Matrix::default()
-    }
-}
-
 impl Mul<Matrix> for Matrix {
     type Output = Self;
 
-    fn mul(self, rhs: Matrix) -> Self {
-        Matrix::default()
+    fn mul(self, matrix: Matrix) -> Self {
+        self.combine(matrix)
     }
 }
 
@@ -253,30 +233,11 @@ mod tests {
     }
 
     #[test]
-    fn matrix_addition() {
-        // To be written.
-        let matrix = Matrix::new();
-        let another_matrix = Matrix::new();
-
-        let result = matrix + another_matrix;
-    }
-
-    #[test]
-    fn matrix_subtraction() {
-        // To be written.
-        let matrix = Matrix::new();
-        let another_matrix = Matrix::new();
-
-        let result = matrix - another_matrix;
-    }
-
-    #[test]
     fn matrix_multiplication() {
-        let matrix = Matrix::new();
-        let vector = Vector::from_xy(0.0, 0.0);
-        let another_matrix = Matrix::new();
+        let matrix = Matrix::with_elements([11.0, 12.0, 13.0, 14.0, 15.0, 16.0]);
+        let other_matrix = Matrix::with_elements([21.0, 22.0, 23.0, 24.0, 25.0, 26.0]);
 
-        let result_vector = matrix * vector;
-        let result_matrix = matrix * another_matrix;
+        assert_eq!(matrix * other_matrix, matrix.combine(other_matrix));
+        assert_eq!(other_matrix * matrix, other_matrix.combine(matrix));
     }
 }

@@ -5,8 +5,7 @@
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, January 2020
 
-use std::ops::{Add, Sub, Mul};
-use crate::geometry::Matrix;
+use std::ops::Mul;
 
 /// A vector for the Euclidean plane.
 ///
@@ -21,7 +20,10 @@ use crate::geometry::Matrix;
 ///
 /// It also defines useful operations such as normalize() to obtain a unit vector, the dot product
 /// and the cross product (even if the later one isn't rigorously defined in the Euclidean plane),
-/// and it also implements the expected arithmetic operations with scalars, vectors and matrices.
+/// and it doesn't implement the expected arithmetic operations with scalars, vectors and matrices
+/// because they would not preserve the homogenous coordinate or result in a matrix with a different
+/// dimension. The only arithmetic operation implemented is the vector-vector multiplication, which
+/// is the same as using the dot_product() method.
 ///
 /// Note that you should prefer using `Position<T>` to represent positions unless you want to
 /// transform the coordinates in which case you should use a `Vector` (both are easily convertible
@@ -77,35 +79,11 @@ impl Vector {
     }
 }
 
-impl Add<Vector> for Vector {
-    type Output = Self;
-
-    fn add(self, rhs: Vector) -> Self {
-        Vector::default()
-    }
-}
-
-impl Sub<Vector> for Vector {
-    type Output = Self;
-
-    fn sub(self, rhs: Vector) -> Self {
-        Vector::default()
-    }
-}
-
 impl Mul<Vector> for Vector {
-    type Output = Self;
+    type Output = f32;
 
-    fn mul(self, rhs: Vector) -> Self {
-        Vector::default()
-    }
-}
-
-impl Mul<Matrix> for Vector {
-    type Output = Matrix;
-
-    fn mul(self, rhs: Matrix) -> Matrix {
-        Matrix::default()
+    fn mul(self, vector: Vector) -> f32 {
+        self.dot_product(vector)
     }
 }
 
@@ -138,10 +116,8 @@ mod tests {
     fn vector_dot_product() {
         let mut vector = Vector::from_xy(1.0, 2.0);
         let mut other_vector = Vector::from_xy(5.0, 7.0);
-
         assert_eq!(vector.dot_product(other_vector), 19.0);
         assert_eq!(other_vector.dot_product(vector), 19.0);
-
     }
 
     #[test]
@@ -150,31 +126,11 @@ mod tests {
     }
 
     #[test]
-    fn vector_addition() {
-        // To be written.
-        let vector = Vector::default();
-        let another_vector = Vector::default();
-
-        let result = vector + another_vector;
-    }
-
-    #[test]
-    fn vector_subtraction() {
-        // To be written.
-        let vector = Vector::default();
-        let another_vector = Vector::default();
-
-        let result = vector - another_vector;
-    }
-
-    #[test]
     fn vector_multiplication() {
-        // To be written.
-        let vector = Vector::default();
-        let another_vector = Vector::default();
-        let matrix = Matrix::new();
+        let vector = Vector::from_xy(1.0, 2.0);
+        let other_vector = Vector::from_xy(5.0, 7.0);
 
-        let result_vector = vector * another_vector;
-        let result_matrix = vector * matrix;
+        assert_eq!(vector * other_vector, vector.dot_product(other_vector));
+        assert_eq!(other_vector * vector, other_vector.dot_product(vector));
     }
 }

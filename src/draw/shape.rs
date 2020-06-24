@@ -493,8 +493,8 @@ impl<'a> Shape<'a> {
 impl<'a> Drawable for Shape<'a> {
     fn draw(&self, surface: &mut Surface) {
         // Draw the shape vertices first, then the outline vertices.
-        surface.draw_vertices(&self.vertices, self.texture);
-        surface.draw_vertices(&self.outline_vertices, self.texture);
+        surface.draw_vertices(&self.vertices, self.texture, None);
+        surface.draw_vertices(&self.outline_vertices, self.texture, None);
     }
 }
 

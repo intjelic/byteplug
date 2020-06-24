@@ -13,6 +13,7 @@ use glutin::{
     NotCurrent
 };
 use crate::geometry::{Position, Size, Box};
+use crate::geometry::Matrix;
 use crate::image::Color;
 use crate::draw::context::get_or_create_context;
 use crate::draw::{gl, Options};
@@ -278,7 +279,7 @@ impl Surface {
     ///
     /// The **draw_vertices() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn draw_vertices(&mut self, vertices: &VertexArray, texture: Option<&Texture>) {
+    pub fn draw_vertices(&mut self, vertices: &VertexArray, texture: Option<&Texture>, matrix: Option<Matrix>) {
 
         // To draw on the surface, we must make its underlying OpenGL context (and thus associated
         // framebuffer) current. This is so the DrawArrays() function operates on it.
@@ -290,6 +291,16 @@ impl Surface {
 
         // Set the viewport uniform (commonly called the projection matrix)
         default_shader.set_uniform("viewport", Uniform::Matrix4(self.view.matrix().as_4x4_array()));
+
+        match matrix {
+            Some(matrix) => {
+                default_shader.set_uniform("model", Uniform::Matrix3(matrix.as_3x3_array()));
+            },
+            None => {
+                let matrix = Matrix::IDENTITY;
+                default_shader.set_uniform("model", Uniform::Matrix3(matrix.as_3x3_array()));
+            }
+        }
 
         // Set up the texture (mandatory to have one with the default shader); it's either the user
         // specified texture, or the default texture which is an "identity" texture.

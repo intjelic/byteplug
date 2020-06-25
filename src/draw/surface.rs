@@ -261,12 +261,14 @@ impl Surface {
     ///
     /// The **erase() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn erase(&mut self) {
-        // Todo: make the context current
-        let color: [f32; 4] = [1.0, 1.0, 1.0, 1.0];
+    pub fn erase(&mut self, color: Color) {
+        let red   = color.red   as f32 / 255.0;
+        let green = color.green as f32 / 255.0;
+        let blue  = color.blue  as f32 / 255.0;
+        let alpha = color.alpha as f32 / 255.0;
 
         unsafe {
-            gl_check!(gl::ClearColor(color[0], color[1], color[2], color[3]));
+            gl_check!(gl::ClearColor(red, green, blue, alpha));
             gl_check!(gl::Clear(gl::COLOR_BUFFER_BIT));
         }
     }

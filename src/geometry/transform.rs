@@ -106,6 +106,14 @@ impl Transform {
 
     /// Brief description
     ///
+    /// The **reset() function** is not documented yet. Pull requests are welcome.
+    ///
+    pub fn reset(&mut self) {
+        self.matrix = Matrix::IDENTITY;
+    }
+
+    /// Brief description
+    ///
     /// The **transform_position() function** is not documented yet. Pull requests are welcome.
     ///
     pub fn transform_position(&self, position: &Position<f32>) -> Position<f32> {

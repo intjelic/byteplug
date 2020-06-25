@@ -61,7 +61,7 @@ pub enum Key {
     },
 
     /// The ; key
-    Semilicon,
+    Semicolon,
     /// The , key
     Comma,
     /// The . key

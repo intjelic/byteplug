@@ -78,6 +78,9 @@ enum UnderlyingContext {
 ///   matters in their case is the framebuffer that is created later.
 /// - The notion of surface size overlaps with the notion of window size. It's the user's
 ///   responsibility to resize the surface according to the window size.
+/// - Implement the destructor (free OpenGL objects as described in the docs).
+///
+#[allow(dead_code)]
 pub struct Surface {
     context: Option<UnderlyingContext>, // shouldn't be a Option, but the make_current() methods consume themselves
     render_buffer: u32, // not used in the case of a window surface
@@ -92,7 +95,7 @@ impl Surface {
     ///
     /// The **new() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn new(size: Size<i32>, options: Options) -> Surface {
+    pub fn new(size: Size<i32>, _options: Options) -> Surface {
 
         let event_loop = get_or_create_event_loop();
         let shared_context = get_or_create_context();
@@ -207,9 +210,7 @@ impl Surface {
                     let viewport = self.compute_viewport();
                     let top = self.size.height - (viewport.top() + viewport.size.height);
 
-                    unsafe {
-                        gl_check!(gl::Viewport(viewport.left(), top, viewport.size.width, viewport.size.height));
-                    }
+                    gl_check!(gl::Viewport(viewport.left(), top, viewport.size.width, viewport.size.height));
 
                     current_context.treat_as_not_current()
                 };
@@ -227,16 +228,16 @@ impl Surface {
     fn compute_viewport(&self) -> Box<i32> {
         // If a SFML-like notion of viewport is implemented in the public API, then those constant
         // will disappear.
-        const viewport_left:   f32 = 0.0;
-        const viewport_top:    f32 = 0.0;
-        const viewport_width:  f32 = 1.0;
-        const viewport_height: f32 = 1.0;
+        const VIEWPORT_LEFT:   f32 = 0.0;
+        const VIEWPORT_TOP:    f32 = 0.0;
+        const VIEWPORT_WIDTH:  f32 = 1.0;
+        const VIEWPORT_HEIGHT: f32 = 1.0;
 
-        let x = 0.5 + self.size.width as f32  * viewport_left;
-        let y = 0.5 + self.size.height as f32 * viewport_top;
+        let x = 0.5 + self.size.width as f32  * VIEWPORT_LEFT;
+        let y = 0.5 + self.size.height as f32 * VIEWPORT_TOP;
 
-        let width  = 0.5 + self.size.width  as f32 * viewport_width;
-        let height = 0.5 + self.size.height as f32 * viewport_height;
+        let width  = 0.5 + self.size.width  as f32 * VIEWPORT_WIDTH;
+        let height = 0.5 + self.size.height as f32 * VIEWPORT_HEIGHT;
 
         Box::new(Position::new(x as i32, y as i32), Size::new(width as i32, height as i32))
     }

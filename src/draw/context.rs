@@ -7,7 +7,6 @@
 
 use winit::dpi::PhysicalSize;
 use glutin::{ContextBuilder, Context, NotCurrent, GlRequest, GlProfile, Api};
-use crate::draw::gl;
 use crate::application::get_or_create_event_loop;
 
 static mut CONTEXT: Option<Context<NotCurrent>> = None;
@@ -61,7 +60,7 @@ pub(crate) fn make_context_current() {
     ensure_context();
 
     unsafe {
-        let mut context = CONTEXT.take().unwrap();
+        let context = CONTEXT.take().unwrap();
         let current_context = context.make_current().unwrap();
         CONTEXT = Some(current_context.treat_as_not_current());
     };

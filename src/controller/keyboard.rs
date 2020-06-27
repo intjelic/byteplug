@@ -139,6 +139,7 @@ pub struct Modifiers {
 ///
 /// Long description.
 ///
+#[allow(dead_code)]
 pub struct Keyboard {
     pressed_keys: HashMap<Key, ()>
 }

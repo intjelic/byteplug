@@ -144,7 +144,7 @@ impl View {
     ///
     /// The **move() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn move_(&mut self, offset: Vector) {
+    pub fn move_(&mut self, _offset: Vector) {
         // To be written.
     }
 
@@ -160,7 +160,7 @@ impl View {
     ///
     /// The **zoom() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn zoom(&mut self, factor: f32) {
+    pub fn zoom(&mut self, _factor: f32) {
         // To be written.
     }
 

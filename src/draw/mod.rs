@@ -71,7 +71,11 @@ macro_rules! gl_check {
 }
 
 pub(crate) use context::get_or_create_context;
+
+// Not sure about those ones; guess they should be removed at some point.
+#[allow(unused_imports)]
 pub(crate) use context::make_context_current;
+#[allow(unused_imports)]
 pub(crate) use default_shader::get_or_create_default_shader;
 
 mod context;

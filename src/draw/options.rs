@@ -4,7 +4,7 @@
 // Please refer to the LICENSE file that can be found at the root of the project directory.
 //
 // Written by Jonathan De Wachter <dewachter.jonathan@gmail.com>, May 2020
-
+#[allow(dead_code)]
 #[derive(Default)]
 pub struct Options {
     depth_bits: Option<u32>,

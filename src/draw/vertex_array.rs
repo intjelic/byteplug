@@ -11,7 +11,6 @@ use crate::draw::gl;
 use crate::draw::context::{get_or_create_context, make_context_current};
 use crate::draw::{Vertex, Primitive, Usage};
 use crate::draw::Surface;
-use crate::draw::default_shader::get_or_create_default_shader;
 
 const VERTEX_POSITION: u32 = 0;
 const VERTEX_COLOR: u32 = 1;
@@ -344,7 +343,7 @@ impl VertexArray {
     ///
     /// This functions draws the vertex array on a surface according to its drawing primitive.
     ///
-    pub(crate) fn draw(&self, surface: &mut Surface) {
+    pub(crate) fn draw(&self, _surface: &mut Surface) {
         // Make the OpenGL object buffer current (so VertexAttribPointer() and
         // EnableVertexAttribArray() operate on it).
         self.bind();

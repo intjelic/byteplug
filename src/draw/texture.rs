@@ -91,7 +91,7 @@ impl Texture {
     ///
     /// The **open() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn open(filename: &str) -> Texture {
+    pub fn open(_filename: &str) -> Texture {
         // To be implemented.
         Texture::new()
     }

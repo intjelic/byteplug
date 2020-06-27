@@ -18,7 +18,9 @@ use crate::draw::Uniform;
 ///
 /// - Very primitive implementation of the shader class; will obviously change a lot.
 /// - Boolean uniform setter is missing.
+/// - Implement the destructor (free shaders and the program as described in the OpenGL docs)
 ///
+#[allow(dead_code)]
 pub struct Shader {
     vertex_shader: gl::types::GLuint,
     fragment_shader: gl::types::GLuint,

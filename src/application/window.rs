@@ -13,7 +13,7 @@ use glutin::{GlProfile, GlRequest, Api};
 use crate::geometry::{Position, Size, Vector};
 use crate::image::Color;
 use crate::draw::get_or_create_context;
-use crate::draw::{gl, Surface};
+use crate::draw::Surface;
 use crate::controller::keyboard;
 use crate::controller::mouse;
 use crate::widget::*;
@@ -223,7 +223,7 @@ fn map_key_code(key: Option<winit::event::VirtualKeyCode>) -> keyboard::Key {
 pub struct Window<States> {
     title: String,
     position: Position<i32>,
-    size: Size<i32>,
+    pub size: Size<i32>,
 
     window: winit::window::Window,
     surface: Surface,
@@ -271,7 +271,7 @@ impl<States> Window<States> {
             .build_windowed(window_builder, &event_loop)
             .unwrap();
 
-        let (mut raw_context, window) = unsafe {
+        let (raw_context, window) = unsafe {
             windowed_context.split()
         };
 
@@ -308,6 +308,15 @@ impl<States> Window<States> {
         }
     }
 
+    /// Brief description
+    ///
+    /// The **title() function** is not documented yet. Pull requests are welcome.
+    ///
+    pub fn title(&self) -> String {
+        self.title.clone()
+    }
+
+    ///
     /// Brief description
     ///
     /// The **surface() function** is not documented yet. Pull requests are welcome.
@@ -384,7 +393,7 @@ impl<States> Window<States> {
     ///
     /// This function does something which is not documented yet.
     ///
-    fn handle_keyboard_input(&mut self, states: &mut States, input: &winit::event::KeyboardInput, is_synthetic: &bool) {
+    fn handle_keyboard_input(&mut self, states: &mut States, input: &winit::event::KeyboardInput, _is_synthetic: &bool) {
         let key = map_key_code(input.virtual_keycode);
 
         let modifiers = keyboard::Modifiers {
@@ -464,10 +473,10 @@ impl<States> Window<States> {
     /// This function does something which is not documented yet.
     ///
     fn handle_mouse_input(&mut self,
-                          states: &mut States,
-                          state: &winit::event::ElementState,
-                          button: &winit::event::MouseButton,
-                          modifiers: &winit::event::ModifiersState) {
+                          _states: &mut States,
+                          _state: &winit::event::ElementState,
+                          _button: &winit::event::MouseButton,
+                          _modifiers: &winit::event::ModifiersState) {
         // To be implemented...
     }
 

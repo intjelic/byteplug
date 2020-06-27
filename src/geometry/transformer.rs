@@ -15,25 +15,25 @@ use crate::geometry::Matrix;
 ///
 /// The **Transform struct** is not documented yet. Pull requests are welcome.
 ///
-pub struct Transform {
+pub struct Transformer {
     pub matrix: Matrix
 }
 
-impl Transform {
+impl Transformer {
     /// Brief description
     ///
     /// The **new() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn new() -> Transform {
-        Transform::with_matrix(Matrix::new())
+    pub fn new() -> Transformer {
+        Transformer::with_matrix(Matrix::new())
     }
 
     /// Brief description
     ///
     /// The **with_matrix() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn with_matrix(matrix: Matrix) -> Transform {
-        Transform {
+    pub fn with_matrix(matrix: Matrix) -> Transformer {
+        Transformer {
             matrix: matrix
         }
     }
@@ -42,7 +42,7 @@ impl Transform {
     ///
     /// The **translate() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn translate(mut self, offset: Position) -> Transform {
+    pub fn translate(mut self, offset: Position) -> Transformer {
         let matrix = Matrix::with_elements([
             1.0, 0.0, offset.x,
             0.0, 1.0, offset.y
@@ -56,7 +56,7 @@ impl Transform {
     ///
     /// The **rotate() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn rotate(mut self, angle: f32, center: Option<Position>) -> Transform {
+    pub fn rotate(mut self, angle: f32, center: Option<Position>) -> Transformer {
         let radian = angle * PI / 180.0;
         let cosine = radian.cos();
         let sine = radian.sin();
@@ -84,7 +84,7 @@ impl Transform {
     ///
     /// The **magnify() function** is not documented yet. Pull requests are welcome.
     ///
-    pub fn magnify(mut self, factor: f32, center: Option<Position>) -> Transform {
+    pub fn magnify(mut self, factor: f32, center: Option<Position>) -> Transformer {
         let matrix = match center {
             Some(position) => {
                 Matrix::with_elements([

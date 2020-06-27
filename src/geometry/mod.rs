@@ -20,14 +20,14 @@
 //!
 //! - Position, Size and Box items
 //! - Vector and Matrix items
-//! - Transform item
+//! - Transformer and Transformable items
 //! - Movable, Resizable, Rotable and Scalable items
 //! - Point, Line, Rectangle, Circle and Polygon items
 //!
 //! Positions, sizes and boxes are the base components, used by almost all the other modules of this
 //! crate; they are self-explanatory, except box, which simply is a rectangle (a position and a
 //! size). Vectors and matrices are two mathematical primitives that allow to do useful geometrical
-//! calculation such as transforming positions; they work together. Transform is a higher-level
+//! calculation such as transforming positions; they work together. Transformer is a higher-level
 //! primitive that encapsulates a matrix to transform position and boxes.
 //! Movable, resizable, rotable and scalable are traits that user-defined items can implement when
 //! it supports some common geometrical operations. Points, lines, rectangles, circles and polygons
@@ -59,7 +59,7 @@ mod box_;
 mod vector;
 mod matrix;
 
-mod transform;
+mod transformer;
 mod transformable;
 
 mod point;
@@ -76,7 +76,7 @@ pub use box_::Box;
 pub use vector::Vector;
 pub use matrix::Matrix;
 
-pub use transform::Transform;
+pub use transformer::Transformer;
 pub use transformable::Transformable;
 
 pub use point::Point;

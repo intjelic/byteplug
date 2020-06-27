@@ -7,7 +7,7 @@
 
 use crate::geometry::Position;
 use crate::geometry::Matrix;
-use crate::geometry::Transform;
+use crate::geometry::Transformer;
 
 /// Brief description.
 ///
@@ -36,12 +36,12 @@ pub trait Transformable {
     }
 
     fn matrix(&self) -> Matrix {
-        let transform = Transform::new()
+        let transformer = Transformer::new()
             .translate(self.position())
             .rotate(self.angle(), None)
             .magnify(self.magnifier(), None);
 
-        transform.matrix
+        transformer.matrix
     }
 }
 

@@ -23,7 +23,7 @@ use crate::geometry::{Vector, Matrix};
 /// - The `move()` method conflicts with Rust keyword.
 /// - The `move()`, `set_rotation()` and `zoom()` methods aren't implemented.
 ///
-#[derive(Clone)]
+#[derive(Clone, PartialEq, Debug, Default)]
 pub struct View {
     center: Position<f32>,
     size: Size<f32>,

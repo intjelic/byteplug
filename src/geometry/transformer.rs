@@ -149,7 +149,7 @@ mod tests {
 
     #[test]
     fn transform_new() {
-        assert_eq!(Transform::new().matrix, Matrix::IDENTITY);
+        assert_eq!(Transformer::new().matrix, Matrix::IDENTITY);
     }
 
     #[test]

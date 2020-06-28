@@ -187,6 +187,9 @@ impl Surface {
                 underlying_context = unsafe {
                     let current_context = underlying_context.make_current().unwrap();
 
+                    self.size = size;
+                    self.view = self.default_view();
+
                     // todo: destroy the generated buffer and re-create it
 
                     current_context.treat_as_not_current()
@@ -242,10 +245,18 @@ impl Surface {
         Box::new(Position::new(x as i32, y as i32), Size::new(width as i32, height as i32))
     }
 
+    /// Brief description
+    ///
+    /// The **view() function** is not documented yet. Pull requests are welcome.
+    ///
     pub fn view(&self) -> &View {
         &self.view
     }
 
+    /// Brief description
+    ///
+    /// The **default_view() function** is not documented yet. Pull requests are welcome.
+    ///
     pub fn default_view(&self) -> View {
         // can something be done to cast Position and Size to different type ?
         let center = Position::new(self.size.width as f32 / 2.0, self.size.height as f32 / 2.0);
@@ -254,6 +265,10 @@ impl Surface {
         View::new(center, size)
     }
 
+    /// Brief description
+    ///
+    /// The **set_view() function** is not documented yet. Pull requests are welcome.
+    ///
     pub fn set_view(&mut self, view: &View) {
         self.view = (*view).clone();
     }

@@ -15,6 +15,7 @@ use crate::geometry::Matrix;
 ///
 /// The **Transform struct** is not documented yet. Pull requests are welcome.
 ///
+#[derive(Copy, Clone, PartialEq, Debug, Default)]
 pub struct Transformer {
     pub matrix: Matrix
 }

@@ -400,3 +400,28 @@ impl Surface {
         self.context = Some(context);
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn surface_view() {
+        let mut surface = Surface::new(Size::zero(), Options::default());
+
+        assert_eq!(surface.default_view(), View::new(Position::zero(), Size::zero()));
+        assert_eq!(*surface.view(), surface.default_view());
+
+        surface.resize(Size::new(640, 480));
+        assert_eq!(surface.default_view(), View::new(Position::new(320.0, 240.0), Size::new(640.0, 480.0)));
+        assert_eq!(*surface.view(), surface.default_view());
+
+        let custom_view = View::new(Position::new(0.0, 0.0), Size::new(160.0, 120.0));
+        surface.set_view(&custom_view);
+        assert_eq!(*surface.view(), custom_view);
+
+        // Check if resizing the surface resets its view to the default view.
+        surface.resize(Size::new(320, 240));
+        assert_eq!(*surface.view(), surface.default_view());
+    }
+}
